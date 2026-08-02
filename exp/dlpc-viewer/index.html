@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLPC Viewer · Layer 0</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>DLPC <span class="muted">// Viewer · Layer 0 decode</span></h1>
+    <p class="sub">Load a <code>.dlpc</code> file exported from an experiment and
+      render its Layer-0 Voronoi floor (progressive seed count supported).</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div id="dropzone" class="dropzone active">
+        <input type="file" id="fileInput" accept=".dlpc,application/octet-stream" hidden />
+        <p class="dz-hint">Drop a <code>.dlpc</code> here, or <span class="link">browse</span></p>
+      </div>
+      <figure class="preview">
+        <dlpc-player id="player" points="100" blend="0" backend="auto"></dlpc-player>
+        <figcaption id="caption">awaiting a .dlpc file</figcaption>
+      </figure>
+    </section>
+
+    <section class="panel">
+      <div class="controls" id="controls">
+        <div class="control">
+          <label for="progressive">Seeds drawn <output id="progOut">100</output>%</label>
+          <input type="range" id="progressive" min="1" max="100" step="1" value="100" />
+        </div>
+        <div class="control">
+          <label for="blend">Cell boundary blend <output id="blendOut">0</output></label>
+          <input type="range" id="blend" min="0" max="1" step="0.05" value="0" />
+        </div>
+        <div class="control">
+          <label><input type="checkbox" id="aa" /> Anti-alias edges (2x2)</label>
+        </div>
+        <div class="control">
+          <label>Canvas scale <output id="scaleOut">1.0</output></label>
+          <input type="range" id="lay" min="0.25" max="3" step="0.05" value="1" />
+        </div>
+        <div class="control backend">
+          <label for="backend">Render backend</label>
+          <select id="backend">
+            <option value="auto" selected>Auto (WebGPU → CPU fallback)</option>
+            <option value="webgpu">WebGPU</option>
+            <option value="cpu">CPU</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="meta" class="meta">— no file loaded —</div>
+
+      <div id="stats" class="stats">
+        <span>points</span><output id="statPoints">0</output>
+        <span>size</span><output id="statBytes">0</output>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="note">Renderer is the <code>&lt;dlpc-player&gt;</code> web component from
+      <code>exp/dlpc-player</code>.</span>
+  </footer>
+
+  <script src="../dlpc-player/js/decode.js?v=2"></script>
+  <script src="../dlpc-player/js/gpu.js?v=2"></script>
+  <script src="../dlpc-player/js/player.js?v=2"></script>
+  <script src="js/viewer.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dlpc-player — embeddable DLPC renderer</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; padding: 24px; font: 14px/1.5 ui-monospace, monospace;
+      background: #121214; color: #e6e6e6;
+    }
+    header h1 { margin: 0 0 4px; font-size: 20px; }
+    header p { margin: 0 0 18px; color: #9aa0a6; }
+    .cards { display: flex; gap: 24px; flex-wrap: wrap; }
+    dlpc-player {
+      width: 320px; border: 1px solid #2a2a2e; border-radius: 6px;
+      background: #000; overflow: hidden;
+    }
+    pre { background: #1a1a1e; padding: 12px; border-radius: 6px; overflow: auto; }
+    code { color: #ffd569; }
+    .foot { margin-top: 24px; color: #55575e; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>&lt;dlpc-player&gt;</h1>
+    <p>Drop-in web component for rendering a Divisionist Layered Point Codec — no deps, everything local.</p>
+  </header>
+
+  <section class="cards">
+    <dlpc-player src="assets/sample.dlpc" blend="0.3" aa points="100"></dlpc-player>
+    <dlpc-player src="assets/sample.dlpc" points="40"></dlpc-player>
+    <dlpc-player backend="cpu"></dlpc-player>
+  </section>
+
+  <pre><code>&lt;script src="js/decode.js"&gt;&lt;/script&gt;
+&lt;script src="js/gpu.js"&gt;&lt;/script&gt;
+&lt;script src="js/player.js"&gt;&lt;/script&gt;
+
+&lt;dlpc-player src="sample.dlpc" points="60" blend="0.3" aa&gt;&lt;/dlpc-player&gt;</code></pre>
+
+  <script src="js/decode.js"></script>
+  <script src="js/gpu.js"></script>
+  <script src="js/player.js"></script>
+  <script>
+    // React to load/error events from any element on the page.
+    document.querySelectorAll('dlpc-player').forEach((p) => {
+      p.addEventListener('dlpc:load', (e) => {
+        const d = e.detail.doc;
+        p.setAttribute('title', `${d.width}×${d.height} v${d.version}`);
+      });
+      p.addEventListener('dlpc:error', (e) => console.warn('dlpc-player:', e.detail.message));
+    });
+  </script>
+</body>
+</html>

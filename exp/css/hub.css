@@ -1,0 +1,80 @@
+:root {
+  --bg: #0a0c12;
+  --panel-2: #1a2030;
+  --text: #e6e9f0;
+  --muted: #8b93a7;
+  --accent: #6effe0;
+  --accent-2: #7aa2ff;
+  --line: #2a3040;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.topbar { padding: 22px 26px 6px; }
+.topbar h1 { margin: 0; font-size: 20px; }
+.topbar .muted { color: var(--muted); font-weight: 400; font-size: 15px; }
+.topbar .sub { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+
+.hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.card {
+  display: block;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color .12s ease, transform .12s ease;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card h2 { margin: 0 0 8px; font-size: 16px; }
+.card .desc { margin: 0 0 10px; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+.card .meta { margin: 0; color: var(--muted); font-size: 11px; }
+
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.badge.done { color: var(--accent); border-color: var(--accent); }
+.card.stub { opacity: .72; }
+
+/* landing/explainer page extras */
+.card.skel { cursor: default; }
+.card.skel:hover { border-color: var(--line); transform: none; }
+.card.cta { background: linear-gradient(180deg, #14203a, var(--panel-2)); }
+.card.cta .btn {
+  display: inline-block;
+  margin: 4px 0 10px;
+  background: var(--panel-2);
+  color: var(--accent);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.card.cta .btn:hover { border-color: var(--accent); }
+.desc.list { list-style: none; padding-left: 0; }
+.desc.list li { margin-bottom: 8px; }
+.desc.list a { color: var(--accent); }
+.foot { padding: 8px 24px 28px; color: var(--muted); font-size: 11px; }

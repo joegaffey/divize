@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLPC · Experiments &amp; Tools</title>
+  <link rel="stylesheet" href="css/hub.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>DLPC <span class="muted">// Experiments &amp; Tools</span></h1>
+    <p class="sub">Divisionist Layered Point Codec — jump to any experiment or tool.</p>
+  </header>
+
+  <main class="hub">
+    <a class="card" href="exp1-convergence/">
+      <h2>Exp 1 · Convergence &amp; Base Layer</h2>
+      <span class="badge done">working</span>
+      <p class="desc">Analytic saliency, CVT / Lloyd relaxation, WebGPU + CPU Voronoi,
+        before/after wipe, wire-size stat, Layer-0 export.</p>
+      <p class="meta">Kodak 16–256 pt · SSIM pending</p>
+    </a>
+
+    <a class="card" href="dlpc-viewer/">
+      <h2>Tool · .dlpc Viewer</h2>
+      <span class="badge done">working</span>
+      <p class="desc">Load a Layer-0 `.dlpc` blob, decode the header + points, and render
+        the Voronoi floor on WebGPU (CPU fallback) with a streaming seed-count slider.</p>
+    </a>
+
+    <a class="card stub" href="exp2-showdown/">
+      <h2>Exp 2 · Architecture Showdown</h2>
+      <span class="badge">scaffold</span>
+      <p class="desc">Pipeline A: Pure Progressive Voronoi vs Pipeline B: Hybrid floor +
+        Gaussian splats / anisotropic ellipses. Byte-vs-PSNR rate–distortion curves.</p>
+    </a>
+
+    <a class="card stub" href="exp3-effort/">
+      <h2>Exp 3 · Optimization Efficiency</h2>
+      <span class="badge">scaffold</span>
+      <p class="desc">Analytic (laplacian var + edges) vs iterative (CVT) vs machine-learning
+        placement; profile encoding speed vs reconstruction fidelity.</p>
+    </a>
+  </main>
+</body>
+</html>

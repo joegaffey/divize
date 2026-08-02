@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>divize — A Divisionist Layered Point Codec</title>
+  <link rel="stylesheet" href="./exp/css/hub.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>divize <span class="muted">// Divisionist Layered Point Codec</span></h1>
+    <p class="sub">Lossy, progressive image compression: turn a raster into a sparse
+      hierarchical point cloud, then rebuild it on the GPU as bytes arrive.</p>
+  </header>
+
+  <main class="hub">
+    <section class="card skel">
+      <h2>The idea</h2>
+      <p class="desc">A highly parallel <strong>encoder</strong> (computer vision / ML) places
+        points where they matter — near edges, texture, high-frequency detail — and packs them
+        into a quantized binary stream. A cheap <strong>decoder</strong> renders them on the GPU
+        (WebGPU/WebGL) layer by layer, so a scene solidifies progressively on the wire.</p>
+    </section>
+
+    <section class="card skel">
+      <h2>How it's layered</h2>
+      <ul class="desc list">
+        <li><strong>Layer 0</strong> — a pure-Voronoi structural floor: few seeds, full coverage, 5-byte packets. Guarantees something solid, instantly.</li>
+        <li><strong>Layer 1+</strong> — refinement: more Voronoi seeds or alpha-blended geometric splats (8-byte packets) that sharpen detail only where it's needed.</li>
+      </ul>
+    </section>
+
+    <section class="card skel">
+      <h2>Why experiments?</h2>
+      <p class="desc">What's the minimum seed count a human still "reads"? Is pure progressive
+        Voronoi or a hybrid splat floor more bits-for-clarity? Does analytic placement beat
+        iterative or learned placement? Each repo folder is one self-contained experiment built
+        to answer those.</p>
+    </section>
+
+    <nav class="card cta">
+      <h2>Explore</h2>
+      <a class="btn" href="./exp/" title="Index of experiments and tools">Open the experiments hub →</a>
+      <p class="meta">Spec · format · source below.</p>
+    </nav>
+
+    <section class="card skel">
+      <h2>Spec &amp; format</h2>
+      <ul class="desc list">
+        <li><a href="./spec/requirements.md">Project spec · requirements</a></li>
+        <li><a href="./spec/design.md">Design intent</a></li>
+        <li><a href="./spec/tasks.md">Tasks &amp; roadmap</a></li>
+        <li><a href="./docs/architecture.md">Architecture</a></li>
+        <li><a href="./docs/dlpc-format.md">.dlpc binary container format</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Phase 1 · prototyping — analytic encoder → bitstream → GPU decoder</span>
+  </footer>
+</body>
+</html>

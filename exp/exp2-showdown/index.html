@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLPC · Exp 2 — Voronoi vs Hybrid Showdown (stub)</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>DLPC <span class="muted">// Exp 2 · Architecture Showdown</span></h1>
+    <p class="sub">
+      <em>Placeholder scaffold.</em> Will host Pipeline A (Pure Progressive Voronoi)
+      vs Pipeline B (Hybrid floor + Gaussian splats / anisotropic ellipses), with
+      byte-vs-PSNR rate–distortion curves. Reuses exp1 libs for now.
+    </p>
+  </header>
+
+  <main class="layout">
+    <!-- Left: original + saliency maps -->
+    <section class="panel">
+      <div id="dropzone" class="dropzone active">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <p class="dz-hint">Drop an image here, or <span class="link">click to browse</span></p>
+      </div>
+      <div class="fig-row" id="figRow">
+        <figure>
+          <canvas id="srcCanvas" width="0" height="0"></canvas>
+          <figcaption>Source</figcaption>
+        </figure>
+        <figure id="saliencyFig" hidden>
+          <canvas id="edgeCanvas" width="0" height="0"></canvas>
+          <figcaption>Edge density</figcaption>
+        </figure>
+        <figure id="laplacianFig" hidden>
+          <canvas id="lapCanvas" width="0" height="0"></canvas>
+          <figcaption>Laplacian variance</figcaption>
+        </figure>
+        <figure id="sizeFig" hidden>
+          <canvas id="sizeCanvas" width="0" height="0"></canvas>
+          <figcaption>Sample size field</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Right: controls + voronoi preview -->
+    <section class="panel">
+      <div class="controls" id="controls">
+        <div class="control">
+          <label for="pointBudget">Point budget <output id="pointBudgetOut">256</output></label>
+          <input type="range" id="pointBudget" min="8" max="16384" step="4" value="256" />
+        </div>
+        <div class="control">
+          <label for="mode">Sample mode</label>
+          <select id="mode">
+            <option value="edge">Edge density</option>
+            <option value="lapvar">Laplacian variance</option>
+            <option value="combined" selected>Combined saliency (r2)</option>
+            <option value="uniform">Uniform</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="iterations">CVT relaxation iterations</label>
+          <output id="iterOut">0</output>
+          <input type="range" id="iterations" min="0" max="200" step="1" value="0" />
+        </div>
+        <div class="control">
+          <label><input type="checkbox" id="showPointColor" checked /> Color cells from source</label>
+        </div>
+        <div class="control">
+          <label for="progressive">Progressive seeds (streaming cut) <output id="progOut">all</output></label>
+          <input type="range" id="progressive" min="1" max="100" step="1" value="100" />
+        </div>
+        <div class="control backend">
+          <label for="backend">Render backend</label>
+          <select id="backend">
+            <option value="auto" selected>Auto (WebGPU → CPU fallback)</option>
+            <option value="webgpu">WebGPU</option>
+            <option value="cpu">CPU (v1)</option>
+          </select>
+          <span id="gpuStatus" class="status">detecting…</span>
+        </div>
+        <div class="control">
+          <label>Canvas scale</label>
+          <output id="scaleOut">1.0</output>
+          <input type="range" id="scale" min="0.25" max="2" step="0.05" value="1" />
+        </div>
+      </div>
+
+      <figure class="preview">
+        <div id="wipe" class="wipe">
+          <canvas id="wipeBase" width="0" height="0"></canvas>
+          <canvas id="vorCanvas" width="0" height="0" class="novoronoi"></canvas>
+          <div id="wipeHandle" class="wipe-handle" title="drag to compare source vs reconstruction">↔</div>
+        </div>
+        <figcaption id="vorCaption">Voronoi cell preview · awaiting image</figcaption>
+<div id="workIndicator" class="work" hidden>
+          <span class="spinner"></span>
+          <span id="workText">sampling…</span>
+          <button type="button" id="workCancel" class="work-cancel">cancel</button>
+        </div>
+      </figure>
+
+      <div id="stats" class="stats">
+        <span>points</span><output id="statPoints">0</output>
+        <span>cells</span><output id="statCells">0</output>
+        <span>cover%</span><output id="statCover">0</output>
+        <span class="ms" id="statMs" title="sample / CVT / render ms">—</span>
+        <span class="wire" id="statWire" title="source pixels vs encoded point payload (x,y,r,g,b per point)">size</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/saliency.js"></script>
+  <script src="js/sampling.js"></script>
+  <script src="js/gpu.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

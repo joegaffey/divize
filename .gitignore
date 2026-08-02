@@ -1,0 +1,23 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs / build
+*.log
+*.tmp
+*.lock
+out/
+dist/
+build/
+
+# Dependency dirs (experiments are self-contained; none expected)
+node_modules/
+
+# Runtime artifacts
+*.dlpc~     # backup or partial encode dumps

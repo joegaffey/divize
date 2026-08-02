@@ -1,0 +1,83 @@
+:root {
+  --bg: #0a0c12;
+  --panel-2: #1a2030;
+  --text: #e6e9f0;
+  --muted: #8b93a7;
+  --accent: #6effe0;
+  --accent-2: #7aa2ff;
+  --line: #2a3040;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.topbar { padding: 20px 24px 4px; }
+.topbar h1 { margin: 0; font-size: 18px; }
+.topbar .muted { color: var(--muted); font-weight: 400; font-size: 14px; }
+.topbar .sub { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  padding: 20px 24px;
+}
+.panel { min-width: 0; }
+
+.dropzone {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 14px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--muted);
+}
+.dropzone.over { border-color: var(--accent); }
+.dropzone.done { border-color: var(--accent-2); }
+.link { color: var(--accent); text-decoration: underline; }
+code { background: var(--panel-2); padding: 1px 5px; border-radius: 4px; }
+
+.preview {
+  background: #05060a;
+  border: 1px solid var(--panel-2);
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 0;
+}
+.preview #player { display: none; }
+.preview #player.visible { display: block; width: 100%; }
+.preview figcaption {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+}
+
+.controls { display: grid; gap: 14px; margin-bottom: 16px; }
+.control { display: flex; flex-direction: column; gap: 6px; }
+.control label { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+.control output { color: var(--accent); font-weight: 600; }
+.control select, .control input[type="range"] { accent-color: var(--accent); width: 100%; }
+
+.status { color: var(--muted); font-size: 12px; }
+
+.meta {
+  color: var(--muted);
+  font-size: 12px;
+  background: var(--panel-2);
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.stats { display: flex; gap: 18px; color: var(--muted); }
+.stats output { color: var(--text); font-weight: 600; }
+
+.footer { padding: 0 24px 20px; color: var(--muted); font-size: 12px; }
