@@ -168,7 +168,7 @@ body {
   gap: 14px;
   margin-bottom: 16px;
 }
-.control { display: flex; flex-direction: column; gap: 6px; }
+.control { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .control label {
   display: flex;
   justify-content: space-between;
@@ -177,6 +177,10 @@ body {
   font-size: 12px;
 }
 .control output { color: var(--accent); font-weight: 600; }
+.control select, .control input[type="range"] {
+  width: 100%;
+  min-width: 0;
+}
 .control select {
   background: var(--panel-2);
   color: var(--text);
