@@ -1,10 +1,10 @@
 # EXP1A results — DLPC
 
-Generated 2026-08-03T19:11:16.585Z · libs @ `57c1bf8` · images: 3
+Generated 2026-08-03T19:19:34.368Z · libs @ `ad54ed7` · images: 3
 
 ## Verdict
 
-**tri-tiled** leads at the largest budget (mean ΔE 14.99)
+**voronoi** leads at the largest budget (mean ΔE 11.52)
 
 ## Fidelity per budget (means over images)
 
@@ -12,49 +12,49 @@ Generated 2026-08-03T19:11:16.585Z · libs @ `57c1bf8` · images: 3
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 13.23 dB | 13.54 dB | 14.12 dB | 13.94 dB |
-| tri-tiled | 14.38 dB | 14.65 dB | 15.41 dB | 15.14 dB |
-| tri-splat | 15.10 dB | 14.30 dB | 14.51 dB | 13.68 dB |
+| voronoi | 16.91 dB | 17.09 dB | 17.20 dB | 17.42 dB |
+| tri-tiled | 16.83 dB | 16.98 dB | 17.45 dB | 17.29 dB |
+| tri-splat | 16.41 dB | 15.88 dB | 16.57 dB | 16.11 dB |
 
 ### SSIM
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 0.1741 | 0.1709 | 0.1653 | 0.2275 |
-| tri-tiled | 0.1867 | 0.1941 | 0.1886 | 0.2429 |
-| tri-splat | 0.1914 | 0.1777 | 0.1658 | 0.2226 |
+| voronoi | 0.1997 | 0.1969 | 0.1966 | 0.2627 |
+| tri-tiled | 0.2028 | 0.2017 | 0.2050 | 0.2730 |
+| tri-splat | 0.1910 | 0.1829 | 0.1831 | 0.2484 |
 
 ### Mean CIEDE2000 (ΔE)
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 20.43 | 19.02 | 17.49 | 16.43 |
-| tri-tiled | 17.51 | 17.32 | 15.39 | 14.99 |
-| tri-splat | 16.45 | 17.64 | 17.06 | 16.94 |
+| voronoi | 14.59 | 14.04 | 13.73 | 11.52 |
+| tri-tiled | 14.78 | 14.30 | 13.11 | 11.83 |
+| tri-splat | 14.57 | 14.91 | 14.05 | 12.71 |
 
 ### ΔE99
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 50.46 | 53.96 | 47.34 | 60.64 |
-| tri-tiled | 46.90 | 45.83 | 48.00 | 50.51 |
-| tri-splat | 46.23 | 52.16 | 45.89 | 61.84 |
+| voronoi | 31.16 | 33.37 | 32.64 | 39.05 |
+| tri-tiled | 29.79 | 30.20 | 32.78 | 38.47 |
+| tri-splat | 38.40 | 45.19 | 37.65 | 48.61 |
 
 ### ΔE·sal (saliency-weighted)
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 19.61 | 18.12 | 16.11 | 18.09 |
-| tri-tiled | 15.09 | 16.89 | — | 16.05 |
-| tri-splat | 14.80 | 16.64 | 16.13 | 18.75 |
+| voronoi | 13.78 | 13.54 | 13.54 | 14.16 |
+| tri-tiled | 13.84 | 13.63 | — | 14.22 |
+| tri-splat | 13.64 | 14.35 | 13.70 | 15.58 |
 
 ### Rendered coverage
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 73.4% | 85.0% | 63.3% | 80.7% |
-| tri-tiled | 66.2% | 61.6% | 66.9% | 72.1% |
-| tri-splat | 68.3% | 69.9% | 76.3% | 74.4% |
+| voronoi | 13.1% | 22.6% | 37.7% | 60.9% |
+| tri-tiled | 1.0% | 15.3% | 26.3% | 51.0% |
+| tri-splat | 34.9% | 51.5% | 56.1% | 64.0% |
 
 ### Payload bytes
 
@@ -68,9 +68,22 @@ Generated 2026-08-03T19:11:16.585Z · libs @ `57c1bf8` · images: 3
 
 | style | n=16 | n=32 | n=64 | n=128 |
 |---|---|---|---|---|
-| voronoi | 906.1 ms | 864.3 ms | 868.8 ms | 911.1 ms |
-| tri-tiled | 900.1 ms | 915.1 ms | 1023.0 ms | 1113.4 ms |
-| tri-splat | 925.0 ms | 1222.4 ms | 984.5 ms | 1118.5 ms |
+| voronoi | 900.6 ms | 846.4 ms | 857.4 ms | 893.2 ms |
+| tri-tiled | 841.1 ms | 880.4 ms | 1029.5 ms | 1089.6 ms |
+| tri-splat | 863.8 ms | 1222.7 ms | 994.8 ms | 1112.9 ms |
+
+## Method notes
+
+- **Floor colouring**: cells use the **cell-mean** colour (`cellMeanColors`)
+  — the mean RGB of the source pixels inside each Voronoi cell — not the
+  single seed pixel (`pointColors`). This is worth **+1.5–3.5 dB PSNR** on
+  Kodak, but is an O(px·n) pass that roughly **doubles** render cost:
+  +42 ms at n=64, +110 ms at n=256, +5.2 s at n=16,384 (480×320 work res).
+  The interactive slider range (≤256 pts) stays ~1 s/cell; the extreme end
+  of the slider is where the cost bites.
+- **Sweep cost**: this batch ran **62 cells** (21 exp1a + 41 exp1b) in ~68 s
+  (~1.1 s/cell CPU). The refinement batch consumed **1 `opencode run` LLM
+  call** (the compact summary + findings).
 
 ## Reproduce a run in the browser
 
@@ -80,42 +93,42 @@ browse to one (e.g. a Kodak PNG) to see the floor rendered.
 
 | image | style | n | mode | PSNR | ΔE | bytes | open in browser |
 |---|---|---|---|---|---|---|---|
-| kodim01.png | tri-splat | 16 | combined | 15.10 dB | 16.45 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 32 | combined | 13.68 dB | 18.79 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 32 | combined | 14.92 dB | 16.48 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=50&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 64 | combined | 14.51 dB | 17.07 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 64 | combined | 14.52 dB | 17.05 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 128 | combined | 14.15 dB | 16.58 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 16 | combined | 14.38 dB | 17.51 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 32 | combined | 14.65 dB | 17.32 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 64 | combined | 15.28 dB | 15.68 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 64 | uniform | 15.54 dB | 15.09 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 128 | combined | 16.01 dB | 14.49 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | voronoi | 16 | combined | 13.23 dB | 20.43 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | voronoi | 32 | combined | 13.54 dB | 19.02 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | voronoi | 64 | combined | 14.12 dB | 17.49 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | voronoi | 128 | combined | 14.36 dB | 16.40 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim05.png | tri-splat | 128 | combined | 11.63 dB | 22.14 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim05.png | tri-tiled | 128 | combined | 13.54 dB | 18.26 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim05.png | voronoi | 128 | combined | 11.79 dB | 21.41 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim19.png | tri-splat | 128 | combined | 15.26 dB | 12.10 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim19.png | tri-tiled | 128 | combined | 15.87 dB | 12.21 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim19.png | voronoi | 128 | combined | 15.68 dB | 11.47 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 16 | combined | 16.41 dB | 14.57 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 32 | combined | 15.63 dB | 15.33 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 32 | combined | 16.12 dB | 14.50 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=50&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 64 | combined | 16.29 dB | 14.35 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 64 | combined | 16.85 dB | 13.76 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 128 | combined | 17.05 dB | 12.42 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 16 | combined | 16.83 dB | 14.78 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 32 | combined | 16.98 dB | 14.30 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 64 | combined | 17.34 dB | 13.43 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 64 | uniform | 17.56 dB | 12.80 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 128 | combined | 17.65 dB | 12.82 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 16 | combined | 16.91 dB | 14.59 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 32 | combined | 17.09 dB | 14.04 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 64 | combined | 17.20 dB | 13.73 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 128 | combined | 17.79 dB | 12.19 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 128 | combined | 14.81 dB | 15.23 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 128 | combined | 15.75 dB | 13.99 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 128 | combined | 15.80 dB | 14.11 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 128 | combined | 16.46 dB | 10.48 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 128 | combined | 18.47 dB | 8.67 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 128 | combined | 18.66 dB | 8.26 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 
 ## CSV
 
 ```csv
 style,budget,images,psnr,ssim,de,de99,deSal,cov,bytes,np,msTotal
-voronoi,16,1,13.235,0.1741,20.429,50.459,19.608,0.7336,93,16,906.14
-voronoi,32,1,13.544,0.1709,19.019,53.962,18.119,0.8497,173,32,864.34
-voronoi,64,1,14.116,0.1653,17.489,47.337,16.11,0.633,333,64,868.77
-voronoi,128,3,13.941,0.2275,16.427666666666667,60.64000000000001,18.08666666666667,0.8071666666666667,653,128,911.1233333333333
-tri-tiled,16,1,14.378,0.1867,17.509,46.898,15.092,0.6622,364,38,900.07
-tri-tiled,32,1,14.652,0.1941,17.319,45.833,16.892,0.6164,636,70,915.07
-tri-tiled,64,2,15.41,0.1886,15.3855,48.0025,,0.6692,1180,134,1022.99
-tri-tiled,128,3,15.138666666666666,0.24286666666666665,14.985333333333335,50.507,16.045666666666666,0.7210000000000001,2266,261.6666666666667,1113.4
-tri-splat,16,1,15.102,0.1914,16.454,46.227,14.798,0.6833,141,16,925.03
-tri-splat,32,2,14.299,0.17765,17.637999999999998,52.158,16.643,0.69925,269,32,1222.425
-tri-splat,64,2,14.5135,0.16585,17.055999999999997,45.885999999999996,16.128,0.76275,525,64,984.46
-tri-splat,128,3,13.681,0.22263333333333332,16.939666666666664,61.83733333333333,18.746333333333332,0.7439333333333332,1037,128,1118.4933333333336
+voronoi,16,1,16.91,0.1997,14.587,31.162,13.777,0.1305,93,16,900.6
+voronoi,32,1,17.086,0.1969,14.035,33.371,13.543,0.2256,173,32,846.4
+voronoi,64,1,17.203,0.1966,13.734,32.644,13.536,0.3768,333,64,857.4
+voronoi,128,3,17.417333333333335,0.2627,11.519666666666666,39.04566666666667,14.162666666666667,0.6092333333333334,653,128,893.1666666666666
+tri-tiled,16,1,16.831,0.2028,14.781,29.794,13.844,0.0102,364,38,841.1
+tri-tiled,32,1,16.981,0.2017,14.297,30.197,13.628,0.1529,636,70,880.4
+tri-tiled,64,2,17.451,0.20495000000000002,13.1145,32.778,,0.26295,1180,134,1029.45
+tri-tiled,128,3,17.291666666666668,0.27296666666666664,11.827666666666666,38.47466666666667,14.223666666666666,0.5101,2266,261.6666666666667,1089.6
+tri-splat,16,1,16.407,0.191,14.573,38.4,13.643,0.3486,141,16,863.8
+tri-splat,32,2,15.876,0.18285,14.9145,45.1905,14.352,0.5152,269,32,1222.65
+tri-splat,64,2,16.567500000000003,0.18309999999999998,14.0515,37.653000000000006,13.6975,0.5607500000000001,525,64,994.8
+tri-splat,128,3,16.108999999999998,0.2484333333333333,12.713333333333333,48.61233333333333,15.575000000000001,0.6401666666666667,1037,128,1112.8999999999999
 ```
