@@ -1,76 +1,76 @@
 # EXP1A results — DLPC
 
-Generated 2026-08-03T19:19:34.368Z · libs @ `ad54ed7` · images: 3
+Generated 2026-08-03T20:53:43.138Z · libs @ `c64a518` · images: 24
 
 ## Verdict
 
-**voronoi** leads at the largest budget (mean ΔE 11.52)
+**tri-tiled** leads at the largest budget (mean ΔE 5.79)
 
 ## Fidelity per budget (means over images)
 
 ### PSNR (dB)
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 16.91 dB | 17.09 dB | 17.20 dB | 17.42 dB |
-| tri-tiled | 16.83 dB | 16.98 dB | 17.45 dB | 17.29 dB |
-| tri-splat | 16.41 dB | 15.88 dB | 16.57 dB | 16.11 dB |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 16.39 dB | 17.02 dB | 17.52 dB | 18.36 dB | 18.94 dB | 19.75 dB | — | 20.70 dB | — | 21.67 dB |
+| tri-tiled | 16.53 dB | 17.02 dB | 17.71 dB | 18.42 dB | 19.29 dB | 20.14 dB | — | 20.90 dB | — | 22.23 dB |
+| tri-splat | 15.72 dB | 16.33 dB | 17.02 dB | 17.30 dB | 18.09 dB | 19.02 dB | 18.11 dB | 18.94 dB | 19.62 dB | 20.37 dB |
 
 ### SSIM
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 0.1997 | 0.1969 | 0.1966 | 0.2627 |
-| tri-tiled | 0.2028 | 0.2017 | 0.2050 | 0.2730 |
-| tri-splat | 0.1910 | 0.1829 | 0.1831 | 0.2484 |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 0.3986 | 0.3988 | 0.3980 | 0.3994 | 0.4050 | 0.4151 | — | 0.4415 | — | 0.4816 |
+| tri-tiled | 0.4118 | 0.4145 | 0.4196 | 0.4257 | 0.4299 | 0.4535 | — | 0.4632 | — | 0.5208 |
+| tri-splat | 0.3815 | 0.3802 | 0.3793 | 0.3795 | 0.3795 | 0.4052 | 0.2977 | 0.4072 | 0.3491 | 0.4743 |
 
 ### Mean CIEDE2000 (ΔE)
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 14.59 | 14.04 | 13.73 | 11.52 |
-| tri-tiled | 14.78 | 14.30 | 13.11 | 11.83 |
-| tri-splat | 14.57 | 14.91 | 14.05 | 12.71 |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 12.93 | 11.81 | 10.85 | 9.53 | 8.68 | 7.74 | — | 6.80 | — | 5.97 |
+| tri-tiled | 12.90 | 11.95 | 10.70 | 9.65 | 8.59 | 7.62 | — | 6.86 | — | 5.79 |
+| tri-splat | 13.75 | 12.53 | 11.27 | 10.54 | 9.51 | 8.26 | 10.44 | 8.58 | 7.96 | 6.98 |
 
 ### ΔE99
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 31.16 | 33.37 | 32.64 | 39.05 |
-| tri-tiled | 29.79 | 30.20 | 32.78 | 38.47 |
-| tri-splat | 38.40 | 45.19 | 37.65 | 48.61 |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 41.43 | 40.77 | 39.32 | 38.19 | 36.92 | 34.88 | — | 32.13 | — | 29.80 |
+| tri-tiled | 39.78 | 38.62 | 37.92 | 36.35 | 33.46 | 31.87 | — | 29.96 | — | 26.95 |
+| tri-splat | 45.72 | 45.05 | 44.35 | 43.83 | 41.19 | 38.26 | 37.09 | 37.55 | 34.29 | 33.66 |
 
 ### ΔE·sal (saliency-weighted)
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 13.78 | 13.54 | 13.54 | 14.16 |
-| tri-tiled | 13.84 | 13.63 | — | 14.22 |
-| tri-splat | 13.64 | 14.35 | 13.70 | 15.58 |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 15.99 | 15.03 | 14.15 | 13.20 | 12.41 | 11.59 | — | 10.71 | — | 9.72 |
+| tri-tiled | 15.61 | 14.91 | 14.05 | 13.17 | — | 11.38 | — | — | — | 9.31 |
+| tri-splat | 16.35 | 15.44 | 14.56 | 14.01 | — | 11.97 | 12.27 | — | 10.67 | 10.77 |
 
 ### Rendered coverage
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 13.1% | 22.6% | 37.7% | 60.9% |
-| tri-tiled | 1.0% | 15.3% | 26.3% | 51.0% |
-| tri-splat | 34.9% | 51.5% | 56.1% | 64.0% |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 56.6% | 62.6% | 67.3% | 71.3% | 73.4% | 75.5% | — | 76.8% | — | 77.9% |
+| tri-tiled | 47.9% | 56.3% | 61.6% | 67.1% | 70.0% | 73.3% | — | 74.5% | — | 76.3% |
+| tri-splat | 61.2% | 68.6% | 72.0% | 71.5% | 75.6% | 75.5% | 63.2% | 78.4% | 75.2% | 79.4% |
 
 ### Payload bytes
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 93 B | 173 B | 333 B | 653 B |
-| tri-tiled | 364 B | 636 B | 1180 B | 2266 B |
-| tri-splat | 141 B | 269 B | 525 B | 1037 B |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 93 B | 173 B | 332 B | 653 B | 1289 B | 2555 B | — | 5069 B | — | 9982 B |
+| tri-tiled | 364 B | 634 B | 1177 B | 2262 B | 4427 B | 8725 B | — | 17292 B | — | 33941 B |
+| tri-splat | 141 B | 269 B | 525 B | 1036 B | 2054 B | 4076 B | 6125 B | 8104 B | 12117 B | 15967 B |
 
 ### Avg encode time (ms)
 
-| style | n=16 | n=32 | n=64 | n=128 |
-|---|---|---|---|---|
-| voronoi | 900.6 ms | 846.4 ms | 857.4 ms | 893.2 ms |
-| tri-tiled | 841.1 ms | 880.4 ms | 1029.5 ms | 1089.6 ms |
-| tri-splat | 863.8 ms | 1222.7 ms | 994.8 ms | 1112.9 ms |
+| style | n=16 | n=32 | n=64 | n=128 | n=256 | n=512 | n=768 | n=1024 | n=1536 | n=2048 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| voronoi | 818.1 ms | 819.5 ms | 835.3 ms | 867.9 ms | 923.0 ms | 1049.7 ms | — | 1289.5 ms | — | 1736.6 ms |
+| tri-tiled | 835.8 ms | 874.9 ms | 926.8 ms | 1060.5 ms | 1407.4 ms | 2213.9 ms | — | 4154.1 ms | — | 9365.2 ms |
+| tri-splat | 847.2 ms | 869.5 ms | 937.4 ms | 1066.4 ms | 1348.4 ms | 1880.5 ms | 2504.1 ms | 3127.9 ms | 4927.8 ms | 5724.0 ms |
 
 ## Method notes
 
@@ -95,40 +95,629 @@ browse to one (e.g. a Kodak PNG) to see the floor rendered.
 |---|---|---|---|---|---|---|---|
 | kodim01.png | tri-splat | 16 | combined | 16.41 dB | 14.57 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-splat | 32 | combined | 15.63 dB | 15.33 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 32 | combined | 16.12 dB | 14.50 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=50&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-splat | 64 | combined | 16.29 dB | 14.35 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-splat | 64 | combined | 16.85 dB | 13.76 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-splat | 128 | combined | 17.05 dB | 12.42 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 256 | combined | 17.22 dB | 11.95 | 2037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 256 | uniform | 17.09 dB | 11.11 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 512 | combined | 17.67 dB | 10.88 | 4109 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 768 | combined | 18.07 dB | 10.16 | 6157 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=768&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 1024 | combined | 18.35 dB | 9.69 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 1024 | combined | 17.87 dB | 10.03 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=1&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 1024 | combined | 18.86 dB | 9.35 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 1024 | uniform | 18.23 dB | 8.92 | 8205 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 1536 | combined | 18.86 dB | 8.89 | 12101 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1536&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 2048 | combined | 18.93 dB | 8.77 | 16157 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-tiled | 16 | combined | 16.83 dB | 14.78 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-tiled | 32 | combined | 16.98 dB | 14.30 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-tiled | 64 | combined | 17.34 dB | 13.43 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
-| kodim01.png | tri-tiled | 64 | uniform | 17.56 dB | 12.80 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | tri-tiled | 128 | combined | 17.65 dB | 12.82 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 256 | combined | 18.20 dB | 11.46 | 4410 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 256 | uniform | 18.64 dB | 10.29 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 512 | combined | 18.51 dB | 10.71 | 8745 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 1024 | combined | 19.29 dB | 9.13 | 17392 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 1024 | uniform | 19.77 dB | 8.16 | 17500 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 2048 | combined | 19.80 dB | 8.26 | 34369 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | voronoi | 16 | combined | 16.91 dB | 14.59 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | voronoi | 32 | combined | 17.09 dB | 14.04 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | voronoi | 64 | combined | 17.20 dB | 13.73 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim01.png | voronoi | 128 | combined | 17.79 dB | 12.19 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 256 | combined | 18.06 dB | 11.49 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 512 | combined | 18.45 dB | 10.48 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 1024 | combined | 18.98 dB | 9.38 | 5083 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 2048 | combined | 19.42 dB | 8.50 | 10078 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 16 | combined | 20.76 dB | 5.71 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 32 | combined | 21.60 dB | 5.31 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 64 | combined | 21.68 dB | 5.11 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 128 | combined | 21.04 dB | 5.26 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 256 | combined | 22.36 dB | 4.66 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 512 | combined | 23.34 dB | 4.07 | 4037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 1024 | combined | 24.18 dB | 3.68 | 8125 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-splat | 2048 | combined | 19.14 dB | 8.26 | 16005 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 16 | combined | 21.40 dB | 5.02 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 32 | combined | 22.35 dB | 4.77 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 64 | combined | 22.05 dB | 4.83 | 1174 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 128 | combined | 23.05 dB | 4.39 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 256 | combined | 23.70 dB | 4.11 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 512 | combined | 24.36 dB | 3.75 | 8716 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 1024 | combined | 25.30 dB | 3.38 | 17290 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | tri-tiled | 2048 | combined | 26.17 dB | 3.04 | 34017 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 16 | combined | 21.38 dB | 5.25 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 32 | combined | 21.97 dB | 4.96 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 64 | combined | 22.11 dB | 4.80 | 328 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 128 | combined | 23.25 dB | 4.22 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 256 | combined | 23.42 dB | 4.14 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 512 | combined | 24.12 dB | 3.79 | 2538 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 1024 | combined | 24.87 dB | 3.46 | 5038 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim02.png | voronoi | 2048 | combined | 25.82 dB | 3.11 | 10008 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 16 | combined | 17.24 dB | 13.09 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 32 | combined | 16.26 dB | 14.02 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 64 | combined | 17.65 dB | 11.01 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 128 | combined | 17.23 dB | 12.07 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 256 | combined | 17.63 dB | 11.85 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 512 | combined | 21.93 dB | 5.91 | 4053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 1024 | combined | 22.94 dB | 5.11 | 8085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-splat | 2048 | combined | 24.38 dB | 4.12 | 15877 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 16 | combined | 17.44 dB | 14.07 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 32 | combined | 17.40 dB | 13.22 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 64 | combined | 18.86 dB | 10.80 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 128 | combined | 20.26 dB | 8.38 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 256 | combined | 21.14 dB | 7.33 | 4410 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 256 | uniform | 21.84 dB | 6.41 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 512 | combined | 21.97 dB | 6.17 | 8722 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 1024 | combined | 23.87 dB | 4.82 | 17221 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | tri-tiled | 2048 | combined | 25.69 dB | 3.74 | 33882 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 16 | combined | 16.88 dB | 14.84 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 32 | combined | 17.53 dB | 13.88 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 64 | combined | 18.61 dB | 11.02 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 128 | combined | 19.93 dB | 8.27 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 256 | combined | 20.90 dB | 7.38 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 512 | combined | 21.67 dB | 6.36 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 1024 | combined | 23.20 dB | 5.04 | 5058 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim03.png | voronoi | 2048 | combined | 24.37 dB | 4.20 | 9888 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 16 | combined | 17.57 dB | 12.21 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 32 | combined | 17.63 dB | 11.11 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 64 | combined | 17.71 dB | 10.46 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 128 | combined | 18.86 dB | 9.22 | 1029 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 256 | combined | 19.84 dB | 7.90 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 512 | combined | 20.64 dB | 6.79 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 1024 | combined | 21.87 dB | 5.87 | 8109 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-splat | 2048 | combined | 22.97 dB | 4.98 | 16085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 16 | combined | 17.40 dB | 13.18 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 32 | combined | 18.11 dB | 11.28 | 630 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 64 | combined | 18.72 dB | 10.45 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 128 | combined | 19.74 dB | 8.66 | 2256 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 256 | combined | 20.54 dB | 7.54 | 4398 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 512 | combined | 21.43 dB | 6.64 | 8676 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 1024 | combined | 22.57 dB | 5.57 | 17306 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | tri-tiled | 2048 | combined | 23.82 dB | 4.74 | 34169 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 16 | combined | 16.91 dB | 12.83 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 32 | combined | 18.03 dB | 11.02 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 64 | combined | 18.41 dB | 10.27 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 128 | combined | 19.60 dB | 8.49 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 256 | combined | 20.36 dB | 7.78 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 512 | combined | 20.97 dB | 6.92 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 1024 | combined | 22.04 dB | 5.92 | 5098 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim04.png | voronoi | 2048 | combined | 23.23 dB | 4.95 | 10023 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 16 | combined | 13.56 dB | 18.18 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 32 | combined | 14.17 dB | 16.97 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 64 | combined | 14.85 dB | 15.73 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim05.png | tri-splat | 128 | combined | 14.81 dB | 15.23 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 256 | combined | 15.31 dB | 14.43 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 512 | combined | 15.78 dB | 13.07 | 4093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 1024 | combined | 16.41 dB | 12.03 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 2048 | combined | 17.22 dB | 10.60 | 16237 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 16 | combined | 15.22 dB | 15.57 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 32 | combined | 15.29 dB | 15.07 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 64 | combined | 15.50 dB | 14.71 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim05.png | tri-tiled | 128 | combined | 15.75 dB | 13.99 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 256 | combined | 16.14 dB | 13.38 | 4427 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 256 | uniform | 16.26 dB | 13.09 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 512 | combined | 16.59 dB | 12.59 | 8779 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 1024 | combined | 17.11 dB | 11.57 | 17233 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 1024 | uniform | 17.52 dB | 10.79 | 17500 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 2048 | combined | 17.92 dB | 10.34 | 34267 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 16 | combined | 15.32 dB | 15.19 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 32 | combined | 15.28 dB | 15.32 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 64 | combined | 15.50 dB | 14.75 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim05.png | voronoi | 128 | combined | 15.80 dB | 14.11 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 256 | combined | 16.15 dB | 13.34 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 512 | combined | 16.55 dB | 12.52 | 2548 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 1024 | combined | 17.09 dB | 11.51 | 5073 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 2048 | combined | 17.69 dB | 10.46 | 10053 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 16 | combined | 15.74 dB | 11.14 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 32 | combined | 16.33 dB | 10.35 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 64 | combined | 17.78 dB | 8.97 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 128 | combined | 17.04 dB | 9.13 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 256 | combined | 15.54 dB | 12.22 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 512 | combined | 18.82 dB | 7.22 | 4101 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 1024 | combined | 20.01 dB | 6.28 | 8133 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-splat | 2048 | combined | 20.91 dB | 5.58 | 16045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 16 | combined | 17.13 dB | 10.38 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 32 | combined | 17.52 dB | 9.34 | 619 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 64 | combined | 18.74 dB | 8.08 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 128 | combined | 18.64 dB | 7.89 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 256 | combined | 19.43 dB | 7.17 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 512 | combined | 20.53 dB | 6.25 | 8745 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 1024 | combined | 21.06 dB | 5.79 | 17313 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | tri-tiled | 2048 | combined | 21.80 dB | 5.29 | 34052 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 16 | combined | 16.35 dB | 11.07 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 32 | combined | 17.82 dB | 9.04 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 64 | combined | 17.56 dB | 8.91 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 128 | combined | 18.70 dB | 7.84 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 256 | combined | 18.93 dB | 7.23 | 1283 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 512 | combined | 19.74 dB | 6.59 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 1024 | combined | 20.78 dB | 5.87 | 5068 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim06.png | voronoi | 2048 | combined | 21.50 dB | 5.31 | 10128 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 16 | combined | 15.45 dB | 14.16 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 32 | combined | 16.29 dB | 13.41 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 64 | combined | 17.02 dB | 11.84 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 128 | combined | 17.63 dB | 10.56 | 1029 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 256 | combined | 18.36 dB | 9.83 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 256 | uniform | 18.00 dB | 9.10 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 512 | combined | 18.28 dB | 10.77 | 4101 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 768 | combined | 18.14 dB | 10.73 | 6093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=768&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 1024 | combined | 19.54 dB | 8.13 | 8013 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 1024 | uniform | 19.54 dB | 6.96 | 8205 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 1536 | combined | 20.37 dB | 7.04 | 12133 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1536&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-splat | 2048 | combined | 19.43 dB | 8.79 | 15957 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 16 | combined | 16.93 dB | 12.61 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 32 | combined | 17.54 dB | 11.29 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 64 | combined | 17.72 dB | 10.94 | 1174 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 128 | combined | 18.46 dB | 10.16 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 256 | combined | 18.98 dB | 9.37 | 4381 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 256 | uniform | 19.50 dB | 8.56 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 512 | combined | 19.71 dB | 8.45 | 8665 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 1024 | combined | 20.52 dB | 7.43 | 17193 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 1024 | uniform | 21.03 dB | 6.73 | 17500 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | tri-tiled | 2048 | combined | 21.70 dB | 6.38 | 33949 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 16 | combined | 16.84 dB | 12.80 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 32 | combined | 17.35 dB | 12.00 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 64 | combined | 17.75 dB | 11.23 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 128 | combined | 18.28 dB | 10.24 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 256 | combined | 18.67 dB | 9.46 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 512 | combined | 19.66 dB | 8.34 | 2568 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 1024 | combined | 20.09 dB | 7.75 | 5078 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim07.png | voronoi | 2048 | combined | 21.17 dB | 6.58 | 9988 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 16 | combined | 12.80 dB | 18.81 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 32 | combined | 12.81 dB | 18.37 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 64 | combined | 12.85 dB | 18.04 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 128 | combined | 13.18 dB | 16.73 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 256 | combined | 13.54 dB | 15.89 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 512 | combined | 14.36 dB | 13.98 | 4077 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 1024 | combined | 14.78 dB | 12.86 | 8117 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-splat | 2048 | combined | 15.57 dB | 11.48 | 16205 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 16 | combined | 13.06 dB | 18.20 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 32 | combined | 13.31 dB | 17.48 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 64 | combined | 13.50 dB | 17.16 | 1163 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 128 | combined | 14.04 dB | 15.86 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 256 | combined | 14.48 dB | 14.83 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 512 | combined | 14.97 dB | 13.60 | 8767 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 1024 | combined | 15.59 dB | 12.41 | 17380 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | tri-tiled | 2048 | combined | 16.29 dB | 11.14 | 34284 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 16 | combined | 13.30 dB | 17.93 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 32 | combined | 13.15 dB | 17.93 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 64 | combined | 13.43 dB | 17.09 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 128 | combined | 13.84 dB | 16.24 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 256 | combined | 14.30 dB | 15.00 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 512 | combined | 14.79 dB | 13.72 | 2553 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 1024 | combined | 15.38 dB | 12.43 | 5098 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim08.png | voronoi | 2048 | combined | 16.02 dB | 11.25 | 10118 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 16 | combined | 16.75 dB | 11.43 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 32 | combined | 17.36 dB | 10.11 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 64 | combined | 18.27 dB | 8.91 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 128 | combined | 18.93 dB | 8.04 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 256 | combined | 19.00 dB | 7.62 | 2037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 512 | combined | 18.41 dB | 9.64 | 4085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 1024 | combined | 21.05 dB | 5.86 | 8045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-splat | 2048 | combined | 22.47 dB | 4.78 | 15773 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 16 | combined | 17.74 dB | 10.09 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 32 | combined | 18.38 dB | 9.78 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 64 | combined | 18.75 dB | 8.79 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 128 | combined | 19.38 dB | 8.00 | 2256 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 256 | combined | 20.33 dB | 7.02 | 4398 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 512 | combined | 21.13 dB | 6.27 | 8710 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 1024 | combined | 22.04 dB | 5.49 | 17140 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | tri-tiled | 2048 | combined | 23.51 dB | 4.36 | 33602 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 16 | combined | 18.07 dB | 9.69 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 32 | combined | 18.48 dB | 9.14 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 64 | combined | 18.72 dB | 8.78 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 128 | combined | 19.58 dB | 7.66 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 256 | combined | 20.00 dB | 7.26 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 512 | combined | 20.88 dB | 6.26 | 2568 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 1024 | combined | 21.43 dB | 5.62 | 5033 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim09.png | voronoi | 2048 | combined | 22.66 dB | 4.81 | 9913 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 16 | combined | 17.76 dB | 10.19 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 32 | combined | 17.42 dB | 10.95 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 64 | combined | 18.64 dB | 9.10 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 128 | combined | 19.41 dB | 7.94 | 1029 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 256 | combined | 20.27 dB | 6.96 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 512 | combined | 20.95 dB | 6.22 | 4085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 1024 | combined | 21.91 dB | 5.51 | 8061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-splat | 2048 | combined | 23.01 dB | 4.72 | 15869 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 16 | combined | 17.80 dB | 10.16 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 32 | combined | 18.67 dB | 9.25 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 64 | combined | 19.23 dB | 8.38 | 1168 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 128 | combined | 20.17 dB | 7.38 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 256 | combined | 20.95 dB | 6.60 | 4432 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 256 | uniform | 20.74 dB | 6.35 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 512 | combined | 22.03 dB | 5.80 | 8664 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 1024 | combined | 23.17 dB | 5.01 | 17225 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | tri-tiled | 2048 | combined | 24.13 dB | 4.42 | 33636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 16 | combined | 17.82 dB | 9.90 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 32 | combined | 18.81 dB | 8.92 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 64 | combined | 19.10 dB | 8.41 | 328 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 128 | combined | 19.95 dB | 7.62 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 256 | combined | 20.79 dB | 6.67 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 512 | combined | 21.62 dB | 6.00 | 2553 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 1024 | combined | 22.48 dB | 5.25 | 5083 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim10.png | voronoi | 2048 | combined | 23.50 dB | 4.61 | 9923 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 16 | combined | 16.20 dB | 14.06 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 32 | combined | 16.60 dB | 12.34 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 64 | combined | 17.20 dB | 11.41 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 128 | combined | 17.35 dB | 10.61 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 256 | combined | 18.78 dB | 8.76 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 512 | combined | 19.19 dB | 8.03 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 1024 | combined | 20.07 dB | 7.17 | 8117 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-splat | 2048 | combined | 21.13 dB | 6.16 | 15949 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 16 | combined | 16.78 dB | 13.59 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 32 | combined | 17.46 dB | 11.54 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 64 | combined | 18.39 dB | 10.20 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 128 | combined | 18.64 dB | 9.58 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 256 | combined | 19.88 dB | 8.04 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 512 | combined | 20.54 dB | 7.33 | 8750 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 1024 | combined | 21.34 dB | 6.65 | 17238 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | tri-tiled | 2048 | combined | 22.25 dB | 5.80 | 34170 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 16 | combined | 16.84 dB | 13.09 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 32 | combined | 16.96 dB | 11.89 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 64 | combined | 17.59 dB | 10.93 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 128 | combined | 18.76 dB | 9.21 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 256 | combined | 19.31 dB | 8.55 | 1278 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 512 | combined | 20.02 dB | 7.70 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 1024 | combined | 20.88 dB | 6.78 | 5078 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim11.png | voronoi | 2048 | combined | 21.68 dB | 5.99 | 9993 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 16 | combined | 15.03 dB | 12.22 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 32 | combined | 17.31 dB | 8.55 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 64 | combined | 17.89 dB | 7.74 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 128 | combined | 17.42 dB | 8.99 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 256 | combined | 19.59 dB | 5.86 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 512 | combined | 20.14 dB | 5.30 | 4061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 1024 | combined | 14.26 dB | 14.68 | 8077 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-splat | 2048 | combined | 23.42 dB | 3.56 | 15789 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 16 | combined | 16.39 dB | 9.87 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 32 | combined | 16.97 dB | 8.87 | 630 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 64 | combined | 17.68 dB | 8.24 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 128 | combined | 19.64 dB | 6.28 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 256 | combined | 20.36 dB | 5.50 | 4392 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 512 | combined | 22.42 dB | 4.34 | 8676 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 1024 | combined | 23.67 dB | 3.72 | 17130 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | tri-tiled | 2048 | combined | 24.80 dB | 3.19 | 33433 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 16 | combined | 15.81 dB | 11.09 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 32 | combined | 17.94 dB | 7.90 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 64 | combined | 18.33 dB | 7.37 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 128 | combined | 19.16 dB | 6.44 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 256 | combined | 19.92 dB | 5.50 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 512 | combined | 20.91 dB | 4.83 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 1024 | combined | 22.35 dB | 4.12 | 5088 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim12.png | voronoi | 2048 | combined | 23.61 dB | 3.53 | 9888 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 16 | combined | 13.30 dB | 15.43 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 32 | combined | 14.75 dB | 13.62 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 64 | combined | 15.29 dB | 12.81 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 128 | combined | 15.69 dB | 12.07 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 256 | combined | 16.25 dB | 11.11 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 512 | combined | 16.83 dB | 10.18 | 4077 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 1024 | combined | 17.34 dB | 9.45 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-splat | 2048 | combined | 17.98 dB | 8.66 | 16197 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 16 | combined | 14.80 dB | 13.70 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 32 | combined | 14.67 dB | 13.74 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 64 | combined | 15.68 dB | 12.35 | 1174 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 128 | combined | 16.63 dB | 10.97 | 2251 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 256 | combined | 17.37 dB | 10.06 | 4415 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 512 | combined | 17.88 dB | 9.50 | 8733 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 1024 | combined | 18.50 dB | 8.73 | 17420 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | tri-tiled | 2048 | combined | 19.03 dB | 8.04 | 34329 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 16 | combined | 14.72 dB | 13.82 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 32 | combined | 15.11 dB | 13.10 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 64 | combined | 15.82 dB | 11.86 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 128 | combined | 16.93 dB | 10.53 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 256 | combined | 17.07 dB | 10.29 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 512 | combined | 17.65 dB | 9.55 | 2568 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 1024 | combined | 18.19 dB | 8.79 | 5098 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim13.png | voronoi | 2048 | combined | 18.75 dB | 8.14 | 10123 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 16 | combined | 15.79 dB | 15.06 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 32 | combined | 15.88 dB | 14.68 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 64 | combined | 16.30 dB | 13.28 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 128 | combined | 17.08 dB | 11.77 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 256 | combined | 17.83 dB | 10.34 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 512 | combined | 18.21 dB | 9.51 | 4085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 1024 | combined | 19.08 dB | 8.40 | 8173 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-splat | 2048 | combined | 20.16 dB | 7.20 | 16005 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 16 | combined | 16.14 dB | 15.43 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 32 | combined | 16.58 dB | 13.78 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 64 | combined | 17.20 dB | 12.40 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 128 | combined | 17.87 dB | 10.99 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 256 | combined | 18.46 dB | 10.01 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 512 | combined | 19.26 dB | 8.95 | 8779 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 1024 | combined | 20.08 dB | 7.87 | 17341 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | tri-tiled | 2048 | combined | 21.07 dB | 6.81 | 34267 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 16 | combined | 15.59 dB | 16.05 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 32 | combined | 16.27 dB | 14.21 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 64 | combined | 16.85 dB | 13.14 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 128 | combined | 17.91 dB | 10.92 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 256 | combined | 18.27 dB | 10.20 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 512 | combined | 18.99 dB | 9.06 | 2573 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 1024 | combined | 19.88 dB | 7.90 | 5088 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim14.png | voronoi | 2048 | combined | 20.74 dB | 6.94 | 10093 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 16 | combined | 10.93 dB | 22.91 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 32 | combined | 12.34 dB | 17.74 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 64 | combined | 13.31 dB | 15.22 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 128 | combined | 14.22 dB | 12.94 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 256 | combined | 15.85 dB | 10.26 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 512 | combined | 16.45 dB | 9.03 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 1024 | combined | 18.79 dB | 6.66 | 8045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-splat | 2048 | combined | 21.17 dB | 5.00 | 15789 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 16 | combined | 12.18 dB | 19.56 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 32 | combined | 13.68 dB | 16.74 | 630 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 64 | combined | 14.37 dB | 13.85 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 128 | combined | 15.84 dB | 11.62 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 256 | combined | 16.92 dB | 9.86 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 512 | combined | 18.38 dB | 7.91 | 8688 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 1024 | combined | 20.21 dB | 6.30 | 17165 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | tri-tiled | 2048 | combined | 23.13 dB | 4.58 | 33377 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 16 | combined | 11.49 dB | 20.52 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 32 | combined | 13.39 dB | 15.94 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 64 | combined | 13.48 dB | 15.38 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 128 | combined | 14.85 dB | 12.59 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 256 | combined | 15.80 dB | 10.34 | 1273 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 512 | combined | 17.19 dB | 8.48 | 2538 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 1024 | combined | 19.29 dB | 6.53 | 5008 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim15.png | voronoi | 2048 | combined | 21.23 dB | 5.03 | 9773 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 16 | combined | 17.46 dB | 10.48 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 32 | combined | 18.49 dB | 9.89 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 64 | combined | 20.04 dB | 7.73 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 128 | combined | 20.74 dB | 7.01 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 256 | combined | 21.65 dB | 6.06 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 512 | combined | 22.26 dB | 5.59 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 1024 | combined | 20.09 dB | 7.16 | 8125 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-splat | 2048 | combined | 24.46 dB | 4.22 | 16069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 16 | combined | 19.05 dB | 8.84 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 32 | combined | 19.10 dB | 8.96 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 64 | combined | 20.16 dB | 7.50 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 128 | combined | 21.54 dB | 6.41 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 256 | combined | 22.58 dB | 5.63 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 512 | combined | 23.50 dB | 4.87 | 8762 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 1024 | combined | 24.51 dB | 4.41 | 17273 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | tri-tiled | 2048 | combined | 25.75 dB | 3.80 | 34103 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 16 | combined | 18.75 dB | 9.58 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 32 | combined | 19.83 dB | 8.42 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 64 | combined | 20.15 dB | 7.61 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 128 | combined | 21.13 dB | 6.54 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 256 | combined | 22.01 dB | 5.91 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 512 | combined | 22.91 dB | 5.21 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 1024 | combined | 24.03 dB | 4.56 | 5093 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim16.png | voronoi | 2048 | combined | 25.23 dB | 4.00 | 10058 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 16 | combined | 16.09 dB | 12.10 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 32 | combined | 17.28 dB | 10.20 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 64 | combined | 17.83 dB | 9.41 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 128 | combined | 17.98 dB | 9.29 | 1029 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 256 | combined | 19.24 dB | 7.72 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 512 | combined | 20.03 dB | 6.92 | 4093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 1024 | combined | 21.12 dB | 6.00 | 8109 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-splat | 2048 | combined | 22.13 dB | 5.25 | 15997 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 16 | combined | 17.21 dB | 11.11 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 32 | combined | 17.87 dB | 9.97 | 630 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 64 | combined | 18.58 dB | 8.95 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 128 | combined | 19.18 dB | 8.13 | 2256 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 256 | combined | 20.14 dB | 7.19 | 4432 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 512 | combined | 21.05 dB | 6.38 | 8687 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 1024 | combined | 22.13 dB | 5.52 | 17345 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | tri-tiled | 2048 | combined | 23.20 dB | 4.90 | 33835 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 16 | combined | 17.10 dB | 10.86 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 32 | combined | 17.68 dB | 10.12 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 64 | combined | 18.52 dB | 8.82 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 128 | combined | 19.13 dB | 8.09 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 256 | combined | 19.83 dB | 7.30 | 1283 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 512 | combined | 20.72 dB | 6.49 | 2538 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 1024 | combined | 21.54 dB | 5.85 | 5068 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim17.png | voronoi | 2048 | combined | 22.53 dB | 5.13 | 9948 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 16 | combined | 16.78 dB | 13.65 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 32 | combined | 16.85 dB | 13.37 | 261 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 64 | combined | 17.50 dB | 11.60 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 128 | combined | 17.83 dB | 10.96 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 256 | combined | 18.25 dB | 10.22 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 512 | combined | 19.02 dB | 9.07 | 4061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 1024 | combined | 19.94 dB | 8.09 | 8149 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-splat | 2048 | combined | 20.81 dB | 7.14 | 16005 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 16 | combined | 17.32 dB | 12.89 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 32 | combined | 17.55 dB | 12.38 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 64 | combined | 18.17 dB | 11.30 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 128 | combined | 18.43 dB | 10.83 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 256 | combined | 19.19 dB | 9.66 | 4415 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 512 | combined | 19.97 dB | 8.59 | 8716 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 1024 | combined | 20.68 dB | 7.76 | 17409 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | tri-tiled | 2048 | combined | 21.43 dB | 6.91 | 34130 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 16 | combined | 17.28 dB | 12.86 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 32 | combined | 17.60 dB | 12.41 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 64 | combined | 18.14 dB | 11.17 | 328 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 128 | combined | 18.62 dB | 10.48 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 256 | combined | 19.24 dB | 9.47 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 512 | combined | 20.02 dB | 8.31 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 1024 | combined | 20.66 dB | 7.60 | 5098 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim18.png | voronoi | 2048 | combined | 21.20 dB | 6.93 | 10043 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 16 | combined | 16.13 dB | 11.98 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 32 | combined | 17.01 dB | 10.05 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 64 | combined | 17.64 dB | 9.20 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim19.png | tri-splat | 128 | combined | 16.46 dB | 10.48 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 256 | combined | 18.09 dB | 8.45 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 512 | combined | 19.16 dB | 7.25 | 4061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 1024 | combined | 19.89 dB | 6.49 | 8029 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 2048 | combined | 20.54 dB | 5.83 | 15965 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 16 | combined | 17.00 dB | 10.77 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 32 | combined | 17.08 dB | 10.90 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 64 | combined | 18.00 dB | 9.07 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim19.png | tri-tiled | 128 | combined | 18.47 dB | 8.67 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 256 | combined | 18.99 dB | 7.96 | 4421 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 256 | uniform | 19.36 dB | 7.06 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 512 | combined | 19.60 dB | 7.33 | 8705 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 1024 | combined | 20.20 dB | 6.66 | 17313 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 1024 | uniform | 20.48 dB | 5.78 | 17500 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 2048 | combined | 21.13 dB | 5.84 | 33825 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 16 | combined | 16.78 dB | 10.92 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 32 | combined | 17.79 dB | 9.46 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 64 | combined | 17.77 dB | 9.74 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 | kodim19.png | voronoi | 128 | combined | 18.66 dB | 8.26 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 256 | combined | 18.90 dB | 7.91 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 512 | combined | 19.65 dB | 7.08 | 2543 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 1024 | combined | 20.23 dB | 6.41 | 5048 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 2048 | combined | 21.04 dB | 5.70 | 10008 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 16 | combined | 13.38 dB | 13.43 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 32 | combined | 14.31 dB | 11.45 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 64 | combined | 15.05 dB | 10.32 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 128 | combined | 16.08 dB | 8.94 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 256 | combined | 16.92 dB | 7.79 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 512 | combined | 18.07 dB | 6.51 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 1024 | combined | 9.85 dB | 19.02 | 7981 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-splat | 2048 | combined | 14.34 dB | 11.06 | 15741 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 16 | combined | 12.94 dB | 14.75 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 32 | combined | 14.27 dB | 12.24 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 64 | combined | 16.39 dB | 9.29 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 128 | combined | 16.30 dB | 8.96 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 256 | combined | 17.89 dB | 7.56 | 4387 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 512 | combined | 19.18 dB | 6.26 | 8716 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 1024 | combined | 20.82 dB | 5.10 | 17012 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | tri-tiled | 2048 | combined | 22.03 dB | 4.16 | 33235 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 16 | combined | 14.14 dB | 11.53 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 32 | combined | 13.99 dB | 11.97 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 64 | combined | 15.51 dB | 9.78 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 128 | combined | 15.72 dB | 9.02 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 256 | combined | 17.01 dB | 7.56 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 512 | combined | 18.34 dB | 6.44 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 1024 | combined | 20.00 dB | 5.21 | 5058 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim20.png | voronoi | 2048 | combined | 21.15 dB | 4.53 | 9778 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 16 | combined | 15.45 dB | 13.75 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 32 | combined | 16.24 dB | 11.94 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 64 | combined | 16.87 dB | 10.97 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 128 | combined | 16.69 dB | 10.42 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 256 | combined | 18.06 dB | 8.60 | 2053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 512 | combined | 18.60 dB | 7.97 | 4053 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 1024 | combined | 16.83 dB | 11.34 | 8093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-splat | 2048 | combined | 20.64 dB | 5.95 | 16005 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 16 | combined | 16.87 dB | 12.40 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 32 | combined | 17.29 dB | 10.93 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 64 | combined | 17.59 dB | 10.03 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 128 | combined | 17.95 dB | 9.48 | 2245 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 256 | combined | 18.76 dB | 8.39 | 4427 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 512 | combined | 19.66 dB | 7.05 | 8773 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 1024 | combined | 20.27 dB | 6.56 | 17284 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | tri-tiled | 2048 | combined | 21.43 dB | 5.58 | 34051 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 16 | combined | 16.80 dB | 12.07 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 32 | combined | 17.24 dB | 10.67 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 64 | combined | 17.55 dB | 10.48 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 128 | combined | 18.09 dB | 9.14 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 256 | combined | 18.72 dB | 8.20 | 1283 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 512 | combined | 19.30 dB | 7.52 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 1024 | combined | 20.14 dB | 6.61 | 5068 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim21.png | voronoi | 2048 | combined | 21.11 dB | 5.71 | 9998 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 16 | combined | 17.61 dB | 13.06 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 32 | combined | 18.36 dB | 11.77 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 64 | combined | 18.87 dB | 10.62 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 128 | combined | 18.93 dB | 10.22 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 256 | combined | 19.92 dB | 8.70 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 512 | combined | 20.99 dB | 7.58 | 4093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 1024 | combined | 21.82 dB | 6.66 | 8093 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-splat | 2048 | combined | 22.94 dB | 5.75 | 16013 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 16 | combined | 18.39 dB | 12.52 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 32 | combined | 19.03 dB | 11.56 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 64 | combined | 19.52 dB | 9.87 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 128 | combined | 20.20 dB | 9.20 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 256 | combined | 21.10 dB | 8.05 | 4427 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 512 | combined | 22.02 dB | 7.14 | 8722 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 1024 | combined | 22.65 dB | 6.35 | 17352 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | tri-tiled | 2048 | combined | 23.61 dB | 5.57 | 33989 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 16 | combined | 18.00 dB | 13.04 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 32 | combined | 18.53 dB | 11.68 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 64 | combined | 19.20 dB | 10.46 | 328 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 128 | combined | 20.15 dB | 9.15 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 256 | combined | 20.52 dB | 8.28 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 512 | combined | 21.52 dB | 7.37 | 2563 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 1024 | combined | 22.52 dB | 6.32 | 5093 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim22.png | voronoi | 2048 | combined | 23.40 dB | 5.63 | 10043 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 16 | combined | 14.41 dB | 17.85 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 32 | combined | 15.18 dB | 16.26 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 64 | combined | 15.66 dB | 14.63 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 128 | combined | 17.01 dB | 11.18 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 256 | combined | 18.27 dB | 9.66 | 2045 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 512 | combined | 19.23 dB | 7.60 | 4069 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 1024 | combined | 16.70 dB | 10.36 | 7965 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-splat | 2048 | combined | 15.11 dB | 12.30 | 15477 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 16 | combined | 14.60 dB | 16.85 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 32 | combined | 14.92 dB | 17.21 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 64 | combined | 16.11 dB | 14.51 | 1168 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 128 | combined | 16.57 dB | 12.42 | 2245 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 256 | combined | 18.60 dB | 9.39 | 4426 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 512 | combined | 19.81 dB | 8.07 | 8710 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 1024 | combined | 21.26 dB | 6.46 | 16909 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | tri-tiled | 2048 | combined | 23.41 dB | 4.98 | 33331 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 16 | combined | 14.74 dB | 17.47 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 32 | combined | 14.94 dB | 16.65 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 64 | combined | 16.27 dB | 13.39 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 128 | combined | 17.53 dB | 10.77 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 256 | combined | 18.34 dB | 9.46 | 1288 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 512 | combined | 19.49 dB | 7.97 | 2513 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 1024 | combined | 21.04 dB | 6.45 | 5003 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim23.png | voronoi | 2048 | combined | 22.64 dB | 5.19 | 9688 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 16 | combined | 14.64 dB | 14.44 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 32 | combined | 15.80 dB | 12.92 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 64 | combined | 16.23 dB | 11.90 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 128 | combined | 16.57 dB | 11.52 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 256 | combined | 17.42 dB | 10.31 | 2061 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 512 | combined | 18.19 dB | 9.21 | 4085 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 1024 | combined | 18.98 dB | 8.35 | 8141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-splat | 2048 | combined | 20.02 dB | 7.29 | 15997 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 16 | combined | 15.99 dB | 13.16 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 32 | combined | 16.41 dB | 12.25 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 64 | combined | 16.83 dB | 11.57 | 1157 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 128 | combined | 17.67 dB | 10.52 | 2251 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 256 | combined | 18.17 dB | 9.81 | 4444 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 512 | combined | 18.75 dB | 8.98 | 8790 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 1024 | combined | 19.64 dB | 8.00 | 17284 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | tri-tiled | 2048 | combined | 20.41 dB | 7.16 | 34284 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 16 | combined | 15.58 dB | 13.38 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 32 | combined | 15.62 dB | 12.84 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 64 | combined | 16.94 dB | 11.17 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 128 | combined | 17.20 dB | 10.71 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 256 | combined | 18.05 dB | 9.68 | 1293 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=256&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 512 | combined | 18.77 dB | 8.79 | 2558 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=512&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 1024 | combined | 19.59 dB | 7.93 | 5063 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=1024&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim24.png | voronoi | 2048 | combined | 20.46 dB | 7.05 | 10013 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=2048&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 
 ## CSV
 
 ```csv
 style,budget,images,psnr,ssim,de,de99,deSal,cov,bytes,np,msTotal
-voronoi,16,1,16.91,0.1997,14.587,31.162,13.777,0.1305,93,16,900.6
-voronoi,32,1,17.086,0.1969,14.035,33.371,13.543,0.2256,173,32,846.4
-voronoi,64,1,17.203,0.1966,13.734,32.644,13.536,0.3768,333,64,857.4
-voronoi,128,3,17.417333333333335,0.2627,11.519666666666666,39.04566666666667,14.162666666666667,0.6092333333333334,653,128,893.1666666666666
-tri-tiled,16,1,16.831,0.2028,14.781,29.794,13.844,0.0102,364,38,841.1
-tri-tiled,32,1,16.981,0.2017,14.297,30.197,13.628,0.1529,636,70,880.4
-tri-tiled,64,2,17.451,0.20495000000000002,13.1145,32.778,,0.26295,1180,134,1029.45
-tri-tiled,128,3,17.291666666666668,0.27296666666666664,11.827666666666666,38.47466666666667,14.223666666666666,0.5101,2266,261.6666666666667,1089.6
-tri-splat,16,1,16.407,0.191,14.573,38.4,13.643,0.3486,141,16,863.8
-tri-splat,32,2,15.876,0.18285,14.9145,45.1905,14.352,0.5152,269,32,1222.65
-tri-splat,64,2,16.567500000000003,0.18309999999999998,14.0515,37.653000000000006,13.6975,0.5607500000000001,525,64,994.8
-tri-splat,128,3,16.108999999999998,0.2484333333333333,12.713333333333333,48.61233333333333,15.575000000000001,0.6401666666666667,1037,128,1112.8999999999999
+voronoi,16,24,16.392374999999998,0.39858333333333335,12.931916666666666,41.432166666666674,15.989833333333332,0.5662791666666668,93,16,818.0816666666666
+voronoi,32,24,17.016375,0.3988458333333334,11.812375000000001,40.76770833333333,15.033999999999999,0.6261291666666666,173,32,819.5375
+voronoi,64,24,17.521250000000006,0.3980041666666667,10.845374999999999,39.324,14.149916666666664,0.6733000000000001,332.1666666666667,63.833333333333336,835.3041666666667
+voronoi,128,24,18.356958333333335,0.39940000000000003,9.52966666666667,38.191291666666665,13.203208333333334,0.7133166666666669,653,128,867.9425000000001
+voronoi,256,24,18.940375000000007,0.40496250000000006,8.683458333333332,36.91858333333332,12.414791666666664,0.7338999999999999,1288.625,255.125,923.0195833333332
+voronoi,512,24,19.74745833333333,0.41514999999999996,7.740375000000001,34.8835,11.59475,0.7547708333333333,2555.2916666666665,508.4583333333333,1049.7195833333333
+voronoi,1024,24,20.695000000000004,0.4415416666666667,6.803375,32.128874999999994,10.706958333333333,0.7679208333333335,5069.25,1011.25,1289.5175000000002
+voronoi,2048,24,21.67179166666666,0.4815708333333333,5.96975,29.803749999999997,9.723541666666666,0.7792374999999999,9981.958333333334,1993.7916666666667,1736.5608333333332
+tri-tiled,16,24,16.525458333333333,0.4118374999999999,12.895416666666664,39.78020833333332,15.612458333333334,0.4793916666666667,364,38,835.7925
+tri-tiled,32,24,17.01833333333333,0.41450000000000004,11.952374999999998,38.61808333333334,14.910624999999998,0.5630624999999999,634.2916666666666,69.75,874.8570833333334
+tri-tiled,64,24,17.71066666666667,0.41962083333333333,10.69525,37.91641666666667,14.047791666666663,0.6155708333333334,1176.5833333333333,133.5,926.8104166666666
+tri-tiled,128,24,18.419583333333332,0.42569999999999997,9.649333333333331,36.35416666666667,13.172125000000001,0.6710166666666666,2261.6666666666665,261.0833333333333,1060.5487500000002
+tri-tiled,256,30,19.2875,0.42987,8.589033333333333,33.464433333333346,,0.7001833333333333,4427.133333333333,515.8,1407.4300000000003
+tri-tiled,512,24,20.135875000000002,0.45350416666666665,7.62225,31.865750000000006,11.379083333333334,0.732675,8724.833333333334,1021.125,2213.902916666666
+tri-tiled,1024,28,20.90275,0.4632392857142857,6.8617500000000025,29.963250000000013,,0.7448749999999998,17291.714285714286,2028.75,4154.0939285714285
+tri-tiled,2048,24,22.229041666666664,0.5208499999999999,5.792541666666668,26.95025,9.308833333333332,0.7630791666666665,33941.083333333336,3987.1666666666665,9365.229166666668
+tri-splat,16,24,15.717999999999998,0.381475,13.747041666666668,45.722125,16.346375000000002,0.61165,141,16,847.2308333333334
+tri-splat,32,24,16.329666666666665,0.38024583333333334,12.528875,45.05325,15.443208333333338,0.6864208333333334,268.6666666666667,31.958333333333332,869.4995833333334
+tri-splat,64,24,17.017500000000002,0.379275,11.265208333333334,44.348749999999995,14.56266666666667,0.7198875000000001,525,64,937.4058333333334
+tri-splat,128,24,17.30175,0.3794666666666667,10.542625,43.82829166666667,14.012458333333335,0.7149708333333332,1035.6666666666667,127.83333333333333,1066.368333333333
+tri-splat,256,26,18.087807692307692,0.3794615384615384,9.513038461538462,41.188,,0.7559576923076923,2053.6153846153848,255.07692307692307,1348.4007692307691
+tri-splat,512,24,19.023166666666665,0.4052374999999999,8.262750000000002,38.26050000000001,11.967791666666669,0.755125,4076,507.875,1880.4633333333338
+tri-splat,768,2,18.107,0.29765,10.443000000000001,37.095,12.269,0.6319,6125,764,2504.05
+tri-splat,1024,28,18.938642857142863,0.40716428571428576,8.575321428571428,37.55467857142857,,0.7843000000000003,8103.571428571428,1011.3214285714286,3127.8817857142853
+tri-splat,1536,2,19.615000000000002,0.34909999999999997,7.9639999999999995,34.287,10.673,0.75235,12117,1513,4927.795
+tri-splat,2048,24,20.370375,0.47429166666666656,6.976666666666667,33.65904166666667,10.774999999999999,0.7935583333333334,15967,1994.25,5723.9625000000015
 ```
