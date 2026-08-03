@@ -4,6 +4,22 @@ Asymmetric, progressive image compression. Encode raster → sparse point cloud
 (analytical / iterative / ML). Decode on GPU (WebGPU/WebGL with CPU fallback) as
 byte streams arrive.
 
+## Why "divisionist"?
+
+Divisionism — the theory behind pointillism (Seurat, Signac, 1880s) — builds a
+picture from thousands of small, unmixed dabs of colour. The eye, not the
+palette, does the mixing, and placement is deliberate, guided by contemporary
+colour theory. Close up the canvas is a field of marks; at the right distance it
+resolves into a coherent, luminous image.
+
+DLPC is that idea in code. The encoder reduces a raster to sparse geometric
+marks — Voronoi cells, triangles, splats — placed by a saliency model (a
+computational stand-in for the divisionist's deliberate hand), and the GPU
+decoder "mixes" them optically as bytes arrive. Fidelity follows mark density
+and viewing distance exactly as on a pointillist canvas, so the codec's
+rate–distortion question is Seurat's: *how many marks, placed where, for the
+image to read?*
+
 ## Layout
 
 ```
