@@ -3,27 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>divize · Phase 1 — Geometric Point Extraction Sandbox</title>
+  <title>divize · Exp 1-b — Triangle Floor Variants</title>
+  <link rel="icon" href="data:," />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="topbar">
-    <h1>divize <span class="muted">// Phase 1 · Analysis Sandbox</span></h1>
+    <h1>divize <span class="muted">// Exp 1-b · Triangle Floor Variants</span></h1>
     <p class="sub">
-      Adaptive geometric point extraction from <strong>edge density</strong> and
-      <strong>Laplacian variance</strong> saliency, with live Voronoi preview and CVT relaxation.
+      Five Layer-0 floors from the <strong>same seed set</strong>, so byte budgets and
+      quality are directly comparable: <strong>pure Voronoi</strong> (baseline, <code>0x01</code>),
+      <strong>Delaunay mesh</strong> (<code>0x02</code>), <strong>Voronoi-cell fans</strong>
+      (each cell triangulated from its seed, <code>0x02</code>), <strong>one triangle per cell</strong>
+      (max-area inscribed, gappy, <code>0x02</code>), and <strong>cell-oriented α-triangles</strong>
+      over the Voronoi floor (<code>0x03</code>). SSIM/PSNR + rendered-coverage vs the source.
     </p>
   </header>
 
   <main class="layout">
-    <!-- Left: primary reconstruction preview (source revealed only via the wipe) -->
     <section class="panel">
       <div id="dropzone" class="dropzone active">
         <input type="file" id="fileInput" accept="image/*" hidden />
         <p class="dz-hint">Drop an image here, or <span class="link">click to browse</span></p>
       </div>
-      <!-- Working buffer; not displayed. The wipe re-paints the source only
-           while you drag the divider to compare against the reconstruction. -->
       <canvas id="srcCanvas" width="0" height="0" hidden></canvas>
 
       <figure class="preview">
@@ -32,7 +34,7 @@
           <canvas id="vorCanvas" width="0" height="0" class="novoronoi"></canvas>
           <div id="wipeHandle" class="wipe-handle" title="drag to compare source vs reconstruction">↔</div>
         </div>
-        <figcaption id="vorCaption">Voronoi cell reconstruction · awaiting image</figcaption>
+        <figcaption id="vorCaption">floor reconstruction · awaiting image</figcaption>
         <div id="workIndicator" class="work" hidden>
           <span class="spinner"></span>
           <span id="workText">sampling…</span>
@@ -46,11 +48,20 @@
       </figure>
     </section>
 
-    <!-- Right: controls + optional saliency diagnostics -->
     <section class="panel">
       <div class="controls" id="controls">
         <div class="control">
-          <label for="pointBudget">Point budget <output id="pointBudgetOut">256</output></label>
+          <label for="floorStyle">Floor primitive</label>
+          <select id="floorStyle">
+            <option value="voronoi" selected>Pure Voronoi (0x01)</option>
+            <option value="delaunay">Delaunay mesh (0x02)</option>
+            <option value="voro-fan">Voronoi-cell fans (0x02)</option>
+            <option value="cell-tris">One triangle / cell (0x02)</option>
+            <option value="tri-gauss">Cell-oriented α-triangles (0x03)</option>
+          </select>
+        </div>
+        <div class="control">
+          <label for="pointBudget">Seed budget <output id="pointBudgetOut">256</output></label>
           <input type="range" id="pointBudget" min="8" max="16384" step="4" value="256" />
         </div>
         <div class="control">
@@ -68,10 +79,18 @@
           <input type="range" id="iterations" min="0" max="200" step="1" value="0" />
         </div>
         <div class="control">
-          <label><input type="checkbox" id="showPointColor" checked /> Color cells from source</label>
+          <label for="triColor">Mesh colour mode (0x02)</label>
+          <select id="triColor">
+            <option value="interp" selected>Barycentric vertex colours</option>
+            <option value="flat">Flat per-triangle</option>
+          </select>
         </div>
         <div class="control">
-          <label for="progressive">Progressive seeds (streaming cut) <output id="progOut">all</output></label>
+          <label for="splatAlpha">Splat alpha (0x03) <output id="splatAlphaOut">0.8</output></label>
+          <input type="range" id="splatAlpha" min="0.1" max="1" step="0.05" value="0.8" />
+        </div>
+        <div class="control">
+          <label for="progressive">Progressive (streaming cut) <output id="progOut">all</output></label>
           <input type="range" id="progressive" min="1" max="100" step="1" value="100" />
         </div>
         <div class="control backend">
@@ -79,7 +98,7 @@
           <select id="backend">
             <option value="auto" selected>Auto (WebGPU → CPU fallback)</option>
             <option value="webgpu">WebGPU</option>
-            <option value="cpu">CPU (v1)</option>
+            <option value="cpu">CPU</option>
           </select>
           <span id="gpuStatus" class="status">detecting…</span>
         </div>
@@ -89,7 +108,8 @@
           <input type="range" id="blend" min="0" max="1" step="0.05" value="0" />
         </div>
         <div class="control">
-          <label><input type="checkbox" id="aa" /> Anti-alias cells (2x2)</label>
+          <label><input type="checkbox" id="aa" /> Anti-alias (2x2)</label>
+          <label><input type="checkbox" id="showPointColor" checked /> Full colour</label>
         </div>
         <div class="control">
           <label>Canvas scale</label>
@@ -102,7 +122,6 @@
         </div>
       </div>
 
-      <!-- Saliency / sampling diagnostics (kept in the DOM; normally hidden) -->
       <div class="fig-row" id="figRow">
         <figure id="saliencyFig" hidden>
           <canvas id="edgeCanvas" width="0" height="0"></canvas>
@@ -119,14 +138,14 @@
       </div>
 
       <div id="stats" class="stats">
-        <span>points</span><output id="statPoints">0</output>
-        <span>cells</span><output id="statCells">0</output>
+        <span>pts</span><output id="statPoints">0</output>
+        <span>prims</span><output id="statCells">0</output>
         <span>cover%</span><output id="statCover">0</output>
-        <span class="ms" id="statMs" title="sample / CVT / render ms">—</span>
-        <span class="wire" id="statWire" title="source pixels vs encoded point payload (x,y,r,g,b per point)">size</span>
+        <span class="ms" id="statMs" title="sample / geometry ms">—</span>
+        <span class="wire" id="statWire" title="source vs encoded floor payload">size</span>
       </div>
 
-      <div id="metrics" class="stats" title="objective fidelity of the current Voronoi floor vs the source">
+      <div id="metrics" class="stats" title="objective fidelity of the current floor vs the source">
         <span>PSNR</span><output id="statPsnr">—</output>
         <span>SSIM</span><output id="statSsim">—</output>
         <span>ΔE</span><output id="statDe">—</output>
@@ -142,6 +161,7 @@
 
   <script src="js/saliency.js"></script>
   <script src="js/sampling.js"></script>
+  <script src="js/geometry.js"></script>
   <script src="js/metric.js"></script>
   <script src="js/gpu.js"></script>
   <script src="js/export.js"></script>

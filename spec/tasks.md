@@ -43,9 +43,15 @@ each entails. Motivations and measurable targets: [`requirements.md`](./requirem
 
 - **Exp 1 — Convergence & base density**: sweep Layer-0 allocations
   (16 / 32 / 64 / 128 / 256) on the Kodak suite; SSIM + mobile decode time.
+- **Exp 1-a — Floor primitive showdown**: compare pure Voronoi vs tiled
+  triangle mesh (Delaunay over the same seeds; indexed; flat vs barycentric
+  colours) vs center+transform α-triangle splats at equal byte budgets
+  (16 / 32 / 64 / 128); SSIM/PSNR + mobile decode time. Decides the Layer-0
+  primitive (`docs/dlpc-format.md` §0x02/0x03).
 - **Exp 2 — Architecture showdown**: A: Layer0(64)→+128→+512 seeds;
-  B: Layer0(64) → +128 Gaussian splats → +512 anisotropic ellipses; drive R-D /
-  PSNR curves.
+  B: Layer0(64) → +128 Gaussian splats → +512 anisotropic ellipses;
+  C: Layer0 → split Voronoi cells into triangle fans (edge index + colour per
+  refinement triangle, from the persistent centroid); drive R-D / PSNR curves.
 - **Exp 3 — Optimization efficiency**: analytic (laplacian var + edges) vs
   iterative (CVT/LLoyd) vs ML (differentiable backprop); profile encode time
   (s) vs reconstruction fidelity.

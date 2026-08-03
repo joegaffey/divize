@@ -179,7 +179,6 @@ fn splatColorAt(s : vec2f, acc : vec4f) -> vec4f {
     if (inside(bary(vec2f(rx, ry), A, B, C))) {
       let sc = scols[k];
       c = vec4f(sc.rgb * sc.a + c.rgb * (1.0 - sc.a), 1.0);
-      c.a = 1.0;
     }
   }
   return c;

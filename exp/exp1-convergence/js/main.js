@@ -36,6 +36,10 @@
     statCover: $('statCover'),
     statMs: $('statMs'),
     statWire: $('statWire'),
+    metricCheck: $('metricCheck'), deltaCheck: $('deltaCheck'),
+    statPsnr: $('statPsnr'), statSsim: $('statSsim'),
+    statDe: $('statDe'), statDeP99: $('statDeP99'), statDeSw: $('statDeSw'),
+    delta: $('deltaCanvas'), deltaFig: $('deltaFig'),
     vorCaption: $('vorCaption'),
     backend: $('backend'),
     gpuStatus: $('gpuStatus'),
@@ -79,6 +83,7 @@
     buf: null,          // source ImageData at working res
     pts: [],
     colors: null,
+    mean: [0, 0, 0],    // mean RGB of the source (backdrop for coverage)
     seedKey: null,
     seedPts: null,
     fieldMode: null,
@@ -97,6 +102,7 @@
 
   const gray = window.gray;
   const se = window.sampleEngine;
+  const metric = window.metric;
 
   function sampleGray(rgba, w, h) {
     const g = new Uint8Array(w * h);
@@ -144,9 +150,13 @@
 
     state.w = w; state.h = h; state.buf = buf;
     els.wipe.style.aspectRatio = w + ' / ' + h;
+    syncPreviewWidth();
     state.gray = sampleGray(buf.data, w, h);
     state.edgeMap = gray.normalize(gray.sobelMagnitude(state.gray, w, h));
     state.lapMap = gray.normalize(gray.laplacianVariance(state.gray, w, h));
+    let sr = 0, sg = 0, sb = 0, n = w * h;
+    for (let i = 0; i < n; i++) { sr += buf.data[i * 4]; sg += buf.data[i * 4 + 1]; sb += buf.data[i * 4 + 2]; }
+    state.mean = [sr / n, sg / n, sb / n];
 
     els.src.width = w; els.src.height = h;
     els.src.getContext('2d').putImageData(buf, 0, 0);
@@ -182,6 +192,41 @@
   function heatB(t) { return u(t) * (1 - clamp((t - 0.6) * 2.5, 0, 1) * 0.7); }
   function u(t) { return t <= 0 ? 0 : Math.min(1, t); }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  /* ---- perceptual delta map (ΔE) ----------------------------------- */
+  const DSTOPS = [
+    [0.00, [20, 25, 40]],
+    [0.25, [60, 130, 200]],
+    [0.50, [90, 200, 180]],
+    [0.75, [250, 200, 90]],
+    [1.00, [230, 60, 40]],
+  ];
+  function deltaRGB(t) {
+    t = Math.max(0, Math.min(1, t));
+    let i = 0;
+    while (i < DSTOPS.length - 2 && t > DSTOPS[i + 1][0]) i++;
+    const [t0, c0] = DSTOPS[i], [t1, c1] = DSTOPS[i + 1];
+    const f = t1 > t0 ? (t - t0) / (t1 - t0) : 0;
+    return [
+      c0[0] + (c1[0] - c0[0]) * f,
+      c0[1] + (c1[1] - c0[1]) * f,
+      c0[2] + (c1[2] - c0[2]) * f,
+    ];
+  }
+  function paintDelta(canvas, map, top, w, h) {
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    const img = ctx.createImageData(w, h);
+    const s = top > 0 ? 1 / top : 1;
+    for (let i = 0; i < w * h; i++) {
+      const c = deltaRGB(map[i] * s);
+      img.data[i * 4] = c[0];
+      img.data[i * 4 + 1] = c[1];
+      img.data[i * 4 + 2] = c[2];
+      img.data[i * 4 + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
 
   // Downsample the saliency field by a factor so the O(count x pixels) CVT
   // nearest-neighbour loop runs over far fewer pixels. The result is an
@@ -261,6 +306,12 @@
   // While dragging a slider we render coarse; you get a stable result at
   // full res only when you release.
   const PREVIEW_SCALE = 3;
+  // Keep the delta map figure the same width as the wipe, so it tracks the
+  // Canvas-scale slider as well as the default full-width layout.
+  function syncPreviewWidth() {
+    if (!els.deltaFig) return;
+    els.deltaFig.style.width = els.wipe.style.width || '';
+  }
   function drawSize() {
     const w = state.w, h = state.h;
     if (!interacting) return { w, h };
@@ -271,8 +322,18 @@
 
   function scheduleRender() {
     const { w, h } = drawSize();
-    if (gpuReady && activeBackend() === 'webgpu') gpuRender(w, h);
-    else cpuRender(w, h);
+    return new Promise((resolve) => {
+      renderWaiters.push(resolve);
+      if (gpuReady && activeBackend() === 'webgpu') gpuRender(w, h);
+      else cpuRender(w, h);
+    });
+  }
+
+  let renderWaiters = [];
+  function resolveRenderWaiters() {
+    const ws = renderWaiters;
+    renderWaiters = [];
+    for (const r of ws) r();
   }
 
   async function gpuRender(w, h) {
@@ -385,11 +446,85 @@
     chunk();
   }
 
+  // Synchronous full-res CPU render used for the SSIM/PSNR/ΔE measurement.
+  // Mirrors the async CPU renderer's nearest-seed sampling so the measured
+  // reconstruction is exactly what the preview shows.
+  function renderCpuSync(w, h, count, coverageOut) {
+    const pts = state.pts, colors = state.colors;
+    const blend = +els.blend.value;
+    const aa = els.aa.checked;
+    const m = state.mean;
+    const sx = state.w / w;
+    function sample(X, Y) {
+      let best = 0, bd = Infinity, sec = 0, sb = Infinity;
+      for (let k = 0; k < count; k++) {
+        const dx = X - pts[k].x, dy = Y - pts[k].y;
+        const dd = dx * dx + dy * dy;
+        if (dd < bd) { sb = bd; sec = best; bd = dd; best = k; }
+        else if (dd < sb) { sb = dd; sec = k; }
+      }
+      let rr = colors[best * 4], gg = colors[best * 4 + 1], bb = colors[best * 4 + 2];
+      if (blend > 0 && sb < Infinity) {
+        const wg = Math.min(1, Math.max(0, (2 * bd) / Math.max(bd + sb, 1e-6))) * blend;
+        rr += (colors[sec * 4] - rr) * wg;
+        gg += (colors[sec * 4 + 1] - gg) * wg;
+        bb += (colors[sec * 4 + 2] - bb) * wg;
+      }
+      return [rr, gg, bb];
+    }
+    let cov = 0;
+    const img = new Uint8ClampedArray(w * h * 4);
+    for (let y = 0; y < h; y++) {
+      const Y = y * sx;
+      for (let x = 0; x < w; x++) {
+        const X = x * sx;
+        let rr, gg, bb;
+        if (aa) {
+          const o = 0.25 * sx, s = X, t = Y;
+          const a = sample(s - o, t - o), b = sample(s + o, t - o);
+          const c = sample(s - o, t + o), d = sample(s + o, t + o);
+          rr = (a[0] + b[0] + c[0] + d[0]) * 0.25;
+          gg = (a[1] + b[1] + c[1] + d[1]) * 0.25;
+          bb = (a[2] + b[2] + c[2] + d[2]) * 0.25;
+        } else {
+          [rr, gg, bb] = sample(X, Y);
+        }
+        const o = (y * w + x) * 4;
+        img[o] = rr; img[o + 1] = gg; img[o + 2] = bb; img[o + 3] = 255;
+        if (Math.abs(rr - m[0]) > 20 || Math.abs(gg - m[1]) > 20 || Math.abs(bb - m[2]) > 20) cov++;
+      }
+    }
+    if (coverageOut) coverageOut.value = cov / (w * h);
+    return img;
+  }
+
   function finalize(m) {
     els.statPoints.textContent = m.np;
     els.statCells.textContent = m.np;
     els.statCover.textContent = (m.np * 100 / (m.w * m.h)).toFixed(2) + '%';
     els.statWire.textContent = wireSize(m.np, m.w * m.h);
+    if ((els.metricCheck.checked || els.deltaCheck.checked) && m.w === state.w && m.h === state.h && state.buf) {
+      const recon = renderCpuSync(m.w, m.h, Math.max(1, m.np));
+      els.statPsnr.textContent = metric.psnr(recon, state.buf.data).toFixed(2) + ' dB';
+      els.statSsim.textContent = metric.ssim(recon, state.buf.data, m.w, m.h).toFixed(3);
+      const de = metric.ciede(recon, state.buf.data, m.w, m.h);
+      els.statDe.textContent = de.mean.toFixed(2);
+      els.statDeP99.textContent = de.p99.toFixed(2);
+      els.statDeSw.textContent = state.field
+        ? metric.weightedMean(de.map, state.field).toFixed(2)
+        : '—';
+      const showDelta = els.deltaCheck.checked;
+      els.deltaFig.hidden = !showDelta;
+      if (showDelta) paintDelta(els.delta, de.map, de.p99, m.w, m.h);
+    } else {
+      els.statPsnr.textContent = '—';
+      els.statSsim.textContent = '—';
+      els.statDe.textContent = '—';
+      els.statDeP99.textContent = '—';
+      els.statDeSw.textContent = '—';
+      els.deltaFig.hidden = true;
+    }
+    resolveRenderWaiters();
   }
 
   // Rendered "before vs after" for transmitting a frame over the wire.
@@ -461,17 +596,21 @@
   // These never touch the sampling/CVT pipeline, so they're instant.
   els.showPointColor.addEventListener('change', scheduleRenderWork);
   els.backend.addEventListener('change', scheduleRenderWork);
+  els.metricCheck.addEventListener('change', scheduleRenderWork);
+  els.deltaCheck.addEventListener('change', scheduleRenderWork);
   els.progressive.addEventListener('input', () => {
     els.progOut.textContent = (+els.progressive.value) + '%';
     scheduleRenderWork();
   });
 
-  function scheduleRenderWork() {
+  async function scheduleRenderWork() {
     if (!state.gray) return;
     // The points/colors are unchanged; just re-render (progressive %
     // or color toggle). Brief spinner for feedback without recompute.
     showWork(true, 'rendering…');
-    requestAnimationFrame(() => { showWork(false); scheduleRender(); });
+    await new Promise((r) => requestAnimationFrame(r));
+    await scheduleRender();
+    showWork(false);
   }
 
   els.aa.addEventListener('change', () => { scheduleRender(); });
@@ -486,6 +625,7 @@
     // The wipe container now holds both layers; scale THAT box to keep the
     // source vs reconstruction comparison at the size the user wants.
     els.wipe.style.width = (state.w * +els.scale.value) + 'px';
+    syncPreviewWidth();
   });
 
   // --- source vs reconstruction wipe ----------------------------------
@@ -546,10 +686,14 @@
       if (stillCurrent()) { console.error(e); }
     } finally {
       // If the user changed a heavy control while we were busy, run the
-      // latest state once rather than dropping every queued update.
-      pipeBusy = false;
-      if (pipeRedo && stillCurrent()) { pipeRedo = false; startRun(); }
-      else { showWork(false); }
+      // latest state once rather than dropping every queued update. Only the
+      // current run owns the busy flag; a superseded run must not clear it
+      // while a newer pipeline (via pipeRedo) is still working.
+      if (stillCurrent()) {
+        pipeBusy = false;
+        if (pipeRedo) { pipeRedo = false; startRun(); }
+        else showWork(false);
+      }
     }
   }
 
@@ -642,8 +786,8 @@
       tCvt = performance.now() - t0 - tSample;
       els.statMs.textContent =
         `s ${tSample.toFixed(0)} / c ${tCvt.toFixed(1)}ms`;
-      showWork(false);
-      scheduleRender();
+      if (stillCurrent()) showWork(true, 'rendering…');
+      await scheduleRender();
   }
 
   function showWork(on, label, pct) {

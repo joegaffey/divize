@@ -32,6 +32,14 @@ nearest-neighbour Voronoi over a seed set.
 
 - ~32–64 points (Experiment 1 tunes the budget).
 
+> **Floor primitive under evaluation (exp1-a).** The pure-Voronoi floor is the
+> default, but two geometric floors are being compared against it at equal byte
+> budgets (docs/dlpc-format.md §0x02/0x03): a tiled triangle mesh (Delaunay over
+> the same seeds — same 100%-coverage guarantee, with optional barycentric
+> colour interpolation) and a non-tiling center+transform α-blended triangle
+> splat (expressive overlap/shading, but trades the coverage guarantee). The
+> primitive that wins pins the Layer-0 type.
+
 ### Layer 1+: Refinement Layers (Hybrid Voronoi or Geometric Splats)
 
 Append detail either by adding global Voronoi seeds or by overlaying
@@ -39,6 +47,10 @@ alpha-blended geometric shapes (Gaussian splats / anisotropic ellipses),
 targeting the areas that need sharpening the most.
 
 - Exponential point scaling per pass (≈150–1024 points).
+- **Cell subdivision (exp2 pipeline C):** split a Voronoi cell into a triangle
+  fan from its persistent centroid. Each refinement triangle encodes as
+  (edge index + colour) because the centroid *is* the persistent seed — coverage
+  stays exact at every step and decode stays local to the cell.
 
 ## 3. Decode Path
 

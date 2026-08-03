@@ -16,9 +16,9 @@ All integers are little-endian. Prefix the file with the 5-byte magic
 | 5  | 2 | width  | u16 image width (working res) |
 | 7  | 2 | height | u16 image height |
 | 9  | 1 | layer count | number of layer blocks that follow = 1 |
-| 10 | 1 | layer 0 type | `0x01` = Pure Voronoi floor |
-| 11 | 2 | layer 0 point count | u16 N |
-| 13 | 5N | layer 0 payload | N × 5-byte packets |
+| 10 | 1 | layer 0 type | `0x01` Voronoi floor · `0x02` tiled mesh · `0x03` α-triangle splat |
+| 11 | 2 | layer 0 primitive count | u16 N (seeds, or triangles for 0x02/0x03) |
+| 13 | — | layer 0 payload | varies by type (see below) |
 
 ### Layer 0 packet — Pure Voronoi floor (5 bytes)
 
@@ -32,6 +32,61 @@ All integers are little-endian. Prefix the file with the 5-byte magic
 
 Guarantees 100% coverage with zero alpha/shape overhead (see
 [`docs/architecture.md`](./architecture.md), Layer 0).
+
+### Layer 0 packet — Tiled triangle mesh floor (type `0x02`, experimental)
+
+An indexed triangle mesh over the same seed centres, Delaunay-triangulated so it
+shares the Layer-0 guarantee: 100% coverage with no alpha. Vertices are shared
+across triangles, so they are stored once and referenced by index — a
+3-vertex-per-packet layout would pay the duplicate-coordinate cost.
+
+Because the Delaunay hull of interior seeds lies strictly inside the image, the
+encoder closes the mesh to the frame with **frame vertices**: the 4 image
+corners plus edge midpoints, coloured from their nearest real seed (the Voronoi
+floor colour). These appear in V like any other vertex; they add a small fixed
+overhead but are what makes the primitive tiling exact.
+
+The generic layer header carries `count = T` (triangle count); the mesh adds a
+sub-header:
+
+| Offset | Size | Field | Notes |
+|--------|------|-------|-------|
+| 0  | 2 | vertex count | u16 V |
+| 2  | 1 | flags | bit0 = 1 per-vertex colour (barycentric), 0 per-triangle flat colour |
+| 3  | 2V | vertex positions | V × `{x u8, y u8}` (flat) |
+| 3  | 5V | vertex records | V × `{x u8, y u8, r u8, g u8, b u8}` (barycentric) |
+| — | 9T | triangle records (flat) | T × `{a u16, b u16, c u16, r u8, g u8, b u8}` |
+| — | 6T | triangle records (barycentric) | T × 3 × `u16` vertex indices |
+
+So flat mode costs `3 + 2V + 9T` bytes; barycentric costs `3 + 5V + 6T`. (No
+colour is wasted on vertices in flat mode, and no per-triangle colour is sent
+when vertex colours already carry it.)
+
+Coordinates use the same mapping as the Voronoi floor: `0..255` →
+`x_px = (x+0.5)/256 * W`. With per-vertex colours the fragment colour is the
+barycentric blend of the triangle's three vertex colours; flat mode emits the
+recorded colour directly.
+
+### Layer 0 packet — Alpha triangle splat floor (type `0x03`, experimental)
+
+Non-tiling, center-anchored triangles with a per-primitive transform + alpha.
+Gaps are expected; the decoder fills the backdrop (mean colour, or the Voronoi
+floor) beneath them, so this variant trades the coverage guarantee for
+expressive overlap and shading.
+
+| Byte | Field | Notes |
+|------|-------|-------|
+| 0 | x | u8 centre → `(x+0.5)/256 * W` |
+| 1 | y | u8 |
+| 2 | size | u8 → `size_px = (size/255) * min(W,H)` |
+| 3 | angle | u8 → `value/255 * π` |
+| 4 | alpha | u8 → `0..255` |
+| 5 | r | u8 colour |
+| 6 | g | u8 |
+| 7 | b | u8 |
+
+Decode renders splats back-to-front in stream order with `src-over`
+compositing over the backdrop.
 
 ## Reserved — Layer 1+ (8-byte packets, v0.1 +extensions)
 

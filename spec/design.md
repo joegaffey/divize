@@ -11,10 +11,14 @@ reverse never happens). Read these first:
 
 ## At-a-glance decisions
 
-- **Layer 0 — structural floor.** Pure Voronoi voting. Guarantees 100% coverage
-  with zero alpha/shape overhead; the terrain the viewer sees first.
+- **Layer 0 — structural floor.** Default is pure Voronoi voting: guarantees
+  100% coverage with zero alpha/shape overhead. A tiled triangle-mesh floor and
+  an α-triangle splat variant are being compared against it at equal byte
+  budgets (exp1-a); the winning primitive pins the Layer-0 type
+  ([`docs/dlpc-format.md`](../docs/dlpc-format.md) §0x02/0x03).
 - **Layer 1+ — refinement.** Adds global Voronoi seeds and/or alpha-blended
-  splats/ellipses to sharpen selected regions.
+  splats/ellipses to sharpen selected regions, or splits Voronoi cells into
+  triangle fans from the persistent centroid (exp2 pipeline C).
 
 ## Temporal decisions
 

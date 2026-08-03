@@ -41,7 +41,9 @@ sequence of image frames (one codec + a frame-timing layer, not two).
 Success is a rate–distortion curve and a semantic-recognition threshold, not
 subjective quality. These are the measurable "magic numbers" to pin down:
 
-1. **Minimum Layer-0 point count** for semantic scene recognition (Exp 1).
+1. **Minimum Layer-0 point count** for semantic scene recognition — measured per
+   floor primitive (pure Voronoi vs tiled triangle mesh vs α-triangle splat) so
+   the floor choice itself is evidence-based (Exp 1 / 1-a).
 2. **Fidelity per kilobyte** as refinement bandwidth scales (Exp 2).
 3. **Encoding speed vs reconstruction fidelity** for analytic vs iterative vs ML
    placement (Exp 3).

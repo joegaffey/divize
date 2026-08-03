@@ -21,18 +21,37 @@
       <p class="meta">Kodak 16–256 pt · SSIM pending</p>
     </a>
 
+    <a class="card" href="exp1-a-triangle-floor/">
+      <h2>Exp 1-a · Floor Primitive Showdown</h2>
+      <span class="badge done">working</span>
+      <p class="desc">Pure Voronoi vs tiled Delaunay triangle mesh (0x02, flat or barycentric
+        colours) vs center+transform α-triangle splats (0x03). SSIM/PSNR at equal byte budgets.</p>
+      <p class="meta">Subtypes 0x02 / 0x03 in dlpc-format.md</p>
+    </a>
+
+    <a class="card" href="exp1-b-triangle-variants/">
+      <h2>Exp 1-b · Triangle Floor Variants</h2>
+      <span class="badge">new</span>
+      <p class="desc">Five floors from one seed set: Voronoi, Delaunay mesh, exact
+        Voronoi-cell fans, one max-area triangle per cell, and cell-oriented α-triangles
+        over the Voronoi floor — with coverage % and SSIM/PSNR per style.</p>
+      <p class="meta">geometry.js · exact cells via half-plane clipping</p>
+    </a>
+
     <a class="card" href="dlpc-viewer/">
       <h2>Tool · .dlpc Viewer</h2>
       <span class="badge done">working</span>
       <p class="desc">Load a Layer-0 `.dlpc` blob, decode the header + points, and render
-        the Voronoi floor on WebGPU (CPU fallback) with a streaming seed-count slider.</p>
+        the Voronoi floor (0x01), tiled triangle mesh (0x02) or α-splat (0x03) on
+        WebGPU (CPU fallback) with a streaming primitive-count slider.</p>
     </a>
 
     <a class="card stub" href="exp2-showdown/">
       <h2>Exp 2 · Architecture Showdown</h2>
       <span class="badge">scaffold</span>
       <p class="desc">Pipeline A: Pure Progressive Voronoi vs Pipeline B: Hybrid floor +
-        Gaussian splats / anisotropic ellipses. Byte-vs-PSNR rate–distortion curves.</p>
+        Gaussian splats / anisotropic ellipses. Plus Pipeline C: split Voronoi cells
+        into triangles (from Exp 1-a). Byte-vs-PSNR rate–distortion curves.</p>
     </a>
 
     <a class="card stub" href="exp3-effort/">
