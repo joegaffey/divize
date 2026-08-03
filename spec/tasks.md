@@ -95,7 +95,10 @@ It is designed to run unattended until all useful experiments are complete.
 - **Results**: append-only `harness/results/results.jsonl` (raw rows,
   gitignored); `harness/state/findings.md` (LLM decision trail, gitignored);
   a committed human-readable report + CSV per experiment in
-  `docs/experiments/` generated once on completion.
+  `docs/experiments/` generated once on completion. Each report row carries a
+  deep-link into the experiment page (`/exp/exp1-…/?…&img=…`) pre-loading that
+  exact run (config query params + source image via `img`), so any recorded
+  result can be re-inspected in the browser.
 - **Termination**: base grid fully covered **and** LLM declares R-D curves /
   style rankings stable **and** safety caps (max iterations, max runs,
   no-progress guard) not exceeded.

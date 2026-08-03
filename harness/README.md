@@ -66,3 +66,18 @@ The LLM never runs commands — it only writes a schema-validated config list.
 - `state/summary.{md,json}`, `state/findings.md`, `state/next_batch.json`, `state/DONE` — loop state (gitignored)
 - `golden/` — golden metric checks (gitignored)
 - `docs/experiments/exp1*-results.{md,csv}` — committed reports (on completion)
+
+## Reproducing a run in the browser
+
+Each row of the report links to the experiment page with that exact run
+pre-loaded: config is passed as query params (`style`, `budget`, `mode`,
+`iters`, `autoCvt`, `triColor`, `splatAlpha`, `aa`, `blend`, `progressive`)
+and the source image is fetched via `img`. Serve the repo root and click any
+`[open]` link:
+
+```bash
+python3 -m http.server        # from the repo root
+```
+
+The experiment pages (`exp/exp1-a-triangle-floor/`, `exp/exp1-b-triangle-variants/`)
+parse these params on load; `img` is relative to the web root.

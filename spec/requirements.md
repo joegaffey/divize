@@ -88,6 +88,9 @@ rendered coverage, encoded byte count, and encode-stage timings — into an
 append-only JSONL store. A compact aggregate summary is handed to an LLM that
 chooses the next batch (bounded + validated), and a human-readable report
 (tables + CSV) is committed under `docs/experiments/` when an experiment's loop
-terminates. Termination is hybrid: the deterministic grid is fully covered,
+terminates. Every recorded run is deep-linkable from the report into the
+experiment page, which applies the run's config from the query string and loads
+the source image via an `img` parameter, so any result can be re-inspected
+interactively. Termination is hybrid: the deterministic grid is fully covered,
 then the LLM stops when rate–distortion curves and primitive rankings are
 stable, subject to iteration/run/no-progress safety caps.
