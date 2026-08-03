@@ -620,6 +620,7 @@
   let recomputeLead = 0;
   const recompute = () => {
     clearTimeout(recomputeLead);
+    showWork(true, 'updating…');
     recomputeLead = setTimeout(refresh, recomputeDelayMs);
   };
   const heavyDragEnd = () => { setInteracting(false); scheduleRenderWork(); };
@@ -663,11 +664,11 @@
     showWork(false);
   }
 
-  els.aa.addEventListener('change', () => { scheduleRender(); });
+  els.aa.addEventListener('change', scheduleRenderWork);
 
   els.blend.addEventListener('input', () => {
     els.blendOut.textContent = +els.blend.value;
-    scheduleRender();
+    scheduleRenderWork();
   });
 
   els.scale.addEventListener('input', () => {

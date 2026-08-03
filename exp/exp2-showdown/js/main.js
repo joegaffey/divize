@@ -265,10 +265,20 @@
     return { w: dw, h: dh };
   }
 
+  let renderWaiters = [];
+  function resolveRenderWaiters() {
+    const ws = renderWaiters;
+    renderWaiters = [];
+    for (const r of ws) r();
+  }
+
   function scheduleRender() {
     const { w, h } = drawSize();
-    if (gpuReady && activeBackend() === 'webgpu') gpuRender(w, h);
-    else cpuRender(w, h);
+    return new Promise((resolve) => {
+      renderWaiters.push(resolve);
+      if (gpuReady && activeBackend() === 'webgpu') gpuRender(w, h);
+      else cpuRender(w, h);
+    });
   }
 
   async function gpuRender(w, h) {
@@ -362,6 +372,7 @@
     els.statCells.textContent = m.np;
     els.statCover.textContent = (m.np * 100 / (m.w * m.h)).toFixed(2) + '%';
     els.statWire.textContent = wireSize(m.np, m.w * m.h);
+    resolveRenderWaiters();
   }
 
   // Rendered "before vs after" for transmitting a frame over the wire.
@@ -408,6 +419,7 @@
   let recomputeLead = 0;
   const recompute = () => {
     clearTimeout(recomputeLead);
+    showWork(true, 'updating…');
     recomputeLead = setTimeout(refresh, recomputeDelayMs);
   };
   const heavyDragEnd = () => { setInteracting(false); scheduleRenderWork(); };
@@ -438,12 +450,14 @@
     scheduleRenderWork();
   });
 
-  function scheduleRenderWork() {
+  async function scheduleRenderWork() {
     if (!state.gray) return;
     // The points/colors are unchanged; just re-render (progressive %
     // or color toggle). Brief spinner for feedback without recompute.
     showWork(true, 'rendering…');
-    requestAnimationFrame(() => { showWork(false); scheduleRender(); });
+    await new Promise((r) => requestAnimationFrame(r));
+    await scheduleRender();
+    showWork(false);
   }
 
   els.scale.addEventListener('input', () => {
