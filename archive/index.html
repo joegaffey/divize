@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DLPC · Run Archive</title>
-  <link rel="stylesheet" href="exp/css/hub.css" />
+  <link rel="stylesheet" href="../exp/css/hub.css" />
   <style>
     main.archive { max-width: 960px; margin: 0 auto; padding: 24px; }
     .run { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
@@ -22,7 +22,7 @@
 <body>
   <header class="topbar">
     <h1>DLPC <span class="muted">// Run archive</span></h1>
-    <span class="back"><a href="./">← landing</a> · <a href="./md.html">docs</a></span>
+    <span class="back"><a href="../">← landing</a> · <a href="../md/">docs</a></span>
   </header>
 
   <main id="archive" class="archive">
@@ -41,7 +41,8 @@
 
       function runCard(run) {
         const files = run.files || {};
-        const link = (path) => 'md.html?f=harness/archive/' + run.name + '/' + path;
+        const link = (path) => '../md/?f=harness/archive/' + run.name + '/' + path;
+        const raw = (p) => '../harness/archive/' + run.name + '/' + p;
         const lines = [
           '<section class="run">',
           '<h2>' + escapeHtml(run.name) + '</h2>',
@@ -54,9 +55,9 @@
         if (fs_.readme) lines.push('<a href="' + link(fs_.readme) + '">README</a>');
         if (fs_.findings) lines.push('<a href="' + link(fs_.findings) + '">findings</a>');
         if (fs_.summary) lines.push('<a href="' + link(fs_.summary) + '">summary</a>');
-        if (fs_.exp1a) { lines.push('<a href="' + link(fs_.exp1a.md) + '">exp1-a report</a>'); lines.push('<a href="harness/archive/' + run.name + '/' + fs_.exp1a.csv + '">exp1-a csv</a>'); }
-        if (fs_.exp1b) { lines.push('<a href="' + link(fs_.exp1b.md) + '">exp1-b report</a>'); lines.push('<a href="harness/archive/' + run.name + '/' + fs_.exp1b.csv + '">exp1-b csv</a>'); }
-        if (fs_.jsonl) lines.push('<a href="harness/archive/' + run.name + '/' + fs_.jsonl + '">results.jsonl</a>');
+        if (fs_.exp1a) { lines.push('<a href="' + link(fs_.exp1a.md) + '">exp1-a report</a>'); lines.push('<a href="' + raw(fs_.exp1a.csv) + '">exp1-a csv</a>'); }
+        if (fs_.exp1b) { lines.push('<a href="' + link(fs_.exp1b.md) + '">exp1-b report</a>'); lines.push('<a href="' + raw(fs_.exp1b.csv) + '">exp1-b csv</a>'); }
+        if (fs_.jsonl) lines.push('<a href="' + raw(fs_.jsonl) + '">results.jsonl</a>');
         lines.push('</div></section>');
         return lines.join('\n');
       }
@@ -64,7 +65,7 @@
       async function init() {
         const el = document.getElementById('archive');
         try {
-          const res = await fetch('harness/archive/index.json');
+          const res = await fetch('../harness/archive/index.json');
           if (!res.ok) {
             if (res.status === 404) throw new Error('empty');
             throw new Error('HTTP ' + res.status);

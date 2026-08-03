@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DLPC · Docs</title>
-  <link rel="stylesheet" href="exp/css/hub.css" />
+  <link rel="stylesheet" href="../exp/css/hub.css" />
   <style>
     main.report { max-width: 960px; margin: 0 auto; padding: 24px; }
     .report h1 { font-size: 20px; margin: 0 0 8px; }
@@ -36,7 +36,7 @@
 <body>
   <header class="topbar">
     <h1>DLPC <span class="muted">// Docs</span></h1>
-    <span class="back"><a href="./">← landing</a> · <a href="./exp/">experiments hub</a></span>
+    <span class="back"><a href="../">← landing</a> · <a href="../exp/">experiments hub</a></span>
   </header>
 
   <main id="report" class="report">
@@ -57,7 +57,7 @@
         ['docs/dlpc-format.md', '.dlpc binary container format'],
         ['docs/experiments/exp1a-results.md', 'Exp 1-a results'],
         ['docs/experiments/exp1b-results.md', 'Exp 1-b results'],
-        ['archive.html', 'Run archive'],
+        ['archive/', 'Run archive'],
       ];
 
       function loadScript(src) {
@@ -103,9 +103,11 @@
           const query = qi === -1 ? '' : href.slice(qi);
           const resolved = resolve(baseDir, path);
           if (/\.md$/.test(resolved)) {
-            a.setAttribute('href', 'md.html?f=' + encodeURIComponent(resolved) + query);
+            a.setAttribute('href', '../md/?f=' + encodeURIComponent(resolved) + query);
           } else {
-            a.setAttribute('href', resolved + query);
+            // non-markdown links are repo-root-relative; the viewer lives at
+            // /md/index.html so they need one ../ to get back to the root.
+            a.setAttribute('href', '../' + resolved + query);
           }
         });
         return doc.body.innerHTML;
@@ -115,7 +117,7 @@
         const el = document.getElementById('report');
         el.innerHTML = '<div class="status">loading ' + escapeHtml(f) + '…</div>';
         try {
-          const res = await fetch(f);
+          const res = await fetch('../' + f);
           if (!res.ok) throw new Error('HTTP ' + res.status);
           const md = await res.text();
           const html = window.marked ? window.marked.parse(md) : '<pre><code>' + escapeHtml(md) + '</code></pre>';
@@ -130,7 +132,7 @@
       function showIndex() {
         const el = document.getElementById('report');
         el.innerHTML = '<h1>Docs &amp; reports</h1><p>Rendered live from the repo markdown via marked.</p>' +
-          '<nav class="links">' + DOCS.map(([f, label]) => '<a href="md.html?f=' + f + '">' + label + ' →</a>').join('') + '</nav>';
+          '<nav class="links">' + DOCS.map(([f, label]) => '<a href="../md/?f=' + f + '">' + label + ' →</a>').join('') + '</nav>';
       }
 
       async function init() {

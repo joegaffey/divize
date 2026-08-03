@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=../../md.html" />
+  <meta http-equiv="refresh" content="0; url=../../md/" />
   <title>Redirecting to docs viewer…</title>
   <link rel="stylesheet" href="../../exp/css/hub.css" />
 </head>
@@ -16,7 +16,7 @@
   <script>
     // Preserve the ?f= param into the shared viewer.
     var f = new URLSearchParams(location.search).get('f');
-    location.replace(f ? '../../md.html?f=docs/experiments/' + f : '../../md.html');
+    location.replace(f ? '../../md/?f=docs/experiments/' + f : '../../md/');
   </script>
 </body>
 </html>
