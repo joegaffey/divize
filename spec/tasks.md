@@ -16,6 +16,9 @@ each entails. Motivations and measurable targets: [`requirements.md`](./requirem
 
 - [ ] Fold Pure Voronoi (Pipeline A) and Hybrid floor + splat (Pipeline B) into a
       unified testbench.
+- [x] Autonomous sweep harness (`harness/`): headless Node engine reproducing the
+      browser metrics + LLM-guided batch selection (spec in "Autonomous experiment
+      harness" below).
 - [ ] Produce rate–distortion curves (file size vs PSNR) on the standard dataset.
 - [ ] Measure decode time on mobile browsers; find the Layer-0 diminishing returns.
 
@@ -68,3 +71,33 @@ each entails. Motivations and measurable targets: [`requirements.md`](./requirem
   bandwidth + fixed frame-time cap; SSIM/PSNR in upgrade and degrade regimes;
   temporal-flicker/popping metric for persistent seeds; adaptation latency and
   recovery time.
+
+## Autonomous experiment harness (harness/)
+
+Experiments above are executed by a headless Node harness that runs the
+self-contained exp libraries (same pure-JS saliency/sampling/geometry/metric
+code paths the browser uses — identical numbers, no DOM) over an image dataset
+and feeds compact result summaries back to an LLM that selects the next batch.
+It is designed to run unattended until all useful experiments are complete.
+
+- **Scope**: Exp 1-a and Exp 1-b (the built floor-comparison experiments) first.
+- **Dataset**: Kodak suite (24 PNGs) in `harness/data/kodak/` (gitignored).
+- **Compute**: `harness/lib/engine.js` mirrors the browser pipeline
+  (`sampleGray` → saliency → `computeField` → sampling → CVT → floor build →
+  `renderCpuSync` → metrics) so PSNR/SSIM/ΔE/ΔE99/ΔE·sal/coverage/byte-cost
+  match the on-screen readouts exactly.
+- **Grid**: deterministic base sweep (image × style × budget) as the coverage
+  floor; the LLM may propose validated refinements (finer budgets at R-D
+  knees, CVT iteration sweeps, sample modes, splat alpha, AA, blend).
+- **Orchestration**: `harness/loop.js` runs batches, regenerates a compact
+  `summary.md`, invokes `opencode run` to choose the next batch or declare
+  completion, validates/clamps the proposal, and repeats.
+- **Results**: append-only `harness/results/results.jsonl` (raw rows,
+  gitignored); `harness/state/findings.md` (LLM decision trail, gitignored);
+  a committed human-readable report + CSV per experiment in
+  `docs/experiments/` generated once on completion.
+- **Termination**: base grid fully covered **and** LLM declares R-D curves /
+  style rankings stable **and** safety caps (max iterations, max runs,
+  no-progress guard) not exceeded.
+- **Deferred**: Playwright/WebGPU runs to add real browser decode/render
+  timing (Phase 2 of the harness).

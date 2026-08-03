@@ -1,0 +1,18 @@
+{
+  "name": "divize-harness",
+  "private": true,
+  "version": "0.1.0",
+  "type": "commonjs",
+  "description": "Headless DLPC experiment sweeps + LLM-guided batch selection",
+  "scripts": {
+    "fetch-kodak": "bash scripts/fetch-kodak.sh",
+    "run-one": "node cli.js run-one",
+    "batch": "node cli.js batch",
+    "loop": "node cli.js loop",
+    "report": "node cli.js report",
+    "verify": "node cli.js verify"
+  },
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

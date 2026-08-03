@@ -19,5 +19,11 @@ build/
 # Dependency dirs (experiments are self-contained; none expected)
 node_modules/
 
+# Harness runtime artifacts (raw results + dataset are large/derived)
+harness/data/
+harness/results/
+harness/state/
+harness/node_modules/
+
 # Runtime artifacts
 *.dlpc~     # backup or partial encode dumps

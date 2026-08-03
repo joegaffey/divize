@@ -77,3 +77,17 @@ rendered below the reconstruction as the primary visual diagnostic. Numbers and
 map are computed from a single synchronous full-res CPU render that mirrors the
 on-screen sampler, so the measured image is exactly the displayed image — and
 always at **equal byte budgets** across the floors under comparison.
+
+## Automated sweep methodology
+
+Acceptance targets are pinned down by unattended sweeps, not manual clicking.
+The harness (`harness/`, see `tasks.md`) reuses the exact pure-JS compute of the
+experiment pages in Node, so a sweep reproduces the browser's reported numbers
+byte-for-byte. Each run records a flat row — config + PSNR/SSIM/ΔE/ΔE99/ΔE·sal,
+rendered coverage, encoded byte count, and encode-stage timings — into an
+append-only JSONL store. A compact aggregate summary is handed to an LLM that
+chooses the next batch (bounded + validated), and a human-readable report
+(tables + CSV) is committed under `docs/experiments/` when an experiment's loop
+terminates. Termination is hybrid: the deterministic grid is fully covered,
+then the LLM stops when rate–distortion curves and primitive rankings are
+stable, subject to iteration/run/no-progress safety caps.
