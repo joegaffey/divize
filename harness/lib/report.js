@@ -96,8 +96,8 @@ function mdTableFor(exp, r, metric) {
  * directory (docs/experiments/), so `../../exp/...` resolves to the repo-root
  * `exp/...` both when served from the repo root locally and when GitHub Pages
  * serves the repo at a subpath (https://gh.io/divize/). The page opens with
- * the run's config applied; the user picks the source image themselves (raw
- * Kodak images are gitignored and not published to Pages). */
+ * the run's config applied and the source image pre-loaded via `img` (the
+ * Kodak suite is committed, so the relative path resolves on Pages too). */
 function pageDir(exp) {
   return exp === 'exp1a' ? '../../exp/exp1-a-triangle-floor/' : '../../exp/exp1-b-triangle-variants/';
 }
@@ -113,6 +113,7 @@ function runLink(row) {
     'aa=' + (row.aa ? 1 : 0),
     'blend=' + (row.blend || 0),
     'progressive=' + (row.progressive || 100),
+    'img=' + encodeURIComponent('../../harness/data/kodak/' + row.image),
   ];
   return `${pageDir(row.exp)}?${q.join('&')}`;
 }
@@ -212,8 +213,8 @@ function buildReport(exp, rows) {
       '## Reproduce a run in the browser',
       '',
       'Every link below opens the experiment page with that exact run pre-loaded',
-      '(config via query string). The source image is not auto-loaded — drop or',
-      'browse to one (e.g. a Kodak PNG) to see the floor rendered.',
+      '(config via query string, source image via `img`). The Kodak suite is',
+      'committed to the repo, so the image resolves on GitHub Pages too.',
       '',
       runsTable(filtered),
       '',

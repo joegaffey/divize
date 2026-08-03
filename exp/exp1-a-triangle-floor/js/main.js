@@ -951,6 +951,7 @@
     const name = url.split('/').pop() || 'image.png';
     loadFile(new File([blob], name, { type: blob.type || 'image/png' }));
   }
+  window.loadFromUrl = loadFromUrl; // used by the Kodak dropdown
 
   const cfg = urlConfig();
   const imgUrl = cfg.get('img');

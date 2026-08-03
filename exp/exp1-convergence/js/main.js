@@ -903,4 +903,13 @@
   // selector and status line reflect real capability immediately.
   ensureGPU();
 
+  async function loadFromUrl(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+    const blob = await res.blob();
+    const name = url.split('/').pop() || 'image.png';
+    loadFile(new File([blob], name, { type: blob.type || 'image/png' }));
+  }
+  window.loadFromUrl = loadFromUrl; // used by the Kodak dropdown
+
 })();
