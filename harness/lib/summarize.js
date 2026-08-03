@@ -49,7 +49,7 @@ function mdTable(exp, r) {
   if (!styles.length) return '*no rows yet*\n';
   const budgets = [...new Set(styles.flatMap((s) => Object.keys(r[exp][s])))].sort((a, b) => +a - +b);
   const lines = ['| style | ' + budgets.map((b) => `n=${b}`).join(' | ') + ' |',
-                 '|---|---' + '---|'.repeat(budgets.length) + '---|'];
+                 '|' + Array(budgets.length + 1).fill('---').join('|') + '|'];
   for (const s of styles) {
     const cells = budgets.map((b) => {
       const q = r[exp][s][b];
@@ -65,7 +65,7 @@ function mdBytes(exp, r) {
   if (!styles.length) return '*no rows yet*\n';
   const budgets = [...new Set(styles.flatMap((s) => Object.keys(r[exp][s])))].sort((a, b) => +a - +b);
   const lines = ['| style | ' + budgets.map((b) => `n=${b}`).join(' | ') + ' |',
-                 '|---|---' + '---|'.repeat(budgets.length) + '---|'];
+                 '|' + Array(budgets.length + 1).fill('---').join('|') + '|'];
   for (const s of styles) {
     const cells = budgets.map((b) => {
       const q = r[exp][s][b];

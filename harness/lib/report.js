@@ -36,7 +36,7 @@ function mdTableFor(exp, r, metric) {
   if (!styles.length) return '*no rows yet*\n';
   const budgets = [...new Set(styles.flatMap((s) => Object.keys(r[exp][s])))].sort((a, b) => +a - +b);
   const head = '| style | ' + budgets.map((b) => `n=${b}`).join(' | ') + ' |';
-  const sep = '|---|---' + '---|'.repeat(budgets.length) + '---|';
+  const sep = '|' + Array(budgets.length + 1).fill('---').join('|') + '|';
   const lines = [head, sep];
   for (const s of styles) {
     const cells = budgets.map((b) => {
