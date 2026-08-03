@@ -1,6 +1,6 @@
 # EXP1B results — DLPC
 
-Generated 2026-08-03T20:55:31.000Z · libs @ `36c81dd` · images: 24
+Generated 2026-08-03T20:57:31.007Z · libs @ `5ef0ed7` · images: 24
 
 ## Verdict
 
@@ -13,9 +13,14 @@ Per mode (largest budget present) —
 - **mode=`lapvar`** (2 cells): **voronoi** leads at n=256 (ΔE 10.53, 1293 B) · 
 - **mode=`uniform`** (34 cells): **voronoi** leads at n=1024 (ΔE 7.76, 5133 B) · delaunay 7.86 · tri-gauss 8.65 · voro-fan 9.96 · cell-tris 12.77
 
-**Recommended operating point** (from LLM-guided sweeps): `voronoi,
-mode=uniform, iters=0, splatAlpha=0.8, no aa` — uniform mode beats
-combined saliency at zero byte cost, and voronoi wins on ΔE and bytes.
+**Sampling-mode finding** (LLM-guided): **uniform mode is consistently ≥
+combined saliency** — uniform beats combined on 46/48 same-cell
+comparisons (ΔE −0.2 to −2.6, zero byte cost). However this rests on a
+thin probe: 48 cells on 6 images at budgets 64–1024 (no 2048), with
+only 2–4 cells for voro-fan / cell-tris / tri-splat. The style ranking
+under uniform is not yet settled — e.g. voronoi vs delaunay at n=1024 is
+a 0.1 ΔE margin on 6 images. A full uniform-mode sweep is needed before
+declaring a final recommended operating point.
 
 ## Fidelity per budget (means over images)
 
