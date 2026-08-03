@@ -65,12 +65,18 @@
         const el = document.getElementById('archive');
         try {
           const res = await fetch('harness/archive/index.json');
-          if (!res.ok) throw new Error('HTTP ' + res.status);
+          if (!res.ok) {
+            if (res.status === 404) throw new Error('empty');
+            throw new Error('HTTP ' + res.status);
+          }
           const runs = await res.json();
-          if (!runs.length) { el.innerHTML = '<div class="status">No archived runs yet.</div>'; return; }
+          if (!runs.length) { el.innerHTML = '<div class="status">No archived runs yet — the next sweep will appear here.</div>'; return; }
           el.innerHTML = '<h1>Run archive</h1>' + runs.map(runCard).join('\n');
         } catch (e) {
-          el.innerHTML = '<div class="status">could not load harness/archive/index.json: ' + escapeHtml(e.message) + '</div>';
+          const empty = e.message === 'empty';
+          el.innerHTML = '<div class="status">' + (empty
+            ? 'No archived runs yet — the next sweep will appear here.'
+            : 'could not load harness/archive/index.json: ' + escapeHtml(e.message)) + '</div>';
         }
       }
 
