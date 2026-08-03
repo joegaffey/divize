@@ -60,6 +60,46 @@ function mdTableFor(exp, r, metric) {
   return lines.join('\n');
 }
 
+/* Experiment page + image path for a run row. Links are repo-root-relative
+ * and intended to be served with the repo root as the web root (the report
+ * instructs `python3 -m http.server`), so both the page and the `img` fetch
+ * resolve correctly regardless of where the report sits. */
+function pageDir(exp) {
+  return exp === 'exp1a' ? '/exp/exp1-a-triangle-floor/' : '/exp/exp1-b-triangle-variants/';
+}
+function runLink(row) {
+  const q = [
+    'style=' + encodeURIComponent(row.style),
+    'budget=' + row.budget,
+    'mode=' + encodeURIComponent(row.mode || 'combined'),
+    'iters=' + (row.iters || 0),
+    'autoCvt=' + (row.autoCvt ? 1 : 0),
+    'triColor=' + encodeURIComponent(row.triColor || 'interp'),
+    'splatAlpha=' + (row.splatAlpha != null ? row.splatAlpha : 0.8),
+    'aa=' + (row.aa ? 1 : 0),
+    'blend=' + (row.blend || 0),
+    'progressive=' + (row.progressive || 100),
+    'img=' + encodeURIComponent('/harness/data/kodak/' + row.image),
+  ];
+  return `${pageDir(row.exp)}?${q.join('&')}`;
+}
+
+/* Per-run reproducible table: every recorded run gets a clickable link that
+ * opens the experiment page pre-loaded with that exact config + image. */
+function runsTable(rows) {
+  if (!rows.length) return '*no runs yet*\n';
+  const sorted = [...rows].sort((a, b) =>
+    (a.image === b.image ? (a.style === b.style ? a.budget - b.budget : a.style < b.style ? -1 : 1) : a.image < b.image ? -1 : 1));
+  const lines = [
+    '| image | style | n | mode | PSNR | ΔE | bytes | open in browser |',
+    '|---|---|---|---|---|---|---|---|',
+  ];
+  for (const r of sorted) {
+    lines.push(`| ${r.image} | ${r.style} | ${r.budget} | ${r.mode || 'combined'} | ${fmt(r.psnr)} dB | ${fmt(r.de)} | ${fmt(r.bytes, 0)} B | [open](${runLink(r)}) |`);
+  }
+  return lines.join('\n');
+}
+
 function csvFor(exp, r) {
   const styles = Object.keys(r[exp] || {});
   const budgets = [...new Set(styles.flatMap((s) => Object.keys(r[exp][s])))].sort((a, b) => +a - +b);
@@ -109,6 +149,15 @@ function buildReport(exp, rows) {
       '', mdTableFor(exp, r, 'bytes'),
       '', '### Avg encode time (ms)',
       '', mdTableFor(exp, r, 'ms'),
+      '',
+      '## Reproduce a run in the browser',
+      '',
+      'Every link below opens the experiment page with that exact run pre-loaded',
+      '(config via query string, image via `img` param). Serve the repo root so',
+      'the relative paths resolve, e.g. `python3 -m http.server` from the repo root,',
+      'then click any row.',
+      '',
+      runsTable(filtered),
       '',
       '## CSV',
       '',

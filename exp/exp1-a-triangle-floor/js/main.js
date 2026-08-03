@@ -919,5 +919,44 @@
     if (data) window.dlpcExport.download(data, base + (s === 'voronoi' ? '' : '-' + s) + '.dlpc');
   });
 
+  // ---- URL config (?style&budget&mode&iters&autoCvt&triColor&splatAlpha&
+  // ----       &aa&blend&progressive&img) — lets the harness report deep-link
+  // ----       any recorded run straight into the browser for inspection.
+  function urlConfig() {
+    const p = new URLSearchParams(location.search);
+    const set = (el, v) => { if (el && v !== null && v !== '') el.value = v; };
+    const setChk = (el, v) => { if (el) el.checked = v === '1' || v === 'true'; };
+    set(els.pointBudget, p.get('budget'));
+    set(els.mode, p.get('mode'));
+    set(els.iterations, p.get('iters'));
+    setChk(els.autoCvt, p.get('autoCvt'));
+    set(els.floorStyle, p.get('style'));
+    set(els.triColor, p.get('triColor'));
+    set(els.splatAlpha, p.get('splatAlpha'));
+    setChk(els.aa, p.get('aa'));
+    set(els.blend, p.get('blend'));
+    set(els.progressive, p.get('progressive'));
+    if (els.pointBudgetOut) els.pointBudgetOut.textContent = els.pointBudget.value;
+    if (els.iterOut) els.iterOut.textContent = els.iterations.value;
+    if (els.splatAlphaOut) els.splatAlphaOut.textContent = els.splatAlpha.value;
+    if (els.progOut) els.progOut.textContent = (+els.progressive.value) + '%';
+    if (els.blendOut) els.blendOut.textContent = els.blend.value;
+    return p;
+  }
+
+  async function loadFromUrl(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+    const blob = await res.blob();
+    const name = url.split('/').pop() || 'image.png';
+    loadFile(new File([blob], name, { type: blob.type || 'image/png' }));
+  }
+
+  const cfg = urlConfig();
+  const imgUrl = cfg.get('img');
+  if (imgUrl) {
+    loadFromUrl(imgUrl).catch((e) => console.error('[exp1-a] loadFromUrl:', e));
+  }
+
   ensureGPU();
 })();
