@@ -57,9 +57,10 @@ The LLM never runs commands — it only writes a schema-validated config list.
 
 ## Config space
 
-- **exp1a**: styles `voronoi`, `tri-tiled`, `tri-splat`; base budgets 16–128.
+- **exp1a**: styles `voronoi`, `tri-tiled`, `tri-splat`; base budgets
+  16–2048 (16, 32, 64, 128, 256, 512, 1024, 2048).
 - **exp1b**: styles `voronoi`, `delaunay`, `voro-fan`, `cell-tris`, `tri-gauss`;
-  base budgets 16–256.
+  base budgets 16–2048.
 - Refinements may vary: mode (`combined|edge|lapvar|uniform`), CVT iters
   (0–200), `autoCvt`, `triColor`, `splatAlpha`, `aa`, `blend`, `progressive`.
 

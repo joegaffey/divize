@@ -11,10 +11,12 @@ const STYLES_1A = ['voronoi', 'tri-tiled', 'tri-splat'];
 const STYLES_1B = ['voronoi', 'delaunay', 'voro-fan', 'cell-tris', 'tri-gauss'];
 
 /* Base grid defaults — tuned to the spec work-packages (equal byte budgets,
- * combined saliency, no CVT for the floor-comparison baseline). */
+ * combined saliency, no CVT for the floor-comparison baseline). Budgets span
+ * the blocky floor (16) through recognizable reconstructions (1024–2048) so
+ * the R-D curve covers usable quality, not just the unusable low end. */
 const BASE = {
-  exp1a: { styles: STYLES_1A, budgets: [16, 32, 64, 128] },
-  exp1b: { styles: STYLES_1B, budgets: [16, 32, 64, 128, 256] },
+  exp1a: { styles: STYLES_1A, budgets: [16, 32, 64, 128, 256, 512, 1024, 2048] },
+  exp1b: { styles: STYLES_1B, budgets: [16, 32, 64, 128, 256, 512, 1024, 2048] },
 };
 
 const DEFAULT_PARAMS = {
