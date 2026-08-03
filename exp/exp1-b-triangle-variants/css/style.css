@@ -57,24 +57,24 @@ body {
 .dz-hint { margin: 0; }
 .link { color: var(--accent); cursor: pointer; text-decoration: underline; }
 
-.figures {
+.figures, .fig-row {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
-.figures figure {
+.figures figure, .fig-row figure {
   margin: 0;
   flex: 1 1 0;
   min-width: 0;
 }
-.figures figcaption, .preview figcaption {
+.figures figcaption, .fig-row figcaption, .preview figcaption {
   color: var(--muted);
   font-size: 11px;
   margin-top: 6px;
   text-align: center;
   letter-spacing: .5px;
 }
-.figures canvas, .preview canvas {
+.figures canvas, .fig-row canvas, .preview canvas {
   width: 100%;
   background: #05060a;
   border-radius: 6px;
@@ -275,3 +275,18 @@ canvas.novoronoi {
 }
 .foot a { color: var(--accent); text-decoration: none; }
 .foot a:hover { text-decoration: underline; }
+
+/* ---- mobile / narrow layouts --------------------------------------- */
+@media (max-width: 880px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 12px;
+  }
+  .topbar { padding: 14px 16px; }
+  .topbar h1 { font-size: 17px; }
+  .dropzone { padding: 24px 16px; }
+  .stats { flex-wrap: wrap; gap: 8px 16px; }
+  .wipe, .delta-fig { max-width: 100%; }
+  .foot { margin: 8px 16px 16px; }
+}

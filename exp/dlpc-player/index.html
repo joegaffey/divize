@@ -14,7 +14,8 @@
     header p { margin: 0 0 18px; color: #9aa0a6; }
     .cards { display: flex; gap: 24px; flex-wrap: wrap; }
     dlpc-player {
-      width: 320px; border: 1px solid #2a2a2e; border-radius: 6px;
+      width: 320px; max-width: 100%;
+      border: 1px solid #2a2a2e; border-radius: 6px;
       background: #000; overflow: hidden;
     }
     pre { background: #1a1a1e; padding: 12px; border-radius: 6px; overflow: auto; }
@@ -22,6 +23,12 @@
     .foot { margin-top: 24px; color: #55575e; font-size: 12px; }
     .foot a { color: #8ab4ff; text-decoration: none; }
     .foot a:hover { text-decoration: underline; }
+    @media (max-width: 480px) {
+      body { padding: 14px; }
+      header p { margin-bottom: 12px; }
+      .cards { gap: 16px; }
+      .foot { margin-top: 18px; }
+    }
   </style>
 </head>
 <body>
