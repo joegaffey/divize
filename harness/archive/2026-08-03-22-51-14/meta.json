@@ -1,0 +1,25 @@
+{
+  "name": "2026-08-03-22-51-14",
+  "createdAt": "2026-08-03T22:51:14.091Z",
+  "gitHead": "6c667ba",
+  "rows": 3164,
+  "images": 24,
+  "modeSplit": {
+    "uniform": 1628,
+    "combined": 1536
+  },
+  "files": {
+    "readme": "README.md",
+    "exp1a": {
+      "md": "exp1a-results.md",
+      "csv": "exp1a-results.csv"
+    },
+    "exp1b": {
+      "md": "exp1b-results.md",
+      "csv": "exp1b-results.csv"
+    },
+    "jsonl": "results.jsonl",
+    "findings": "findings.md",
+    "summary": "summary.md"
+  }
+}

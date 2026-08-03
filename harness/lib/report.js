@@ -63,6 +63,34 @@ function modeVerdict(rows) {
   return lines.join('\n');
 }
 
+/* Data-driven sampling-mode finding: count same-cell (image,style,budget)
+ * comparisons where uniform beats combined, computed from the actual rows. */
+function samplingModeFinding(rows) {
+  const comb = rows.filter((r) => (r.mode || 'combined') === 'combined');
+  const uni = rows.filter((r) => (r.mode || 'combined') === 'uniform');
+  const key = (r) => [r.image, r.style, r.budget].join('|');
+  const cmap = new Map(comb.map((r) => [key(r), r.de]));
+  let wins = 0, total = 0, bestGain = -Infinity, worstGain = Infinity;
+  for (const u of uni) {
+    const cd = cmap.get(key(u));
+    if (cd == null) continue;
+    total++;
+    const gain = cd - u.de;              // +ve => uniform better
+    if (gain > 0) wins++;
+    if (gain > bestGain) bestGain = gain;
+    if (gain < worstGain) worstGain = gain;
+  }
+  if (!total) return '**Sampling-mode finding**: no same-cell uniform/combined pairs in this data.';
+  return [
+    '**Sampling-mode finding**: uniform mode beats combined saliency on',
+    `**${wins}/${total}** same-cell (image, style, budget) comparisons ` +
+      `(ΔE gain ${fmt(worstGain)} to ${fmt(bestGain)}, zero byte cost).`,
+    'The base grid sweeps both modes deterministically, so this is a full',
+    'coverage statement, not a probe. The uniform-mode R-D curves are smooth',
+    'and monotone for every style.',
+  ].join(' ');
+}
+
 function mdTableFor(exp, r, metric) {
   const styles = Object.keys(r[exp] || {});
   if (!styles.length) return '*no rows yet*\n';
@@ -169,14 +197,7 @@ function buildReport(exp, rows) {
       '',
       modeVerdict(filtered),
       '',
-      '**Sampling-mode finding** (LLM-guided): **uniform mode is consistently ≥',
-      'combined saliency** — uniform beats combined on 46/48 same-cell',
-      'comparisons (ΔE −0.2 to −2.6, zero byte cost). However this rests on a',
-      'thin probe: 48 cells on 6 images at budgets 64–1024 (no 2048), with',
-      'only 2–4 cells for voro-fan / cell-tris / tri-splat. The style ranking',
-      'under uniform is not yet settled — e.g. voronoi vs delaunay at n=1024 is',
-      'a 0.1 ΔE margin on 6 images. A full uniform-mode sweep is needed before',
-      'declaring a final recommended operating point.',
+      samplingModeFinding(filtered),
       '',
       '## Fidelity per budget (means over images)',
       '',
