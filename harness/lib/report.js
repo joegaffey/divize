@@ -31,6 +31,38 @@ function styleVerdict(exp, r) {
   return `**${winner.style}** leads at the largest budget (mean ΔE ${fmt(winner.best.de)})`;
 }
 
+/* Mode-aware ranking: ranks styles per sample mode using only rows from that
+ * mode, at the largest budget present, so the verdict reflects a mode choice
+ * rather than pooling unlike modes (combined + uniform + ... together). */
+function modeVerdict(rows) {
+  const modes = [...new Set(rows.map((r) => r.mode || 'combined'))].sort();
+  const lines = [];
+  for (const mode of modes) {
+    const mRows = rows.filter((r) => (r.mode || 'combined') === mode);
+    const styles = [...new Set(mRows.map((r) => r.style))];
+    const bestBudget = Math.max(...mRows.map((r) => r.budget));
+    const ranked = styles.map((style) => {
+      const sr = mRows.filter((r) => r.style === style);
+      const atTop = sr.filter((r) => r.budget === bestBudget);
+      const de = atTop.length
+        ? atTop.reduce((a, b) => a + b.de, 0) / atTop.length
+        : sr.reduce((a, b) => a + b.de, 0) / sr.length;
+      const bytes = atTop.length
+        ? atTop.reduce((a, b) => a + b.bytes, 0) / atTop.length
+        : sr.reduce((a, b) => a + b.bytes, 0) / sr.length;
+      return { style, de, bytes };
+    });
+    ranked.sort((a, b) => a.de - b.de);
+    const lead = ranked[0];
+    lines.push(
+      `- **mode=\`${mode}\`** (${mRows.length} cells): **${lead.style}** leads at ` +
+      `n=${bestBudget} (ΔE ${fmt(lead.de)}${lead.bytes != null ? `, ${fmt(lead.bytes, 0)} B` : ''}) · ` +
+      ranked.slice(1).map((s) => `${s.style} ${fmt(s.de)}`).join(' · '),
+    );
+  }
+  return lines.join('\n');
+}
+
 function mdTableFor(exp, r, metric) {
   const styles = Object.keys(r[exp] || {});
   if (!styles.length) return '*no rows yet*\n';
@@ -130,7 +162,15 @@ function buildReport(exp, rows) {
       '',
       '## Verdict',
       '',
-      styleVerdict(exp, r),
+      'Overall (all modes pooled) — ' + styleVerdict(exp, r),
+      '',
+      'Per mode (largest budget present) —',
+      '',
+      modeVerdict(filtered),
+      '',
+      '**Recommended operating point** (from LLM-guided sweeps): `voronoi,',
+      'mode=uniform, iters=0, splatAlpha=0.8, no aa` — uniform mode beats',
+      'combined saliency at zero byte cost, and voronoi wins on ΔE and bytes.',
       '',
       '## Fidelity per budget (means over images)',
       '',

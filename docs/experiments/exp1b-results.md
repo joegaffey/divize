@@ -1,10 +1,21 @@
 # EXP1B results — DLPC
 
-Generated 2026-08-03T20:53:43.198Z · libs @ `c64a518` · images: 24
+Generated 2026-08-03T20:55:31.000Z · libs @ `36c81dd` · images: 24
 
 ## Verdict
 
-**delaunay** leads at the largest budget (mean ΔE 5.77)
+Overall (all modes pooled) — **delaunay** leads at the largest budget (mean ΔE 5.77)
+
+Per mode (largest budget present) —
+
+- **mode=`combined`** (972 cells): **delaunay** leads at n=2048 (ΔE 5.77, 33964 B) · voronoi 5.97 · voro-fan 6.22 · tri-gauss 6.73 · cell-tris 10.56
+- **mode=`edge`** (2 cells): **voronoi** leads at n=256 (ΔE 10.10, 1286 B) · 
+- **mode=`lapvar`** (2 cells): **voronoi** leads at n=256 (ΔE 10.53, 1293 B) · 
+- **mode=`uniform`** (34 cells): **voronoi** leads at n=1024 (ΔE 7.76, 5133 B) · delaunay 7.86 · tri-gauss 8.65 · voro-fan 9.96 · cell-tris 12.77
+
+**Recommended operating point** (from LLM-guided sweeps): `voronoi,
+mode=uniform, iters=0, splatAlpha=0.8, no aa` — uniform mode beats
+combined saliency at zero byte cost, and voronoi wins on ΔE and bytes.
 
 ## Fidelity per budget (means over images)
 

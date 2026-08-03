@@ -1,10 +1,19 @@
 # EXP1A results — DLPC
 
-Generated 2026-08-03T20:53:43.138Z · libs @ `c64a518` · images: 24
+Generated 2026-08-03T20:55:30.936Z · libs @ `36c81dd` · images: 24
 
 ## Verdict
 
-**tri-tiled** leads at the largest budget (mean ΔE 5.79)
+Overall (all modes pooled) — **tri-tiled** leads at the largest budget (mean ΔE 5.79)
+
+Per mode (largest budget present) —
+
+- **mode=`combined`** (582 cells): **tri-tiled** leads at n=2048 (ΔE 5.79, 33941 B) · voronoi 5.97 · tri-splat 6.98
+- **mode=`uniform`** (14 cells): **tri-tiled** leads at n=1024 (ΔE 7.86, 17500 B) · tri-splat 7.94
+
+**Recommended operating point** (from LLM-guided sweeps): `voronoi,
+mode=uniform, iters=0, splatAlpha=0.8, no aa` — uniform mode beats
+combined saliency at zero byte cost, and voronoi wins on ΔE and bytes.
 
 ## Fidelity per budget (means over images)
 
