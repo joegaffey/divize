@@ -8,20 +8,24 @@
  *   4. Re-summarise and check termination.
  * The deterministic base grid is the coverage floor: if the LLM declares DONE
  * while base-grid cells remain, the loop keeps filling them (the LLM already
- * had every chance to prioritise them). Stops when grid is covered AND the
- * LLM is satisfied AND no safety cap (maxIterations / maxRuns / no-progress)
- * is hit.
+ * had every chance to prioritise them). Termination is mode-aware — DONE is
+ * only accepted once the primary operating mode's grid is fully covered.
+ * Stops when grid is covered AND the LLM is satisfied AND no safety cap
+ * (maxIterations / maxRuns / no-progress) is hit.
  *
  *   node cli.js loop [--chunk N] [--maxIterations N] [--maxRuns N] [--exp X]
+ *                   [--workers N]   (parallel cell execution; default = cores)
  */
 
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const { spawnSync } = require('child_process');
 const store = require('./lib/store');
 const grid = require('./grid');
 const summarize = require('./lib/summarize');
 const { runCell, STYLES } = require('./lib/engine');
+const { CellPool } = require('./lib/pool');
 
 const ROOT = path.join(__dirname, '..');
 const STATE_DIR = path.join(__dirname, 'state');
@@ -44,6 +48,7 @@ function parseArgs(argv) {
     else if (argv[i] === '--maxIterations') a.maxIterations = +argv[++i];
     else if (argv[i] === '--maxRuns') a.maxRuns = +argv[++i];
     else if (argv[i] === '--exp') a.exp = argv[++i];
+    else if (argv[i] === '--workers') a.workers = +argv[++i];
   }
   return a;
 }
@@ -67,25 +72,37 @@ function clampCell(c) {
   };
 }
 
-async function executeBatch(cells, doneKeys) {
+async function executeBatch(cells, doneKeys, workers) {
+  const pool = workers > 1 ? new CellPool(workers) : null;
   const rows = [];
-  for (let i = 0; i < cells.length; i++) {
-    const c = cells[i];
+  const run = (c) => {
     const key = grid.cellKey(c);
-    if (doneKeys.has(key)) continue;
+    if (doneKeys.has(key)) return Promise.resolve(null);
     const imgPath = path.join(KODAK_DIR, c.image);
-    if (!fs.existsSync(imgPath)) { log('skip missing image', c.image); continue; }
-    try {
+    if (!fs.existsSync(imgPath)) { log('skip missing image', c.image); return Promise.resolve(null); }
+    return new Promise((resolve) => {
       const t0 = Date.now();
-      const row = await runCell(imgPath, c);
-      row.configKey = key;
-      store.appendRows([row]);
-      rows.push(row);
-      doneKeys.add(key);
-      log(`+ ${c.exp} ${c.image} ${c.style} n=${c.budget} mode=${c.mode}  PSNR=${row.psnr} ΔE=${row.de} bytes=${row.bytes} (${Date.now() - t0}ms)`);
-    } catch (e) {
-      log('FAIL', c.exp, c.image, c.style, c.budget, '—', e.message);
-    }
+      const finish = (row, err) => {
+        if (err) { log('FAIL', c.exp, c.image, c.style, c.budget, c.mode, '—', err); return resolve(null); }
+        row.configKey = key;
+        store.appendRows([row]);
+        rows.push(row);
+        doneKeys.add(key);
+        log(`+ ${c.exp} ${c.image} ${c.style} n=${c.budget} mode=${c.mode}  PSNR=${row.psnr} ΔE=${row.de} bytes=${row.bytes} (${Date.now() - t0}ms)`);
+        resolve(row);
+      };
+      if (pool) {
+        pool.run(c, imgPath).then((m) => m.ok ? finish(m.row) : finish(null, m.error));
+      } else {
+        runCell(imgPath, c).then((row) => finish(row), (e) => finish(null, e.message));
+      }
+    });
+  };
+  try {
+    await Promise.all(cells.map(run));
+    if (pool) await pool.drain();
+  } finally {
+    if (pool) pool.close();
   }
   return rows;
 }
@@ -106,8 +123,8 @@ function askOpenCode(remainingCount, summaryMdPath, findingsPath) {
     '              "aa":false,"blend":0,"progressive":100,"image":"kodim01.png"}]}',
     '   Up to 25 cells. Prefer still-unrun base-grid cells (exp1a styles',
     '   voronoi/tri-tiled/tri-splat and exp1b styles voronoi/delaunay/',
-    '   voro-fan/cell-tris/tri-gauss, budgets 16..256, modes combined/edge/',
-    '   lapvar/uniform, images kodim01..24) so the coverage floor closes.',
+    '   voro-fan/cell-tris/tri-gauss, budgets 16..2048, modes uniform and',
+    '   combined, images kodim01..24) so the coverage floor closes.',
     '   You may also add refinements (finer budgets, CVT iters, splatAlpha,',
     '   aa, blend) to answer open R-D questions. Do not repeat already-run',
     '   (exp,image,style,budget,mode,...) combos.',
@@ -144,6 +161,7 @@ async function main(argv) {
   const maxIterations = a.maxIterations || 1000;
   const maxRuns = a.maxRuns || 5000;
   const expFilter = a.exp || null;
+  const workers = Math.max(1, Math.min(a.workers || os.cpus().length, os.cpus().length));
   fs.mkdirSync(STATE_DIR, { recursive: true });
   ensureFindings();
 
@@ -156,7 +174,8 @@ async function main(argv) {
     const rowCount = store.loadAll().length;
     let remaining = grid.remainingBaseCells(done);
     if (expFilter) remaining = remaining.filter((c) => c.exp === expFilter);
-    log(`iteration ${iterations}: ${rowCount} rows, ${remaining.length} base cells remaining`);
+    const remainingPrimary = grid.remainingBaseCells(done, grid.PRIMARY_MODE);
+    log(`iteration ${iterations}: ${rowCount} rows, ${remaining.length} base cells remaining (${remainingPrimary.length} in primary mode ${grid.PRIMARY_MODE})`);
 
     // If base grid remains, run a deterministic chunk of it each round so the
     // coverage floor closes even if the LLM focuses on refinements.
@@ -172,22 +191,31 @@ async function main(argv) {
       fs.rmSync(NEXT_BATCH_FILE, { force: true });
       if (!prop) { log('no proposal returned; aborting'); break; }
       if (prop.decision === 'done') {
-        log('LLM declared DONE:', (prop.reason || '').slice(0, 200));
-        markDone(prop.reason || 'LLM DONE');
-        break;
-      }
-      if (prop.decision !== 'batch' || !Array.isArray(prop.batch)) {
+        // Mode-aware termination: refuse DONE until the primary operating
+        // mode's base grid is fully covered, so a thin uniform probe cannot
+        // end the run the way it did previously.
+        const stillPrimary = grid.remainingBaseCells(done, grid.PRIMARY_MODE);
+        if (stillPrimary.length) {
+          log(`LLM declared DONE but ${stillPrimary.length} primary-mode cells unrun; filling them first`);
+          cells = stillPrimary.slice(0, BASE_CHUNK);
+        } else {
+          log('LLM declared DONE:', (prop.reason || '').slice(0, 200));
+          markDone(prop.reason || 'LLM DONE');
+          break;
+        }
+      } else if (prop.decision !== 'batch' || !Array.isArray(prop.batch)) {
         log('malformed proposal:', JSON.stringify(prop).slice(0, 200));
         markDone('malformed proposal');
         break;
+      } else {
+        cells = prop.batch.map(clampCell).filter(Boolean)
+          .filter((c) => !expFilter || c.exp === expFilter);
       }
-      cells = prop.batch.map(clampCell).filter(Boolean)
-        .filter((c) => !expFilter || c.exp === expFilter);
     }
 
     if (cells.length) {
       const before = store.loadAll().length;
-      const newRows = await executeBatch(cells.slice(0, MAX_BATCH), done);
+      const newRows = await executeBatch(cells.slice(0, MAX_BATCH), done, workers);
       noProgressStreak = newRows.length ? 0 : noProgressStreak + 1;
       log(`batch done: +${newRows.length} rows (${store.loadAll().length} total)`);
       summarize.writeSummary(store.loadAll());
@@ -208,6 +236,7 @@ async function main(argv) {
   }
 
   log('loop finished after', iterations, 'iterations;', store.loadAll().length, 'rows total.');
+  try { new CellPool(workers).close(); } catch {}
 }
 
 module.exports = { main };

@@ -61,8 +61,14 @@ The LLM never runs commands — it only writes a schema-validated config list.
   16–2048 (16, 32, 64, 128, 256, 512, 1024, 2048).
 - **exp1b**: styles `voronoi`, `delaunay`, `voro-fan`, `cell-tris`, `tri-gauss`;
   base budgets 16–2048.
+- **Base modes**: the grid sweeps `uniform` (primary/default) **and** `combined`
+  saliency, so the mode question is settled deterministically. The loop refuses
+  to declare DONE until the `uniform` grid is fully covered (mode-aware
+  termination).
 - Refinements may vary: mode (`combined|edge|lapvar|uniform`), CVT iters
   (0–200), `autoCvt`, `triColor`, `splatAlpha`, `aa`, `blend`, `progressive`.
+- `cli.js loop --workers N` runs cells in parallel worker threads (default:
+  number of CPU cores) — worthwhile for the slow high-budget cells.
 
 ## Files
 
