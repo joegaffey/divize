@@ -384,7 +384,7 @@ async function runCell(imagePath, cfg) {
   const tCvtEnd = process.hrtime.bigint();
 
   st.pts = pts;
-  st.colors = se.pointColors(srcData, fw, fh, pts);
+  st.colors = se.cellMeanColors(srcData, fw, fh, pts);
 
   // Floor geometry per style.
   const tGeom = process.hrtime.bigint();

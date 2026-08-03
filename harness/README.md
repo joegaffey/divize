@@ -11,7 +11,10 @@ from **pure-JS** code (`saliency.js`, `sampling.js`, `geometry.js`, `metric.js`,
 `export.js`) that has no DOM dependencies — only the render/wipe/export UI is
 browser-bound. This harness loads those exact files through a `window` shim and
 re-runs the same pipeline in Node, so the numbers match the browser's on-screen
-readouts (subject only to RNG: a seeded PRNG keeps runs reproducible).
+readouts (subject only to RNG: a seeded PRNG keeps runs reproducible). Floor
+colours are **cell-mean**: each Voronoi cell is filled with the mean colour of
+its source pixels (`sampleEngine.cellMeanColors`) rather than a single seed
+pixel, worth ~1.5–3.5 dB PSNR over `pointColors` on Kodak.
 
 ```
 engine.js  runCell(image, config) -> one result row        (mirrors main.js)

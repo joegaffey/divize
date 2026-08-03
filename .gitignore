@@ -23,6 +23,7 @@ node_modules/
 harness/data/
 harness/results/
 harness/state/
+harness/golden/
 harness/node_modules/
 
 # Runtime artifacts

@@ -887,7 +887,7 @@
     }
 
     state.pts = pts;
-    state.colors = se.pointColors(state.buf.data, w, h, pts);
+    state.colors = se.cellMeanColors(state.buf.data, w, h, pts);
     if (!stillCurrent()) return;
 
     // floor geometry
