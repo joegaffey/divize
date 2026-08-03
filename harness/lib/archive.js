@@ -120,7 +120,47 @@ function archiveRun() {
   }
 
   fs.writeFileSync(path.join(dir, 'README.md'), buildReadme(name, head, prevHead, rows));
+  writeMeta(dir, name, head, rows);
+  writeIndex();
   return name;
 }
 
-module.exports = { archiveRun, runName, lastArchive, ARCHIVE_DIR };
+/* Per-run machine-readable metadata (for the web archive view). */
+function writeMeta(dir, name, head, rows) {
+  const byMode = {};
+  for (const r of rows) byMode[r.mode || 'combined'] = (byMode[r.mode || 'combined'] || 0) + 1;
+  const meta = {
+    name,
+    createdAt: new Date().toISOString(),
+    gitHead: head,
+    rows: rows.length,
+    images: new Set(rows.map((r) => r.image)).size,
+    modeSplit: byMode,
+    files: {
+      readme: `README.md`,
+      exp1a: { md: 'exp1a-results.md', csv: 'exp1a-results.csv' },
+      exp1b: { md: 'exp1b-results.md', csv: 'exp1b-results.csv' },
+      jsonl: 'results.jsonl',
+      findings: 'findings.md',
+      summary: 'summary.md',
+    },
+  };
+  fs.writeFileSync(path.join(dir, 'meta.json'), JSON.stringify(meta, null, 2));
+}
+
+/* Aggregate index of every archived run, for the web view. */
+function writeIndex() {
+  if (!fs.existsSync(ARCHIVE_DIR)) return;
+  const runs = fs.readdirSync(ARCHIVE_DIR)
+    .filter((d) => /^\d{4}-\d{2}-\d{2}/.test(d))
+    .sort()
+    .reverse()
+    .map((name) => {
+      const mf = path.join(ARCHIVE_DIR, name, 'meta.json');
+      try { return JSON.parse(fs.readFileSync(mf, 'utf8')); }
+      catch { return { name, createdAt: name, gitHead: '?', rows: 0, images: 0, modeSplit: {}, files: {} }; }
+    });
+  fs.writeFileSync(path.join(ARCHIVE_DIR, 'index.json'), JSON.stringify(runs, null, 2));
+}
+
+module.exports = { archiveRun, runName, lastArchive, ARCHIVE_DIR, writeIndex };

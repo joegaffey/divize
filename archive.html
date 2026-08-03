@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLPC · Run Archive</title>
+  <link rel="stylesheet" href="exp/css/hub.css" />
+  <style>
+    main.archive { max-width: 960px; margin: 0 auto; padding: 24px; }
+    .run { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+    .run h2 { margin: 0 0 6px; font-size: 16px; }
+    .run .meta { color: var(--muted); font-size: 12px; margin: 0 0 10px; }
+    .run .files a { display: inline-block; margin: 2px 14px 2px 0; color: var(--accent); text-decoration: none; font-size: 13px; }
+    .run .files a:hover { text-decoration: underline; }
+    .status { padding: 16px 24px; color: var(--muted); font-size: 13px; }
+    .topbar { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .topbar .back { color: var(--muted); font-size: 12px; }
+    .topbar .back a { color: var(--accent); text-decoration: none; }
+    code { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>DLPC <span class="muted">// Run archive</span></h1>
+    <span class="back"><a href="./">← landing</a> · <a href="./md.html">docs</a></span>
+  </header>
+
+  <main id="archive" class="archive">
+    <div class="status">loading archive index…</div>
+  </main>
+
+  <footer class="foot">Each run snapshots the raw JSONL, reports, LLM findings, and a README of what changed since the previous run.</footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function escapeHtml(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function runCard(run) {
+        const files = run.files || {};
+        const link = (path) => 'md.html?f=harness/archive/' + run.name + '/' + path;
+        const lines = [
+          '<section class="run">',
+          '<h2>' + escapeHtml(run.name) + '</h2>',
+          '<p class="meta">' + run.rows + ' rows · ' + run.images + ' images · modes ' +
+            JSON.stringify(run.modeSplit || {}) + ' · git <code>' + escapeHtml(run.gitHead || '?') + '</code> · ' +
+            escapeHtml(run.createdAt || '') + '</p>',
+          '<div class="files">',
+        ];
+        const fs_ = files;
+        if (fs_.readme) lines.push('<a href="' + link(fs_.readme) + '">README</a>');
+        if (fs_.findings) lines.push('<a href="' + link(fs_.findings) + '">findings</a>');
+        if (fs_.summary) lines.push('<a href="' + link(fs_.summary) + '">summary</a>');
+        if (fs_.exp1a) { lines.push('<a href="' + link(fs_.exp1a.md) + '">exp1-a report</a>'); lines.push('<a href="harness/archive/' + run.name + '/' + fs_.exp1a.csv + '">exp1-a csv</a>'); }
+        if (fs_.exp1b) { lines.push('<a href="' + link(fs_.exp1b.md) + '">exp1-b report</a>'); lines.push('<a href="harness/archive/' + run.name + '/' + fs_.exp1b.csv + '">exp1-b csv</a>'); }
+        if (fs_.jsonl) lines.push('<a href="harness/archive/' + run.name + '/' + fs_.jsonl + '">results.jsonl</a>');
+        lines.push('</div></section>');
+        return lines.join('\n');
+      }
+
+      async function init() {
+        const el = document.getElementById('archive');
+        try {
+          const res = await fetch('harness/archive/index.json');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const runs = await res.json();
+          if (!runs.length) { el.innerHTML = '<div class="status">No archived runs yet.</div>'; return; }
+          el.innerHTML = '<h1>Run archive</h1>' + runs.map(runCard).join('\n');
+        } catch (e) {
+          el.innerHTML = '<div class="status">could not load harness/archive/index.json: ' + escapeHtml(e.message) + '</div>';
+        }
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
