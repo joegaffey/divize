@@ -60,13 +60,12 @@ function mdTableFor(exp, r, metric) {
   return lines.join('\n');
 }
 
-/* Experiment page + image path for a run row. Links are relative to the
- * report's own directory (docs/experiments/), so `../../exp/...` resolves to
- * the repo-root `exp/...` both when served from the repo root locally and
- * when GitHub Pages serves the repo at a subpath (https://gh.io/divize/).
- * The `img` value is a local path (repo layout) — the experiment pages fall
- * back to the public r0k.us Kodak mirror if the local fetch 404s (the raw
- * images are gitignored and not published to Pages). */
+/* Experiment page link for a run row. Links are relative to the report's own
+ * directory (docs/experiments/), so `../../exp/...` resolves to the repo-root
+ * `exp/...` both when served from the repo root locally and when GitHub Pages
+ * serves the repo at a subpath (https://gh.io/divize/). The page opens with
+ * the run's config applied; the user picks the source image themselves (raw
+ * Kodak images are gitignored and not published to Pages). */
 function pageDir(exp) {
   return exp === 'exp1a' ? '../../exp/exp1-a-triangle-floor/' : '../../exp/exp1-b-triangle-variants/';
 }
@@ -82,7 +81,6 @@ function runLink(row) {
     'aa=' + (row.aa ? 1 : 0),
     'blend=' + (row.blend || 0),
     'progressive=' + (row.progressive || 100),
-    'img=' + encodeURIComponent('../../harness/data/kodak/' + row.image),
   ];
   return `${pageDir(row.exp)}?${q.join('&')}`;
 }
@@ -156,9 +154,8 @@ function buildReport(exp, rows) {
       '## Reproduce a run in the browser',
       '',
       'Every link below opens the experiment page with that exact run pre-loaded',
-      '(config via query string, image via `img` param). Serve the repo root so',
-      'the relative paths resolve, e.g. `python3 -m http.server` from the repo root,',
-      'then click any row.',
+      '(config via query string). The source image is not auto-loaded — drop or',
+      'browse to one (e.g. a Kodak PNG) to see the floor rendered.',
       '',
       runsTable(filtered),
       '',

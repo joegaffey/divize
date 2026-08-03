@@ -1,6 +1,6 @@
 # EXP1A results — DLPC
 
-Generated 2026-08-03T18:50:49.104Z · libs @ `56f3805` · images: 3
+Generated 2026-08-03T19:11:16.585Z · libs @ `57c1bf8` · images: 3
 
 ## Verdict
 
@@ -75,33 +75,32 @@ Generated 2026-08-03T18:50:49.104Z · libs @ `56f3805` · images: 3
 ## Reproduce a run in the browser
 
 Every link below opens the experiment page with that exact run pre-loaded
-(config via query string, image via `img` param). Serve the repo root so
-the relative paths resolve, e.g. `python3 -m http.server` from the repo root,
-then click any row.
+(config via query string). The source image is not auto-loaded — drop or
+browse to one (e.g. a Kodak PNG) to see the floor rendered.
 
 | image | style | n | mode | PSNR | ΔE | bytes | open in browser |
 |---|---|---|---|---|---|---|---|
-| kodim01.png | tri-splat | 16 | combined | 15.10 dB | 16.45 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-splat | 32 | combined | 13.68 dB | 18.79 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-splat | 32 | combined | 14.92 dB | 16.48 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=50&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-splat | 64 | combined | 14.51 dB | 17.07 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-splat | 64 | combined | 14.52 dB | 17.05 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-splat | 128 | combined | 14.15 dB | 16.58 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-tiled | 16 | combined | 14.38 dB | 17.51 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-tiled | 32 | combined | 14.65 dB | 17.32 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-tiled | 64 | combined | 15.28 dB | 15.68 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-tiled | 64 | uniform | 15.54 dB | 15.09 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | tri-tiled | 128 | combined | 16.01 dB | 14.49 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | voronoi | 16 | combined | 13.23 dB | 20.43 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | voronoi | 32 | combined | 13.54 dB | 19.02 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | voronoi | 64 | combined | 14.12 dB | 17.49 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim01.png | voronoi | 128 | combined | 14.36 dB | 16.40 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim01.png) |
-| kodim05.png | tri-splat | 128 | combined | 11.63 dB | 22.14 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim05.png) |
-| kodim05.png | tri-tiled | 128 | combined | 13.54 dB | 18.26 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim05.png) |
-| kodim05.png | voronoi | 128 | combined | 11.79 dB | 21.41 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim05.png) |
-| kodim19.png | tri-splat | 128 | combined | 15.26 dB | 12.10 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim19.png) |
-| kodim19.png | tri-tiled | 128 | combined | 15.87 dB | 12.21 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim19.png) |
-| kodim19.png | voronoi | 128 | combined | 15.68 dB | 11.47 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100&img=..%2F..%2Fharness%2Fdata%2Fkodak%2Fkodim19.png) |
+| kodim01.png | tri-splat | 16 | combined | 15.10 dB | 16.45 | 141 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 32 | combined | 13.68 dB | 18.79 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 32 | combined | 14.92 dB | 16.48 | 269 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=32&mode=combined&iters=50&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 64 | combined | 14.51 dB | 17.07 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 64 | combined | 14.52 dB | 17.05 | 525 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.5&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-splat | 128 | combined | 14.15 dB | 16.58 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 16 | combined | 14.38 dB | 17.51 | 364 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 32 | combined | 14.65 dB | 17.32 | 636 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 64 | combined | 15.28 dB | 15.68 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 64 | uniform | 15.54 dB | 15.09 | 1180 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=64&mode=uniform&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | tri-tiled | 128 | combined | 16.01 dB | 14.49 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 16 | combined | 13.23 dB | 20.43 | 93 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=16&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 32 | combined | 13.54 dB | 19.02 | 173 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=32&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 64 | combined | 14.12 dB | 17.49 | 333 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=64&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim01.png | voronoi | 128 | combined | 14.36 dB | 16.40 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-splat | 128 | combined | 11.63 dB | 22.14 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | tri-tiled | 128 | combined | 13.54 dB | 18.26 | 2268 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim05.png | voronoi | 128 | combined | 11.79 dB | 21.41 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-splat | 128 | combined | 15.26 dB | 12.10 | 1037 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-splat&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | tri-tiled | 128 | combined | 15.87 dB | 12.21 | 2262 B | [open](../../exp/exp1-a-triangle-floor/?style=tri-tiled&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
+| kodim19.png | voronoi | 128 | combined | 15.68 dB | 11.47 | 653 B | [open](../../exp/exp1-a-triangle-floor/?style=voronoi&budget=128&mode=combined&iters=0&autoCvt=0&triColor=interp&splatAlpha=0.8&aa=0&blend=0&progressive=100) |
 
 ## CSV
 

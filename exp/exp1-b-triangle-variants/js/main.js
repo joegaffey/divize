@@ -983,12 +983,7 @@
   }
 
   async function loadFromUrl(url) {
-    // The raw Kodak images are gitignored (absent on GitHub Pages), so fall
-    // back to the public r0k.us mirror when the local fetch 404s.
-    let res = await fetch(url);
-    if (!res.ok && /kodim\d+\.png$/.test(url)) {
-      res = await fetch('https://r0k.us/graphics/kodak/kodak/' + url.split('/').pop());
-    }
+    const res = await fetch(url);
     if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
     const blob = await res.blob();
     const name = url.split('/').pop() || 'image.png';
