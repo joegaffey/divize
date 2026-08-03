@@ -60,12 +60,15 @@ function mdTableFor(exp, r, metric) {
   return lines.join('\n');
 }
 
-/* Experiment page + image path for a run row. Links are repo-root-relative
- * and intended to be served with the repo root as the web root (the report
- * instructs `python3 -m http.server`), so both the page and the `img` fetch
- * resolve correctly regardless of where the report sits. */
+/* Experiment page + image path for a run row. Links are relative to the
+ * report's own directory (docs/experiments/), so `../../exp/...` resolves to
+ * the repo-root `exp/...` both when served from the repo root locally and
+ * when GitHub Pages serves the repo at a subpath (https://gh.io/divize/).
+ * The `img` value is a local path (repo layout) — the experiment pages fall
+ * back to the public r0k.us Kodak mirror if the local fetch 404s (the raw
+ * images are gitignored and not published to Pages). */
 function pageDir(exp) {
-  return exp === 'exp1a' ? '/exp/exp1-a-triangle-floor/' : '/exp/exp1-b-triangle-variants/';
+  return exp === 'exp1a' ? '../../exp/exp1-a-triangle-floor/' : '../../exp/exp1-b-triangle-variants/';
 }
 function runLink(row) {
   const q = [
@@ -79,7 +82,7 @@ function runLink(row) {
     'aa=' + (row.aa ? 1 : 0),
     'blend=' + (row.blend || 0),
     'progressive=' + (row.progressive || 100),
-    'img=' + encodeURIComponent('/harness/data/kodak/' + row.image),
+    'img=' + encodeURIComponent('../../harness/data/kodak/' + row.image),
   ];
   return `${pageDir(row.exp)}?${q.join('&')}`;
 }
