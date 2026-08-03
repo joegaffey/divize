@@ -25,6 +25,7 @@
     mode: $('mode'),
     iterations: $('iterations'),
     iterOut: $('iterOut'),
+    autoCvt: $('autoCvt'),
     showPointColor: $('showPointColor'),
     scale: $('scale'),
     scaleOut: $('scaleOut'),
@@ -249,6 +250,54 @@
   function cvtFactor(totalPx) {
     const target = 320 * 320;           // ~100k samples, tweakable
     return Math.max(1, Math.ceil(Math.sqrt(totalPx / target)));
+  }
+
+  /* ---- metric-informed CVT auto-stop -------------------------------- */
+  // Low-res source (box-averaged to the CVT grid) for ΔE checkpoints.
+  function downsampleRgb(src, w, h, dw, dh) {
+    const out = new Uint8ClampedArray(dw * dh * 4);
+    const sy = h / dh, sx = w / dw;
+    for (let dy = 0; dy < dh; dy++) {
+      const y0 = Math.floor(dy * sy), y1 = Math.max(y0 + 1, Math.floor((dy + 1) * sy));
+      for (let dx = 0; dx < dw; dx++) {
+        const x0 = Math.floor(dx * sx), x1 = Math.max(x0 + 1, Math.floor((dx + 1) * sx));
+        let r = 0, g = 0, b = 0, n = 0;
+        for (let yy = y0; yy < y1; yy++) {
+          for (let xx = x0; xx < x1; xx++) {
+            const o = (yy * w + xx) * 4;
+            r += src[o]; g += src[o + 1]; b += src[o + 2]; n++;
+          }
+        }
+        const o = (dy * dw + dx) * 4;
+        out[o] = n ? r / n : 0; out[o + 1] = n ? g / n : 0; out[o + 2] = n ? b / n : 0;
+        out[o + 3] = 255;
+      }
+    }
+    return out;
+  }
+  // Mean CIEDE2000 of a low-res nearest-seed reconstruction vs the low-res
+  // source, on the same grid the CVT loop runs over. Cheap enough to run
+  // every few iterations (~one CVT pass in cost).
+  function lowResDe(ptsFull, srcLow, cw, ch) {
+    const colors = se.pointColors(state.buf.data, state.w, state.h, ptsFull);
+    const recon = new Uint8ClampedArray(cw * ch * 4);
+    const sx = state.w / cw, sy = state.h / ch;
+    for (let gy = 0; gy < ch; gy++) {
+      const Y = (gy + 0.5) * sy;
+      for (let gx = 0; gx < cw; gx++) {
+        const X = (gx + 0.5) * sx;
+        let best = 0, bd = Infinity;
+        for (let k = 0; k < ptsFull.length; k++) {
+          const dx = X - ptsFull[k].x, dy = Y - ptsFull[k].y;
+          const d = dx * dx + dy * dy;
+          if (d < bd) { bd = d; best = k; }
+        }
+        const o = (gy * cw + gx) * 4;
+        recon[o] = colors[best * 4]; recon[o + 1] = colors[best * 4 + 1];
+        recon[o + 2] = colors[best * 4 + 2]; recon[o + 3] = 255;
+      }
+    }
+    return metric.ciede(recon, srcLow, cw, ch).mean;
   }
 
   /* ---- point field selection ------------------------------------------- */
@@ -591,6 +640,7 @@
     els.iterOut.textContent = els.iterations.value;
     recompute();
   });
+  els.autoCvt.addEventListener('change', recompute);
 
   // --- Light controls (render only; points unchanged) ---------------
   // These never touch the sampling/CVT pipeline, so they're instant.
@@ -702,6 +752,10 @@
       const n = +els.pointBudget.value;
       const w = state.w, h = state.h;
       const it = +els.iterations.value;
+      const autoCvt = els.autoCvt.checked;
+      // Auto mode: the slider is the hard cap; convergence decides the real
+      // count. Displacement threshold in full-res px, scaled to the CVT grid.
+      const cap = autoCvt ? Math.max(it, 40) : it;
       const t0 = performance.now();
       let tSample = 0, tCvt = 0;
 
@@ -721,26 +775,59 @@
       }
       if (!stillCurrent()) return;
 
-      if (it > 0) {
+      if (cap > 0) {
         const fieldFull = state.field !== null ? state.field : ones(w, h);
         // CVT is O(count x pixels): downsample the field so the expensive
         // loop runs over fewer samples, then scale results back to full-res.
         const fac = cvtFactor(w * h);
         const { field: fieldRun, w: cw, h: ch, factor: cf } = downsampleField(fieldFull, w, h, fac);
+        const srcLow = autoCvt ? downsampleRgb(state.buf.data, w, h, cw, ch) : null;
         const pointsDown = () => pts.map((p) => ({ x: p.x / cf, y: p.y / cf }));
         const scaleUp = (arr) => {
           const out = new Float32Array(arr.length);
           for (let k = 0; k < arr.length; k++) out[k] = arr[k] * cf;
           return out;
         };
-        const gpuCvt = !state.cvtDown && gpuReady && window.divGPU?.cvt;
+        const gpuCvt = !autoCvt && !state.cvtDown && gpuReady && window.divGPU?.cvt;
+        // Metric-informed auto-stop options (CPU only — the GPU kernel can't
+        // report per-iteration displacement). The slider is the hard cap.
+        let usedIters = cap, deLow = null;
+        const cvtOpts = {
+          chunk: autoCvt ? 2 : 4,
+          onProgress: (done, total) =>
+            showWork(true, (autoCvt ? 'CVT relax (auto)…' : 'CVT relax (CPU)…') +
+              ` ${Math.round((done / total) * 100)}%`),
+          isCancelled: () => !stillCurrent(),
+        };
+        if (autoCvt) {
+          const dispThresh = 0.1 / cf;    // ~0.1px full-res, on the CVT grid
+          const checkEvery = 5;           // ΔE checkpoint period
+          const deThresh = 0.05;          // min mean-ΔE improvement to continue
+          let lastDe = null, streak = 0, lastCheck = 0;
+          cvtOpts.onStep = (itNum, meanDisp, curDown) => {
+            usedIters = itNum;
+            if (meanDisp < dispThresh) return false;       // geometric convergence
+            if (itNum - lastCheck >= checkEvery) {
+              lastCheck = itNum;
+              const up = scaleUp(curDown.flatMap((p) => [p.x, p.y]));
+              const full = new Array(up.length / 2);
+              for (let k = 0; k < full.length; k++) full[k] = { x: up[k * 2], y: up[k * 2 + 1] };
+              deLow = lowResDe(full, srcLow, cw, ch);
+              const improve = lastDe === null ? Infinity : lastDe - deLow;
+              lastDe = deLow;
+              streak = improve < deThresh ? streak + 1 : 0;
+              if (streak >= 2) return false;                // diminishing returns
+            }
+            return true;
+          };
+        }
         if (gpuCvt) {
           // WebGPU compute: best performance. GPU CVT can't be cancelled
           // mid-pass, so we only check the token between iterations.
           showWork(true, 'CVT relax (GPU)…');
           let ran = false;
           try {
-            const out = await window.divGPU.cvt.run(pointsDown(), fieldRun, cw, ch, it, {
+            const out = await window.divGPU.cvt.run(pointsDown(), fieldRun, cw, ch, cap, {
               onProgress: (done, total) =>
                 showWork(true, `CVT relax (GPU)… ${Math.round((done / total) * 100)}%`),
               isCancelled: () => !stillCurrent(),
@@ -757,26 +844,24 @@
           }
           if (!ran && stillCurrent()) {
             // Fall back to CPU relaxation so the run still completes.
-            const out = await se.cvtRelaxAsync(pointsDown(), fieldRun, cw, ch, it, {
-              onProgress: (done, total) =>
-                showWork(true, `CVT relax (CPU)… ${Math.round((done / total) * 100)}%`),
-              isCancelled: () => !stillCurrent(),
-            });
+            const out = await se.cvtRelaxAsync(pointsDown(), fieldRun, cw, ch, cap, cvtOpts);
             if (out === null || !stillCurrent()) return;
+            usedIters = out.iterations;
             const up = scaleUp(out.flatMap((p) => [p.x, p.y]));
             pts = new Array(up.length / 2);
             for (let k = 0; k < pts.length; k++) pts[k] = { x: up[k * 2], y: up[k * 2 + 1] };
           } else if (!stillCurrent()) return;
         } else {
-          const out = await se.cvtRelaxAsync(pointsDown(), fieldRun, cw, ch, it, {
-            onProgress: (done, total) =>
-              showWork(true, `CVT relax (CPU)… ${Math.round((done / total) * 100)}%`),
-            isCancelled: () => !stillCurrent(),
-          });
+          const out = await se.cvtRelaxAsync(pointsDown(), fieldRun, cw, ch, cap, cvtOpts);
           if (out === null || !stillCurrent()) return;   // abandoned
+          usedIters = out.iterations;
           const up = scaleUp(out.flatMap((p) => [p.x, p.y]));
           pts = new Array(up.length / 2);
           for (let k = 0; k < pts.length; k++) pts[k] = { x: up[k * 2], y: up[k * 2 + 1] };
+        }
+        if (autoCvt) {
+          els.iterOut.textContent = `${usedIters}/${cap} auto` +
+            (deLow !== null ? ` · ΔE≈${deLow.toFixed(1)}` : '');
         }
       }
 

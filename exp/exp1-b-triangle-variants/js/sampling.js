@@ -78,7 +78,8 @@
     const chunk = opts.chunk || 4;
     const onProgress = opts.onProgress || null;
     const isCancelled = opts.isCancelled || null;
-    if (!iters || iters <= 0) return pts.slice();
+    const onStep = opts.onStep || null;
+    if (!iters || iters <= 0) { const a = pts.slice(); a.iterations = 0; return a; }
 
     let cur = pts.slice();
     const nPts = cur.length;
@@ -108,10 +109,20 @@
         if (sw[k] > 0) next[k] = { x: sx[k] / sw[k], y: sy[k] / sw[k] };
         else next[k] = { x: cur[k].x, y: cur[k].y };
       }
+      let dispSum = 0;
+      for (let k = 0; k < nPts; k++) {
+        dispSum += Math.hypot(next[k].x - cur[k].x, next[k].y - cur[k].y);
+      }
+      const meanDisp = dispSum / nPts;
       cur = next;
+      if (onStep && onStep(it + 1, meanDisp, cur) === false) {
+        iters = it + 1;
+        break;
+      }
       if (onProgress) onProgress(it + 1, iters);
       if ((it + 1) % chunk === 0) await sleep(0);
     }
+    cur.iterations = iters;
     return cur;
   }
 
