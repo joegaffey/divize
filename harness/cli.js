@@ -7,6 +7,7 @@
  *   node cli.js batch   [--limit n] [--exp exp1a|exp1b] [--style s] [--json]
  *   node cli.js verify  [--image k] [--style s] [--budget n]   (golden checks)
  *   node cli.js report  [--exp exp1b]                            (docs/experiments)
+ *   node cli.js archive                                    (snapshot run to harness/archive/<run>/)
  *   node cli.js loop    (autonomous LLM-guided loop)
  */
 
@@ -127,6 +128,11 @@ async function main() {
     case 'batch': return cmdBatch(rest);
     case 'verify': return cmdVerify(rest);
     case 'report': return require('./lib/report').main(rest);
+    case 'archive': {
+      const name = require('./lib/archive').archiveRun();
+      console.log('archived run → harness/archive/' + name);
+      return;
+    }
     case 'loop': return require('./loop').main(rest);
     default:
       console.log(require('fs').readFileSync(__filename, 'utf8').match(/ \*   (node cli[^\n]*)/g).map((s) => s.trim()).join('\n'));

@@ -84,4 +84,4 @@ function remainingBaseCells(completedKeys, mode) {
   return baseCells().filter((c) => (!mode || c.mode === mode) && !completedKeys.has(cellKey(c)));
 }
 
-module.exports = { baseCells, cellKey, remainingBaseCells, kodakImages, DEFAULT_PARAMS, PRIMARY_MODE, KODAK_DIR };
+module.exports = { baseCells, cellKey, remainingBaseCells, kodakImages, DEFAULT_PARAMS, PRIMARY_MODE, BASE, KODAK_DIR };

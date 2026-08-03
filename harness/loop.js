@@ -237,6 +237,12 @@ async function main(argv) {
 
   log('loop finished after', iterations, 'iterations;', store.loadAll().length, 'rows total.');
   try { new CellPool(workers).close(); } catch {}
+  if (store.loadAll().length) {
+    try {
+      const name = require('./lib/archive').archiveRun();
+      log('archived run → harness/archive/' + name);
+    } catch (e) { log('archive failed:', e.message); }
+  }
 }
 
 module.exports = { main };

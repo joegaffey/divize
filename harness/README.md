@@ -23,6 +23,7 @@ store.js   append-only results.jsonl (resumable)
 summarize.js  compact summary.md/json fed to the LLM each iteration
 loop.js    orchestrator: batch -> opencode run -> validate -> repeat
 report.js  committed docs/experiments/*.md + .csv (on completion)
+archive.js per-run snapshot: jsonl + reports + findings + README (git diff since last)
 ```
 
 ## Setup
@@ -54,6 +55,13 @@ node cli.js report --exp exp1b                              # committed report
    safety cap (maxIterations / maxRuns / no-progress) is hit.
 
 The LLM never runs commands — it only writes a schema-validated config list.
+
+On completion the loop automatically archives the run to
+`harness/archive/<timestamp>/` (committed): a copy of `results.jsonl`, the
+exp1-a/exp1-b reports + CSVs, the LLM findings/summary, and a `README.md`
+recording the git HEAD and the commit diff since the previous archived run —
+so every sweep keeps a self-contained record even though the live store is
+gitignored and gets cleared before the next run.
 
 ## Config space
 
