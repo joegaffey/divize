@@ -19,8 +19,9 @@ build/
 # Dependency dirs (experiments are self-contained; none expected)
 node_modules/
 
-# Harness runtime artifacts (raw results + dataset are large/derived)
-harness/data/
+# Harness runtime artifacts (raw results + state are derived)
+harness/data/*
+!harness/data/kodak/
 harness/results/
 harness/state/
 harness/golden/
