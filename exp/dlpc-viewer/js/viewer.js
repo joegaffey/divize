@@ -1,7 +1,7 @@
 /* ============================================================
  * divize – viewer.js (DLPC viewer controller)
  *
- * Thin harness that DOGFOODS the <dlpc-player> web component
+ * Thin harness that wraps the <dlpc-player> web component
  * from exp/dlpc-player: all rendering, decoding and backend
  * selection live inside the element. This file only wires the
  * page chrome (drop target, sliders, select, stats) onto the

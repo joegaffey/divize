@@ -81,3 +81,5 @@ code { background: var(--panel-2); padding: 1px 5px; border-radius: 4px; }
 .stats output { color: var(--text); font-weight: 600; }
 
 .footer { padding: 0 24px 20px; color: var(--muted); font-size: 12px; }
+.footer a { color: var(--accent); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }

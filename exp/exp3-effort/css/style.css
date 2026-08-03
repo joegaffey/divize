@@ -235,3 +235,10 @@ body {
 canvas.novoronoi {
   opacity: .25;
 }
+.foot {
+  margin: 8px 24px 24px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.foot a { color: var(--accent); text-decoration: none; }
+.foot a:hover { text-decoration: underline; }

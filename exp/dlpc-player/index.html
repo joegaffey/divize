@@ -20,6 +20,8 @@
     pre { background: #1a1a1e; padding: 12px; border-radius: 6px; overflow: auto; }
     code { color: #ffd569; }
     .foot { margin-top: 24px; color: #55575e; font-size: 12px; }
+    .foot a { color: #8ab4ff; text-decoration: none; }
+    .foot a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -53,5 +55,8 @@
       p.addEventListener('dlpc:error', (e) => console.warn('dlpc-player:', e.detail.message));
     });
   </script>
+  <footer class="foot">Source ·
+    <a href="https://github.com/joegaffey/divize/tree/main/exp/dlpc-player" title="Source code on GitHub">exp/dlpc-player</a>
+  </footer>
 </body>
 </html>

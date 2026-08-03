@@ -78,3 +78,5 @@ body {
 .desc.list li { margin-bottom: 8px; }
 .desc.list a { color: var(--accent); }
 .foot { padding: 8px 24px 28px; color: var(--muted); font-size: 11px; }
+.foot a { color: var(--accent); text-decoration: none; }
+.foot a:hover { text-decoration: underline; }

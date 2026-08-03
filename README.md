@@ -33,7 +33,7 @@ byte streams arrive.
 │   │   ├── index.html          # standalone demo
 │   │   ├── assets/sample.dlpc  # generated Layer-0 sample
 │   │   └── js/{decode,gpu,player}.js
-│   ├── dlpc-viewer/            # decode + render tool (DOGFOODS <dlpc-player>)
+│   ├── dlpc-viewer/            # decode + render tool (uses <dlpc-player>)
 │   │   ├── index.html
 │   │   ├── css/style.css
 │   │   └── js/viewer.js        # thin controller; render/DLP lives in dlpc-player
@@ -49,7 +49,7 @@ one never affects another and each is runnable in isolation.
 
 1. **exp1-convergence** — load an image, tune points/CVT, hit **Export .dlpc**.
    Writes the current field as a Layer-0 `.dlpc` blob (see `docs/dlpc-format.md`, 5-byte packets).
-2. **dlpc-viewer** — drop that `.dlpc` in: it *dogfoods* the `<dlpc-player>` web
+2. **dlpc-viewer** — drop that `.dlpc` in: it renders through the `<dlpc-player>` web
    component from `exp/dlpc-player`, so decode + Voronoi render (WebGPU, CPU
    fallback), blend/AA, and progressive draw-count all run inside the element.
 3. **dlpc-player** — the same renderer packaged as a drop-in custom element that
