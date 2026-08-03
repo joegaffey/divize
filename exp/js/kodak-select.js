@@ -20,6 +20,9 @@
     sel.appendChild(o);
   });
 
+  var label = sel.closest('label');
+  if (label) label.addEventListener('click', function (e) { e.stopPropagation(); });
+  sel.addEventListener('click', function (e) { e.stopPropagation(); });
   sel.addEventListener('change', function () {
     var name = sel.value;
     if (!name) return;
