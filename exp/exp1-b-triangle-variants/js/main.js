@@ -754,7 +754,7 @@
   let pipeRedo = false;
 
   function refresh() {
-    if (!state.gray) return;
+    if (!state.gray) { showWork(false); return; }
     if (pipeBusy) { pipeRedo = true; return; }
     startRun();
   }

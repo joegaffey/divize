@@ -716,7 +716,7 @@
   let pipeRedo = false;
 
   function refresh() {
-    if (!state.gray) return;        // no image yet
+    if (!state.gray) { showWork(false); return; }   // no image yet
     if (pipeBusy) { pipeRedo = true; return; }   // coalesce: drop everything but the latest
     startRun();
   }
