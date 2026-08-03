@@ -31,7 +31,7 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   gap: 16px;
   padding: 16px 24px;
 }
@@ -41,6 +41,7 @@ body {
   border: 1px solid var(--panel-2);
   border-radius: 10px;
   padding: 16px;
+  min-width: 0;
 }
 
 .dropzone {
@@ -279,7 +280,7 @@ canvas.novoronoi {
 /* ---- mobile / narrow layouts --------------------------------------- */
 @media (max-width: 880px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 12px;
     gap: 12px;
   }
@@ -287,6 +288,7 @@ canvas.novoronoi {
   .topbar h1 { font-size: 17px; }
   .dropzone { padding: 24px 16px; }
   .stats { flex-wrap: wrap; gap: 8px 16px; }
+  .stats .wire { white-space: normal; }
   .wipe, .delta-fig { max-width: 100%; }
   .foot { margin: 8px 16px 16px; }
 }
