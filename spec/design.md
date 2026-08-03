@@ -20,6 +20,24 @@ reverse never happens). Read these first:
   splats/ellipses to sharpen selected regions, or splits Voronoi cells into
   triangle fans from the persistent centroid (exp2 pipeline C).
 
+### Metric-informed relaxation (proposed)
+
+CVT moves seeds but never their colours (colours are re-sampled from the source
+each pass), so reconstruction error **plateaus at a floor set by the seed
+budget, not zero** — and that plateau is the convergence signal:
+
+- ΔE keeps dropping per iteration → placement is the binding constraint.
+- ΔE plateaus → further relaxation is wasted compute; the ceiling is seed
+  *count*, not placement.
+
+Planned auto-stop (Exp 1 / Exp 3): run Lloyd to a hard cap while tracking mean
+seed displacement per iteration (nearly free — the centroids are already
+computed), stop when displacement < ~0.1 px, and confirm with a low-res ΔE
+checkpoint every k iterations; stop on either signal and report "converged at
+N iters". A target-driven variant instead iterates until ΔE < a quality
+threshold. Metric details: [`requirements.md`](./requirements.md) §Measurement
+methodology.
+
 ## Temporal decisions
 
 The spatial axis above lives on a temporal axis for moving imagery. Per-frame

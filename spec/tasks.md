@@ -43,11 +43,20 @@ each entails. Motivations and measurable targets: [`requirements.md`](./requirem
 
 - **Exp 1 — Convergence & base density**: sweep Layer-0 allocations
   (16 / 32 / 64 / 128 / 256) on the Kodak suite; SSIM + mobile decode time.
+  CVT sweep uses **metric-informed auto-stop** (see design.md) so iteration
+  counts are measured, not guessed.
 - **Exp 1-a — Floor primitive showdown**: compare pure Voronoi vs tiled
   triangle mesh (Delaunay over the same seeds; indexed; flat vs barycentric
   colours) vs center+transform α-triangle splats at equal byte budgets
-  (16 / 32 / 64 / 128); SSIM/PSNR + mobile decode time. Decides the Layer-0
+  (16 / 32 / 64 / 128); SSIM/PSNR/ΔE + mobile decode time. Decides the Layer-0
   primitive (`docs/dlpc-format.md` §0x02/0x03).
+- **Exp 1-b — Floor variants from one seed set**: the same seeds feed five
+  Layer-0 floors for byte-fair comparison — pure Voronoi (`0x01`), Delaunay
+  mesh (`0x02`), Voronoi-cell seed fans (`0x02`), one max-area triangle per
+  cell (`0x02`), and cell-oriented α-triangles composited over the floor
+  (`0x03`). Also pins down Delaunay degeneracy handling: adaptive seeds land
+  on the integer pixel lattice and must be decollided (dedupe + jitter)
+  before Bowyer–Watson triangulation.
 - **Exp 2 — Architecture showdown**: A: Layer0(64)→+128→+512 seeds;
   B: Layer0(64) → +128 Gaussian splats → +512 anisotropic ellipses;
   C: Layer0 → split Voronoi cells into triangle fans (edge index + colour per

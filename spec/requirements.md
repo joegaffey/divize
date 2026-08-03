@@ -55,3 +55,25 @@ subjective quality. These are the measurable "magic numbers" to pin down:
 Each acceptance target maps to a work-package in [`tasks.md`](./tasks.md) — which
 carries the dataset, metrics, and execution plan — while the system that delivers
 them is described in [`design.md`](./design.md).
+
+## Measurement methodology
+
+Fidelity is measured against the source raster at the **same working resolution**
+the encoder renders (never an upscaled frame), using three complementary numbers:
+
+- **PSNR + SSIM** — the familiar objective pair (SSIM on luma, 8×8 windows).
+- **CIEDE2000 (ΔE)** — per-pixel perceptual colour difference in CIELAB
+  (sRGB→XYZ→Lab, D65). RGB PSNR over-weights dark tones; ΔE collapses the
+  channels into one perceptually-uniform value, ~2.3 being the just-noticeable
+  threshold. The headline is mean ΔE; the **99th percentile (ΔE99)** reports
+  seams and localized blowouts that mean metrics average away.
+- **Saliency-weighted error (ΔE·sal)** — the codec-specific metric: mean ΔE
+  weighted by the analytic saliency field, answering "how much error lands where
+  the encoder looks." Reported beside plain ΔE so a good headline can't be
+  hiding errors concentrated in flat, low-saliency regions.
+
+A per-pixel **ΔE delta map** (cool → cyan@JND → red, ramp normalised to ΔE99) is
+rendered below the reconstruction as the primary visual diagnostic. Numbers and
+map are computed from a single synchronous full-res CPU render that mirrors the
+on-screen sampler, so the measured image is exactly the displayed image — and
+always at **equal byte budgets** across the floors under comparison.
