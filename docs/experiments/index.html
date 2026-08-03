@@ -2,101 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DLPC · Experiment Results</title>
+  <meta http-equiv="refresh" content="0; url=../../md.html" />
+  <title>Redirecting to docs viewer…</title>
   <link rel="stylesheet" href="../../exp/css/hub.css" />
-  <style>
-    main.report { max-width: 960px; margin: 0 auto; padding: 24px; }
-    .report h1 { font-size: 20px; margin: 0 0 8px; }
-    .report h2 { font-size: 16px; margin: 28px 0 10px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
-    .report h3 { font-size: 13px; margin: 22px 0 8px; color: var(--accent-2); }
-    .report p, .report li { color: var(--muted); font-size: 13px; line-height: 1.6; }
-    .report code { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
-    .report pre { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
-    .report pre code { background: none; border: 0; padding: 0; }
-    .report a { color: var(--accent); text-decoration: none; }
-    .report a:hover { text-decoration: underline; }
-    .report table { border-collapse: collapse; margin: 10px 0 18px; width: auto; }
-    .report th, .report td { border: 1px solid var(--line); padding: 6px 12px; font-size: 12.5px; text-align: left; }
-    .report th { background: var(--panel-2); color: var(--text); }
-    .report td { color: var(--muted); }
-    .report td:first-child, .report th:first-child { font-weight: 600; color: var(--text); }
-    .report ul, .report ol { padding-left: 22px; }
-    .report blockquote { border-left: 3px solid var(--accent); margin: 12px 0; padding: 2px 14px; color: var(--muted); }
-    .report hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
-    .status { padding: 16px 24px; color: var(--muted); font-size: 13px; }
-    .links a { display: inline-block; margin: 6px 18px 6px 0; color: var(--accent); text-decoration: none; font-size: 14px; }
-    .links a:hover { text-decoration: underline; }
-    .topbar { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .topbar .back { color: var(--muted); font-size: 12px; }
-    .topbar .back a { color: var(--accent); text-decoration: none; }
-  </style>
 </head>
 <body>
   <header class="topbar">
-    <h1>DLPC <span class="muted">// Experiment results</span></h1>
-    <span class="back"><a href="../../">← landing</a> · <a href="../../exp/">experiments hub</a></span>
+    <h1>DLPC <span class="muted">// Redirect</span></h1>
   </header>
-
-  <main id="report" class="report">
-    <div class="status">loading…</div>
+  <main class="report" style="max-width:960px;margin:24px auto;padding:24px">
+    <p class="status">Results moved to the shared docs viewer.</p>
   </main>
-
-  <footer class="foot">Rendered at runtime from <code>docs/experiments/*.md</code> via <a href="https://marked.js.org/" title="marked markdown parser">marked</a> (CDN).</footer>
-
   <script>
-    (function () {
-      'use strict';
-
-      const REPORTS = ['exp1a-results.md', 'exp1b-results.md'];
-
-      function loadScript(src) {
-        return new Promise((resolve, reject) => {
-          const s = document.createElement('script');
-          s.src = src;
-          s.onload = resolve;
-          s.onerror = () => reject(new Error('failed to load ' + src));
-          document.head.appendChild(s);
-        });
-      }
-
-      function escapeHtml(s) {
-        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      }
-
-      async function showReport(name) {
-        const el = document.getElementById('report');
-        el.innerHTML = '<div class="status">loading ' + escapeHtml(name) + '…</div>';
-        try {
-          const res = await fetch(name);
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          const md = await res.text();
-          if (window.marked) {
-            el.innerHTML = window.marked.parse(md);
-          } else {
-            el.innerHTML = '<pre><code>' + escapeHtml(md) + '</code></pre>';
-          }
-        } catch (e) {
-          el.innerHTML = '<div class="status">could not load ' + escapeHtml(name) + ': ' + escapeHtml(e.message) + '</div>';
-        }
-      }
-
-      function showIndex() {
-        const el = document.getElementById('report');
-        el.innerHTML = '<h1>Experiment results</h1><p>Headless harness sweeps with per-run browser deep-links.</p>' +
-          '<nav class="links">' + REPORTS.map((f) => '<a href="?f=' + f + '">' + f.replace('-results.md', '') + ' →</a>').join('') + '</nav>';
-      }
-
-      async function init() {
-        const f = new URLSearchParams(location.search).get('f');
-        if (!f) { showIndex(); return; }
-        try { await loadScript('https://cdn.jsdelivr.net/npm/marked/marked.min.js'); }
-        catch (e) { console.warn('marked CDN unavailable, showing raw markdown:', e); }
-        showReport(f);
-      }
-
-      init();
-    })();
+    // Preserve the ?f= param into the shared viewer.
+    var f = new URLSearchParams(location.search).get('f');
+    location.replace(f ? '../../md.html?f=docs/experiments/' + f : '../../md.html');
   </script>
 </body>
 </html>
